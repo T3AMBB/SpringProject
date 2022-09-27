@@ -35,80 +35,108 @@
 <body>
    
     <hearder:header/>
+    <hr>
 
     <!-- Shop Details Section Begin -->
     <section class="shop-details">
-        <div class="product__details__pic">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product__details__breadcrumb">
-                            <a href="./main.jsp">Home</a>
-                            <a href="./product.jsp">Shop</a>
-                            <span>상품 상세</span>
-                        </div>
-                    </div>
+      <div class="product__details__pic">
+         <div class="container">
+            <div class="product__details__breadcrumb">
+          	  <div class="col-lg-12">
+            	<div class="breadcrumb__text">
+             	  <h4><a href="./main.jsp">Home</a></h4>
+             	  <div class="breadcrumb__links">
+              		  <a href="./product.jsp">Shop</a> <span>상품상세</span>
+              		  </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-9">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__pic__item">
-                                    <img src="img/shop-details/product-big-2.png" alt="">
-                                </div>
-                  <div>
-                    <div class="col-lg-12">
-                        <div class="product__details__text">
-                            <h4>Hooded thermal anorak</h4>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <span> - 5 Reviews</span>
-                            </div>
-                            <h3>$270.00 <span>70.00</span></h3>
-                            <div class="product__details__option">
-                                <div class="product__details__option__size">
-                                    <span>Size:</span>
-                                    <label for="xxl">xxl
-                                        <input type="radio" id="xxl">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="product__details__cart__option">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </div>
-                                <a href="#" class="primary-btn">add to cart</a>
-                            </div>
-                            <div class="product__details__btns__option">
-                                <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>
-                                <a href="#"><i class="fa fa-exchange"></i> Add To Compare</a>
-                            </div>
-                            <div class="product__details__last__option">
-                                <h5><span>Guaranteed Safe Checkout</span></h5>
-                                <img src="img/shop-details/details-payment.png" alt="">
-                                <ul>
-                                    <li><span>SKU:</span> 3812912</li>
-                                    <li><span>Categories:</span> Clothes</li>
-                                    <li><span>Tag:</span> Clothes, Skin, Body</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </div>
+            
+            
+            <div class="tab-content">
+               <div class="tab-pane active" id="tabs-1" role="tabpanel">
+               <div class="row">
+                  <div class="col-lg-6" >
+                  <div class="product__details__pic__item">
+                     <img src="img/shop-details/product-big-2.png" alt="" style="margin-top: 25%; margin-left: 15%;">
+                  </div>
+                  <div>
+                  </div>
+                  </div>
+                  <div class="col-lg-6" style="border:1px solid black; padding:5%; padding-bottom: 1%;">
+                     <div class="product__details__text">
+                     	<div class="producttext" style="margin-right:45%;">
+                        <h2>상품명</h2>
+                        <br>
+                        <h4>
+                           30,000원 
+                        </h4>
+                     	</div>
+                        <br>
+                        <br>
+                        <div style="margin-left:16%;">
+                        <table>
+                    	    <tbody>
+         						<tr>
+         							<th scope="row" style="text-align: left; margin-top: 20px; padding-bottom: 25px;">제조사</th>
+         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">반프레스토</td>
+         						</tr>
+         						<tr>
+         							<th scope="row" style="text-align: left; margin-top: 20px; padding-bottom: 25px;" >원산지</th>
+         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">중국</td>
+         						</tr>
+         						<tr>
+         							<th scope="row" style="text-align: left; margin-top: 20px; padding-bottom: 25px;"> 재질</th>
+         							<td style="padding-left: 100px; margin-top: 20px; text-align: left;padding-bottom: 25px;">PVC / ASC</td>
+         						</tr>
+         						<tr>
+         							<th scope="row" style="text-align: left; padding-bottom: 25px;">치수</th>
+         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">약 15cm</td>
+         						</tr>
+         						<tr>
+         							<th scope="row" style="text-align: left; margin-top: 20px;">수량</th>
+         							<td>
+										<div class="product__details__cart__option" >
+                      					     <div class="quantity" >
+                           					   <div class="pro-qty" scope="row"style="text-align: center; margin-top: 20px; margin-left: 100px;">
+                              					   <input type="text" value="1">
+                           					   </div>
+                          				 </div>
+                     					 </div>
+									</td>
+         						</tr>
+                      		  </tbody>
+                        </table>
+                        </div>
+						 
+                        <hr>
+                        <br>
+                        <br>
+                        <div style="margin-left:16%;">
+                        <table>
+                        	<tbody>
+                        		<tr>
+                                 	<th scope="row" style="text-align: left; padding-bottom: 25px;">총 구매금액</th>
+         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">
+         							<strong><span  style="color: #ff6623; font-size: 26px; font-weight: 700;">30,000</span> </strong>원</td>
+                        		</tr>
+                        	</tbody>
+                        </table>
+                        </div>
+                        <a href="#" class="primary-btn">add to cart</a>
+                        <br>
+                        <br>
+                        <div class="product__details__btns__option">
+                          <a href="#"><i class="fa fa-heart"></i> 찜하기</a>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
         <div class="product__details__content">
             <div class="container">
                 <div class="row">
@@ -227,7 +255,11 @@
         </div>
     </section>
     <!-- Shop Details Section End -->
-
+	<br>
+	<br>
+	<br>
+	<hr>
+	
     <!-- Related Section Begin -->
     <section class="related spad">
         <div class="container">
@@ -243,20 +275,12 @@
                             <span class="label">New</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
                                 <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
                             <h6>Piqué Biker Jacket</h6>
                             <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
                             <h5>$67.24</h5>
                             <div class="product__color__select">
                                 <label for="pc-1">
@@ -277,20 +301,12 @@
                         <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
                             <ul class="product__hover">
                                 <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
                                 <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
                             <h6>Piqué Biker Jacket</h6>
                             <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
                             <h5>$67.24</h5>
                             <div class="product__color__select">
                                 <label for="pc-4">
@@ -312,20 +328,12 @@
                             <span class="label">Sale</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a></li>
                                 <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
                             <h6>Multi-pocket Chest Bag</h6>
                             <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
                             <h5>$43.48</h5>
                             <div class="product__color__select">
                                 <label for="pc-7">
@@ -352,13 +360,6 @@
                         <div class="product__item__text">
                             <h6>Diagonal Textured Cap</h6>
                             <a href="#" class="add-cart">+ Add To Cart</a>
-                            <div class="rating">
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
                             <h5>$60.9</h5>
                             <div class="product__color__select">
                                 <label for="pc-10">

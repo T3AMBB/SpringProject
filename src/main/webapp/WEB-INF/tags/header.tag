@@ -29,7 +29,7 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
-            <p>Free shipping, 30-day return or refund guarantee.</p>
+            <p>세상 모든 피규어를 만나보세요!</p>
         </div>
     </div>
     <!-- Offcanvas Menu End -->
@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-7">
                         <div class="header__top__left">
-                            <p>Free shipping, 30-day return or refund guarantee.</p>
+                            <p>세상 모든 피규어를 만나보세요!</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">

@@ -76,7 +76,7 @@ h6 {
 p {
 	font-size: 15px;
 	font-family: "Nunito Sans", sans-serif;
-	color: #3d3d3d;
+	color: #fff;
 	font-weight: 400;
 	line-height: 25px;
 	margin: 0 0 15px 0;
@@ -582,8 +582,9 @@ ol {
 }
 
 .hero__items {
-	height: 800px;
-	padding-top: 230px;
+	height: 480px;
+	padding-top: 5%;
+    padding-left: 25%;
 }
 
 .hero__text h6 {
@@ -602,7 +603,7 @@ ol {
 }
 
 .hero__text h2 {
-	color: #111111;
+	color: #fff;
 	font-size: 48px;
 	font-weight: 700;
 	line-height: 58px;
@@ -1501,7 +1502,6 @@ ol {
 
 .product__details__pic {
 	text-align: left;
-	background: #f3f2ee;
 	padding: 40px 0 60px;
 	margin-bottom: 100px;
 }
@@ -2052,7 +2052,6 @@ ol {
 -----------------------*/
 
 .breadcrumb-option {
-	background: #f3f2ee;
 	padding: 40px 0;
 }
 
@@ -3799,7 +3798,7 @@ ol {
 		padding: 35px 30px 40px;
 	}
 	.hero__items {
-		height: auto;
+		height: 450px;
 		padding-top: 130px;
 		padding-bottom: 40px;
 	}

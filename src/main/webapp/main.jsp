@@ -37,16 +37,17 @@
 <body>
    
     <hearder:header/>
+    <hr>
 
 	
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="img/hero/hero-3.jpg">
+            <div class="hero__items set-bg" data-setbg="img/hero/onepice-1.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
+                            <div class="hero__text" style="font-color:white">
                                 <h6>피규어 역사상 최고의 Collection</h6>
                                 <h2>최고의 걸작!</h2>
                                 <p> 살아 숨쉬는듯한 생동감 넘치는 피규어!</p>
@@ -61,29 +62,13 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="img/hero/hero-2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>돌아온 마블!</h6>
-                                <h2>2022년 최고의 퀄리티!</h2>
-                                <p>뜨끈뜨끈한 신상! 바로 맞이해보세요!!!</p>
-                                <a href="#" class="primary-btn">구매하러 가기 <span class="arrow_right"></span></a>
-                                <div class="hero__social">
-                                    <a href="https://www.facebook.com/figurefarm.net/"target=”_blank”><i class="fa fa-facebook"></i></a>
-                                    <a href="https://twitter.com/figurefam_net"target=”_blank”><i class="fa fa-twitter"></i></a>
-                                    <a href="https://www.instagram.com/figurefarm/"target=”_blank”><i class="fa fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero__items set-bg" data-setbg="img/hero/onepice-2.jpg">
             </div>
         </div>
     </section>
     <!-- Hero Section End -->
 
+	<hr>
     <!-- Banner Section Begin -->
     <section class="banner spad">
         <div class="container">
