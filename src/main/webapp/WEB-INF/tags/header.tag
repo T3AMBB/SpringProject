@@ -1,4 +1,6 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
+<script src="https://kit.fontawesome.com/b7488a2ad9.js" crossorigin="anonymous"></script>
+
  <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
