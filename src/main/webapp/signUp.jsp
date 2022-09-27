@@ -69,19 +69,21 @@
                 </tr>
                 <tr><td></td></tr>
                 <tr><td></td></tr>
-                <tr  style="text-align:right">
+                <tr style="text-align:right">
                   <th></th>
-                  <td><button type="button" class="btn btn-primary">우편번호 검색</button></td>
+                  <td><button type="button" id="searchAdd" class="btn btn-dark">우편번호 검색</button></td>
                 </tr>
                 <tr>
                   <th><span>주소</span></th>
-                  <td class="row2"><input  type="text" placeholder="우편번호" readonly="readonly"></td>
+                  <td class="row"><input  type="text" id="add_zone" placeholder="우편번호" readonly="readonly"></td>
                 </tr>
-                <tr >
-                  <td class="row2" colspan="2"><input type="text" placeholder="도로명 주소" readonly="readonly"></td>
+                <tr>
+                  <th></th>
+                  <td class="row" colspan="2"><input type="text" id="add_load" placeholder="도로명 주소" readonly="readonly"></td>
                 </tr>
-                <tr >
-                  <td class="row2" colspan="2"><input type="text" placeholder="상세 주소"></td>
+                <tr>
+                <th></th>
+                  <td class="row" colspan="2"><input type="text" name="address" placeholder="상세 주소"></td>
                 </tr>
               </tbody>
             </table>
@@ -105,7 +107,7 @@
             </div>
           </div>
           <div class="btn_wrap2">
-            <a href="javascript:;">다음</a>
+            <button type="submit" class="btn btn-dark btn-lg">회원가입</button>
           </div>
         </div> <!-- form_txtInput E -->
       </div><!-- content E-->
@@ -114,16 +116,7 @@
     
     <hearder:footer/>
 
-    <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search End -->
+
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -136,6 +129,22 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>    
+    
+	<script>
+	   window.onload = function(){
+	       document.getElementById("searchAdd").addEventListener("click", function(){ //주소입력칸을 클릭하면
+	           //카카오 지도 발생
+	           new daum.Postcode({
+	               oncomplete: function(data) { //선택시 입력값 세팅
+	                   document.getElementById("add_load").value = data.address; // 주소 넣기
+	                   document.getElementById('add_zone').value = data.zonecode; // 우편 번호 넣기
+	                   document.querySelector("input[name=address]").focus(); //상세입력 포커싱
+	               }
+	           }).open();
+	       });
+	   }
+	</script>
 </body>
 
 </html>

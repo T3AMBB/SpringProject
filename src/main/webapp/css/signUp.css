@@ -50,7 +50,7 @@ ul{list-style:none; }
 .join_form table td a.btn_confirm{display: inline-block; float:left;width:115px; height:48px;margin:5px 0 0 0px;border:1px solid #cfcfcf;background:#dedede;color:#626262;text-align:center; vertical-align: top;line-height: 50px;}
 .join_form.idpwFind table td select { -webkit-appearance: none; -moz-appearance: none;  appearance: none; background: url(https://secsales.interparkb2b.co.kr/data/G94/main/sele_arr.gif) no-repeat 95% 50%;text-indent:20px; width:124px; height:50px;border:1px solid #ececec; font-size:14px; color:#ccc; float:left;}
 .join_form.idpwFind table td select::-ms-expand { display: none;}
-.join_form.idpwFind table td  tr.phone td select {text-align: center; text-indent: 10px;}
+.join_form.idpwFind table td tr.phone td select {text-align: center; text-indent: 10px;}
 .join_form.idpwFind table tr.email input:after,.mar10:after,  .join_form.idpwFind table td select:after,.join_form table td a.btn_confirm:after{content:'';display: block;clear:both;}
 .agree_wrap{margin:36px 0 0;}
 .agree_wrap .checkbox_wrap{text-align:left;}
