@@ -143,23 +143,28 @@
 					<h5>구매 내역</h5>
 					<br>
 					</div>
-					<table class="table table-bordered">
+					<table class="table table-borderless">
 						<tr>
-							<th>쿠폰명</th>
-							<th>할인금액</th>
-							<th>적용기준</th>
-							<th>사용일</th>
+							<th>상품사진</th>
+							<th>상품명</th>
+							<th>구매수량</th>
+							<th>가격</th>
+							<th>구매일</th>
+							<th>배송일</th>
 						</tr>
 						<tr>
-							<td>쿠폰명</td>
-							<td>할인금액</td>
-							<td>적용기준</td>
-							<td>사용일</td>
+							<td>상품사진</td>
+							<td>상품명</td>
+							<td>구매수량</td>
+							<td>가격</td>
+							<td>구매일</td>
+							<td>배송일</td>
 						</tr>
 					</table>
 					<br><br><br><br>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 	<div class="modal" id="delete">
@@ -176,7 +181,7 @@
 					<div class="modal-body">
 						<!-- 닫기 섹션 -->
 						<section class="top-close">
-							<p class="top-txt">정말 회원탈퇴를 하실건가요?</p>
+							<p  style="color:black" class="top-txt">정말 회원탈퇴를 하실건가요?</p>
 							<a class="close" href="./Modalpop.html"> <img
 								src="images/Vector 2.png" alt=""> <img
 								src="images/Vector 3.png" alt="">

@@ -138,9 +138,9 @@
 						<div class="text-left">
 						<h5>내 정보 수정 </h5>
 						<br>
-						<table class="table table-bordered">
+						<table class="table table-borderless">
 							<tr>
-								<td>아이디</td>
+								<td style="width:200px">아이디</td>
 								<td>아이디</td>
 							</tr>
 							<tr>
@@ -210,7 +210,7 @@
 				<div class="modal-body">
 					<!-- 닫기 섹션 -->
 					<section class="top-close">
-						<p class="top-txt">정말 회원탈퇴를 하실건가요?</p>
+						<p style="color:black" class="top-txt">정말 회원탈퇴를 하실건가요?</p>
 						<a class="close" href="./Modalpop.html"> <img
 							src="images/Vector 2.png" alt=""> <img
 							src="images/Vector 3.png" alt="">
@@ -274,8 +274,5 @@
 		       });
 		   }
 		</script>
-	
-	
 </body>
-
 </html>

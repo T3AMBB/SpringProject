@@ -144,8 +144,10 @@
 									<br>
 									<span style="text-indent: 0;font-size:13px; color:black;">고객님께서 보유하고 있는 할인쿠폰을 확인하세요! 상품구매 시 더욱 저렴하게 구매할 수 있습니다.</span>
 									</div>
+									<br>
 									<div class="d-flex justify-content-center" style="align-items: center;">
 										<img src="img/coupon.jpg" style="width:300px; height:300px;"alt="">
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<div style="text-align:center; color:red"><h4>내가 가진 쿠폰</h4>
 										<hr>
 										<span
@@ -153,42 +155,46 @@
 										</div>
 									</div>
 									<br><br>
+									<div class="wrap-table">
 									<div class="text-left">
 									<h5>쿠폰 목록</h5>
 									</div>
-									<table class="table table-bordered">
+									<table class="table table-borderless">
 										<tr>
 											<th>쿠폰명</th>
-											<th>할인금액</th>
+											<th>할인율</th>
 											<th>적용기준</th>
 											<th>유효기간</th>
 										</tr>
 										<tr>
 											<td>쿠폰명</td>
-											<td>할인금액</td>
+											<td>할인율</td>
 											<td>적용기준</td>
 											<td>유효기간</td>
 										</tr>
 									</table>
+									</div>
 									<br><br>
+									<div class="wrap-table">
 									<div class="text-left">
 									<h5>쿠폰 사용 내역</h5>
 									</div>
-									<table class="table table-bordered">
+									<table class="table table-borderless">
 										<tr>
 											<th>쿠폰명</th>
-											<th>할인금액</th>
+											<th>할인율</th>
 											<th>적용기준</th>
 											<th>사용일</th>
 										</tr>
 										<tr>
 											<td>쿠폰명</td>
-											<td>할인금액</td>
+											<td>할인율</td>
 											<td>적용기준</td>
 											<td>사용일</td>
 										</tr>
 									</table>
 									<br><br>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -207,7 +213,7 @@
 					<div class="modal-body">
 						<!-- 닫기 섹션 -->
 						<section class="top-close">
-							<p class="top-txt">정말 회원탈퇴를 하실건가요?</p>
+							<p  style="color:black" class="top-txt">정말 회원탈퇴를 하실건가요?</p>
 							<a class="close" href="./Modalpop.html"> <img
 								src="images/Vector 2.png" alt=""> <img
 								src="images/Vector 3.png" alt="">
