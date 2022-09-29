@@ -605,7 +605,7 @@ $(".order_btn").on("click", function(){
             msg += '에러내용 : ' + rsp.error_msg;
          }
          alert(msg);
-         location.href='payments.jsp';
+         location.href='payment.jsp';
       });
    });
 	</script>
