@@ -9,11 +9,17 @@ public class ProductVO {
 	private String pmade;
 	private String pmat;
 	private String psize;
+	private int cnt;
 	public int getPid() {
 		return pid;
 	}
 	public void setPid(int pid) {
 		this.pid = pid;
+	}
+	@Override
+	public String toString() {
+		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", pcnt=" + pcnt + ", pcom=" + pcom
+				+ ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", cnt=" + cnt + "]";
 	}
 	public String getPname() {
 		return pname;
@@ -57,11 +63,10 @@ public class ProductVO {
 	public void setPsize(String psize) {
 		this.psize = psize;
 	}
-	@Override
-	public String toString() {
-		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", pcnt=" + pcnt + ", pcom=" + pcom
-				+ ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + "]";
+	public int getCnt() {
+		return cnt;
 	}
-	
-	
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 }
