@@ -99,7 +99,7 @@
          							<td>
 										<div class="product__details__cart__option" >
                       					     <div class="quantity" >
-                           					   <div class="pro-qty" scope="row"style="text-align: center; margin-top: 20px; margin-left: 100px;">
+                           					   <div class="pro-qty" scope="row" style="text-align: center; margin-top: 20px; margin-left: 100px;">
                               					   <input type="text" value="1">
                            					   </div>
                           				 </div>
