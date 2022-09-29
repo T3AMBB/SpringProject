@@ -9,12 +9,34 @@ public class ProductVO {
 	private String pmade;
 	private String pmat;
 	private String psize;
+	@Override
+	public String toString() {
+		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", pcnt=" + pcnt + ", pcom=" + pcom
+				+ ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", cnt=" + cnt + ", pimg=" + pimg
+				+ ", pdetail=" + pdetail + "]";
+	}
+	private int cnt;
+	private String pimg;
+	public String getPimg() {
+		return pimg;
+	}
+	public void setPimg(String pimg) {
+		this.pimg = pimg;
+	}
+	public String getPdetail() {
+		return pdetail;
+	}
+	public void setPdetail(String pdetail) {
+		this.pdetail = pdetail;
+	}
+	private String pdetail;
 	public int getPid() {
 		return pid;
 	}
 	public void setPid(int pid) {
 		this.pid = pid;
 	}
+	
 	public String getPname() {
 		return pname;
 	}
@@ -57,11 +79,10 @@ public class ProductVO {
 	public void setPsize(String psize) {
 		this.psize = psize;
 	}
-	@Override
-	public String toString() {
-		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", pcnt=" + pcnt + ", pcom=" + pcom
-				+ ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + "]";
+	public int getCnt() {
+		return cnt;
 	}
-	
-	
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 }

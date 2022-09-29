@@ -38,10 +38,9 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="breadcrumb__text">
-						<h4>Shopping Cart</h4>
+						<h4>찜목록</h4>
 						<div class="breadcrumb__links">
-							<a href="./index.html">Home</a> <a href="./shop.html">Shop</a> <span>Shopping
-								Cart</span>
+							<a href="./index.html">Home</a> <a href="./shop.html">Shop</a> <span>찜목록</span>
 						</div>
 					</div>
 				</div>
@@ -59,9 +58,9 @@
 						<table>
 							<thead>
 								<tr>
-									<th style="width: 75%;">Product</th>
-									<th>Quantity</th>
-									<th>Total</th>
+									<th style="width: 60%;">Product</th>
+									<th style="width: 20%;">Quantity</th>
+									<th style="width: 10%;">Total</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -72,8 +71,10 @@
 											<img src="img/shopping-cart/cart-1.jpg" alt="">
 										</div>
 										<div class="product__cart__item__text">
-											<h6>T-shirt Contrast Pocket</h6>
-											<h5>$98.49</h5>
+											<h6>v:datas {p.name}</h6>
+											<!-- value에 {p.price}  -->
+											<h6><input class="product_price" type="text" value="30000"
+												style="border: none; width: inherit;"></h6>
 										</div>
 									</td>
 									<td class="quantity__item">
@@ -83,7 +84,31 @@
 											</div>
 										</div>
 									</td>
-									<td class="cart__price">$ 30.00</td>
+									<td><input class="cart_price" type="text"
+										value="30000" style="border: none; width: inherit;"></td>
+									<td class="cart__close"><a href="delete.do"><i class="fa fa-close"></i></a></td>
+								</tr>
+								<tr>
+									<td class="product__cart__item">
+										<div class="product__cart__item__pic">
+											<img src="img/shopping-cart/cart-1.jpg" alt="">
+										</div>
+										<div class="product__cart__item__text">
+											<h6>v:datas {p.name}</h6>
+											<!-- value에 {p.price}  -->
+											<input class="product_price" type="text" value="30000"
+												style="border: none; width: inherit;">
+										</div>
+									</td>
+									<td class="quantity__item">
+										<div class="quantity">
+											<div class="pro-qty-2">
+												<input type="text" value="1">
+											</div>
+										</div>
+									</td>
+									<td><input class="product_total_price" type="text"
+										value="30000" style="border: none; width: inherit;"></td>
 									<td class="cart__close"><i class="fa fa-close"></i></td>
 								</tr>
 								<tr>
@@ -92,8 +117,10 @@
 											<img src="img/shopping-cart/cart-2.jpg" alt="">
 										</div>
 										<div class="product__cart__item__text">
-											<h6>Diagonal Textured Cap</h6>
-											<h5>$98.49</h5>
+											<h6>v:datas {p.name}</h6>
+											<!-- value에 {p.price}  -->
+											<input class="product_price" type="text" value="40000"
+												style="border: none; width: inherit;">
 										</div>
 									</td>
 									<td class="quantity__item">
@@ -103,69 +130,25 @@
 											</div>
 										</div>
 									</td>
-									<td class="cart__price">$ 32.50</td>
+									<td><input class="product_total_price" type="text"
+										value="40000" style="border: none; width: inherit;"></td>
 									<td class="cart__close"><i class="fa fa-close"></i></td>
 								</tr>
-								<tr>
-									<td class="product__cart__item">
-										<div class="product__cart__item__pic">
-											<img src="img/shopping-cart/cart-3.jpg" alt="">
-										</div>
-										<div class="product__cart__item__text">
-											<h6>Basic Flowing Scarf</h6>
-											<h5>$98.49</h5>
-										</div>
-									</td>
-									<td class="quantity__item">
-										<div class="quantity">
-											<div class="pro-qty-2">
-												<input type="text" value="1">
-											</div>
-										</div>
-									</td>
-									<td class="cart__price">$ 47.00</td>
-									<td class="cart__close"><i class="fa fa-close"></i></td>
-								</tr>
-								<tr>
-									<td class="product__cart__item">
-										<div class="product__cart__item__pic">
-											<img src="img/shopping-cart/cart-4.jpg" alt="">
-										</div>
-										<div class="product__cart__item__text">
-											<h6>Basic Flowing Scarf</h6>
-											<h5>$98.49</h5>
-										</div>
-									</td>
-									<td class="quantity__item">
-										<div class="quantity">
-											<div class="pro-qty-2">
-												<input type="text" value="1">
-											</div>
-										</div>
-									</td>
-									<td class="cart__price">$ 30.00</td>
-									<td class="cart__close"><i class="fa fa-close"></i></td>
-								</tr>
+
 							</tbody>
 						</table>
 					</div>
 					<div class="row">
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="continue__btn">
-								<a href="#">더 보러가기</a>
+								<a href="product.jsp">더 보러가기</a>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="continue__btn update__btn">
 								<a href="#"><i class="fa fa-cart-shopping"
-									style="color: white; display: inline-block;"></i> 찜목록 비우기</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<div class="continue__btn update__btn">
-							<a href="#"><i class="fa fa-cart-shopping"
-								style="color: white; display: inline-block;"></i> 장바구니에 담기</a>
+									style="color: white; display: inline-block;"></i>장바구니에 담기</a>
+							</div>							
 						</div>
 					</div>
 
@@ -176,17 +159,6 @@
 
 	<hearder:footer />
 
-
-	<!-- Search Begin -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search End -->
 
 	<!-- Js Plugins -->
 	<script src="js/jquery-3.3.1.min.js"></script>
