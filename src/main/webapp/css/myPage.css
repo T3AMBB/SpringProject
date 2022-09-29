@@ -1,0 +1,187 @@
+@charset "UTF-8";
+	#mypageHeader{border:2px solid #212529;}
+	#mypageHeader tr td {height:120px;font-size:1em;}
+	#mypageHeader tr td i {font-size:2.3em;color:#777;margin-top:3px;}	
+	
+	/* 애니메이션~~ */
+	.square, .circle, .triangle, .close, .star, .message {
+	  position:absolute;
+	  display : none;
+	  z-index: 100;
+	}
+	
+	.circle {border-radius:50%;}
+	
+	.square-1 {
+	  width:30px;
+	  height:30px;
+	  top:0px;
+	  left:20px;
+	  border:5px solid #FFBB00;
+	  /* 추가된 부분 */
+	  animation: square-1 2s infinite cubic-bezier(0.415, 0.547, 0, 0.809);
+	}
+	
+	.square-2 {
+	  width:50px;
+	  height:50px;
+	  top:0px;
+	  left:20px;
+	  border:5px solid #FFBB00;
+	  /* 추가된 부분 */
+	  animation:square-2 2s infinite cubic-bezier(0.415, 0.547, 0, 0.809);
+	}
+	
+	.circle-1 {
+	  width:40px;
+	  height:40px;
+	  top:5px;
+	  left:15px;
+	  background:#5853EB;
+	  /* 추가된 부분 */
+	  animation:circle-1 2s infinite cubic-bezier(0.415, 0.547, 0, 0.809);
+	}
+	
+	.triangle-1 {
+	  width:40px;
+	  height:40px;
+	  top:0px;
+	  left:25px;
+	  background:#FF2424;
+	  clip-path: polygon(50% 0%, 0 100%, 100% 100%);
+	  /* 추가된 부분 */
+	  animation:triangle-1 2s infinite cubic-bezier(0.415, 0.547, 0, 0.809);
+	}
+	
+	.close-1 {
+	  width:35px;
+	  height:35px;
+	  top:0px;
+	  left:20px;
+	  background:#41AF39;
+	  clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+	  /* 추가된 부분 */
+	  animation:close-1 2s infinite cubic-bezier(0.415, 0.547, 0, 0.809);
+	}
+	
+	.star-1 {
+	  width:25px;
+	  height:25px;
+	  top:10px;
+	  left:25px;
+	  background:#FF5E00;
+	  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	  /* 추가된 부분 */
+	  animation:star-1 2s infinite cubic-bezier(0.415, 0.547, 0, 0.809);
+	}
+	
+	.message-1 {
+	  width:35px;
+	  height:35px;
+	  top:10px;
+	  left:20px;
+	  background:#990085;
+	  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+	  /* 추가된 부분 */
+	  animation:message-1 2s infinite cubic-bezier(0.415, 0.547, 0, 0.809);
+	}
+	
+	@keyframes clip-top {
+	  0% {transform:translateY(0px)}
+	  50% {transform:translateY(-150px)}
+	  100% {transform:translateY(0px)}
+	}
+	
+	@keyframes clip-left {
+	  0% {transform:translateX(0px)}
+	  50% {transform:translateX(-150px)}
+	  100% {transform:translateX(0px)}
+	}
+	
+	@keyframes clip-right {
+	  0% {transform:translateX(0px)}
+	  50% {transform:translateX(150px)}
+	  100% {transform:translateX(0px)}
+	}
+	
+	@keyframes clip-bottom {
+	  0% {transform:translateY(0px)}
+	  50% {transform:translateY(150px)}
+	  100% {transform:translateY(0px)}
+	}
+	
+	/* 추가된 부분 */
+	@keyframes square-1 {
+	  0% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	  50% {transform:translateX(-50px) translateY(50px) scale(1) rotateZ(90deg)}
+	  100% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	}
+	
+	/* 추가된 부분 */
+	@keyframes square-2 {
+	  0% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	  50% {transform:translateX(-80px) translateY(-60px) scale(1) rotateZ(135deg)}
+	  100% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	}
+	
+	/* 추가된 부분 */
+	@keyframes circle-1 {
+	  0% {transform:translateX(0) translateY(0) scale(0)}
+	  50% {transform:translateX(70px) translateY(-80px) scale(1)}
+	  100% {transform:translateX(0) translateY(0) scale(0)}
+	}
+	
+	/* 추가된 부분 */
+	@keyframes triangle-1 {
+	  0% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	  50% {transform:translateX(-100px) translateY(140px) scale(1) rotateZ(-90deg)}
+	  100% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	}
+	
+	/* 추가된 부분 */
+	@keyframes close-1 {
+	  0% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	  50% {transform:translateX(100px) translateY(140px) scale(1) rotateZ(-270deg)}
+	  100% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	}
+	
+	/* 추가된 부분 */
+	@keyframes star-1 {
+	  0% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	  50% {transform:translateX(60px) translateY(70px) scale(1) rotateZ(155deg)}
+	  100% {transform:translateX(0) translateY(0) scale(0) rotateZ(0)}
+	}
+	
+	/* 추가된 부분 */
+	@keyframes message-1 {
+	  0% {transform:translateX(0) scale(0) rotateZ(0)}
+	  50% {transform:translateX(70px) scale(1) rotateZ(-360deg)}
+	  100% {transform:translateX(0) scale(0) rotateZ(0)}
+	}
+	
+	#point:hover {cursor:pointer;}
+	#sidebar {background-color: #212529; width:100%;}
+	#sidebar ul li {width: 100%;padding:2px 20px;font-size: 1.3em;}
+	#sidebar ul li:hover {background:#212529; color:black;}
+	.row .col-lg-9 a:hover{background:#818181; color:black; }
+	.col-lg-3 > #v-pills-tab > .active {
+		color: rgb(255,255,255) !important;
+		background-color: rgb(33,37,41) !important;
+	}
+	.col-lg-3 > #v-pills-tab > .active > span {
+		font : rgb(255,255,255) !important;
+	}
+	
+	a { text-decoration:none !important; color:black;}
+	a span { color:black;}
+	span a { color:black;}
+	a:hover { text-decoration:none !important }
+	
+	.nav-link span {color:black;}
+	.active span {color:white;}
+	.navbar {padding:0;}
+	#sidebar {background-color: #fff; width:100%;}
+	#sidebar ul li span{width: 100%;padding:2px 20px;font-size: 0.8em;}
+	#sidebar ul li span:hover{background:#212529; color:white;}
+	.prepare{opacity:0.7;}
+	.top-txt {color:black;	}
