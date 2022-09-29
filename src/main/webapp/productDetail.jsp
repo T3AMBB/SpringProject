@@ -118,8 +118,8 @@
                         	<tbody>
                         		<tr>
                                  	<th scope="row" style="text-align: left; padding-bottom: 25px;">총 구매금액</th>
-         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">
-         							<strong><span  style="color: #ff6623; font-size: 26px; font-weight: 700;">30,000</span> </strong>원</td>
+         							<td style="padding-left: 0px; margin-top: 20px; text-align: left; padding-bottom: 25px;">
+         							<strong><input type="text" class="mbox" value="30000" style="color: #ff6623; font-size: 26px; font-weight: 700; width: 80%;">원</strong></td>
                         		</tr>
                         	</tbody>
                         </table>
