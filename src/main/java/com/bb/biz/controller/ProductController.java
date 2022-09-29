@@ -19,31 +19,33 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping(value="/boardP.do")
-	public String selectOne(Model model,ProductVO pVO){
+	public String selectOneProduct(Model model,ProductVO pVO){
 
-		pVO=productService.selectOne(pVO);
-		if(pVO==null) {
-			return "login.jsp";
-		}
-		else {
-			
-			
-			model.addAttribute("product", pVO);
-			return "redirect:main.do";
-		}
-
+		pVO=productService.selectOneProduct(pVO);
+	
+		model.addAttribute("product", pVO);
+		return "productDetail.jsp";
+		
 	}
-	@RequestMapping(value="/selectAllP.do", method=RequestMethod.GET)
-	public String selectAll(ProductVO pVO,Model model) {
+	
+	@RequestMapping(value="/main.do")
+	public String main(ProductVO pVO, Model model) {
 		
-		
-		List<ProductVO> products=productService.selectAll(pVO);
+		List<ProductVO> products=productService.selectAllProduct(pVO);
 		
 		model.addAttribute("products", products);
-		return "redirect:main.do";
+		return "main.jsp";
 
 	}
 	
-	
+	@RequestMapping(value="/selectAllP.do")
+	public String selectAllProduct(ProductVO pVO,Model model) {
+		
+		List<ProductVO> products=productService.selectAllProduct(pVO);
+		
+		model.addAttribute("products", products);
+		return "product.jsp";
+		
+	}
 	
 }

@@ -18,16 +18,12 @@ public class CouponController {
 	
 	@RequestMapping(value="/insertC.do")
 	public String InsertCoupon(CouponVO cVO) {
+		
 		couponService.insetCoupon(cVO);
 		
-		return "main.jsp";
+		return "myCoupon.jsp";
 	}
-	@RequestMapping(value="/updateC.do")
-	public String UpdateCoupon(CouponVO cVO) {
-		couponService.updateCoupon(cVO);
-		
-		return "main.jsp";
-	}
+
 	@RequestMapping(value="/selectAllC.do")
 	public String SellectAllCoupon(CouponVO cVO,Model model ) {
 		
@@ -35,6 +31,6 @@ public class CouponController {
 		
 		model.addAttribute("coupon", coupon);
 		
-		return "redirect:main.jsp";
+		return "myCoupon.jsp";
 	}
 }

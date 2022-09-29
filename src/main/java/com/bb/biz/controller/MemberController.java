@@ -15,16 +15,14 @@ import com.bb.biz.member.MemberVO;
 import com.bb.biz.member.impl.MemberDAO;
 
 @Controller
-
+@SessionAttributes("data")
 public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
 	
-	
-	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String selectOne(Model model,MemberVO mVO,HttpSession session){
+	public String selectOneMember(Model model,MemberVO mVO,HttpSession session){
 
 		mVO=memberService.selectOneMember(mVO);
 		if(mVO==null) {
@@ -34,45 +32,39 @@ public class MemberController {
 			session.setAttribute("member", mVO.getMid());
 			
 			model.addAttribute("data", mVO);
-			return "redirect:main.do";
+			return "main.do";
 		}
 
 	}
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
-	public String logout(@ModelAttribute("data")MemberVO mVO,HttpSession session,Model model) {
-		
-		
+	public String logout(HttpSession session,Model model) {
 		session.invalidate();
-		
 		return "redirect:main.do";
-
 	}
 	
-	
 	@RequestMapping(value="/signUp.do",method=RequestMethod.POST)
-	public String signUp(MemberVO mVO) {
+	public String insertMember(MemberVO mVO) {
 		memberService.insertMember(mVO);
 		
 		return "redirect:main.do";
 
 	}
-	@RequestMapping(value="/updateM.do",method=RequestMethod.POST)
-	public String update(Model model,@ModelAttribute("data")MemberVO vo,HttpSession session){
-		if(vo != null) {
-			
-			memberService.updateMember(vo);
-			
-//			model.addAttribute("data", vo);
-			
-			
-		}
-		else {
-			return"signin.jsp";
-		}
-		return "redirect:main.do";
+	
+	@RequestMapping(value="/signUp.do",method=RequestMethod.GET)
+	public String insertMember() {
+		return "signUp.jsp";
 	}
+	
+	@RequestMapping(value="/updateM.do",method=RequestMethod.POST)
+	public String updateMember(Model model,@ModelAttribute("data")MemberVO vo,HttpSession session){
+		if(vo != null) {
+			memberService.updateMember(vo);
+		}
+		return "myPage.jsp";
+	}
+	
 	@RequestMapping(value="/deleteM.do",method=RequestMethod.GET)
-	public String delete(@ModelAttribute("data")MemberVO mVO,HttpSession session ) {
+	public String deleteMember(@ModelAttribute("data")MemberVO mVO,HttpSession session ) {
 
 		if(mVO != null) {
 			
@@ -82,8 +74,9 @@ public class MemberController {
 		}
 		return "redirect:main.do";
 	}
+	
 	@RequestMapping("/mypage.do")
-	public String mypage(MemberVO mVO,MemberDAO dao,HttpSession session) {
+	public String mypage(MemberVO mVO) {
 		
 		if(mVO != null) {
 			return "mypage.jsp";
@@ -94,6 +87,4 @@ public class MemberController {
 		
 	}
 	
-	
-
 }
