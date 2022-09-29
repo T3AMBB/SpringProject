@@ -3,10 +3,12 @@ package com.bb.biz.coupon.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bb.biz.coupon.CouponService;
 import com.bb.biz.coupon.CouponVO;
 
+@Service("CouponService")
 public class CouponServiceImpl implements CouponService{
 
 	@Autowired
