@@ -101,14 +101,14 @@
 	          <h4>로그인</h4>
 	        </div>
 	        <div class="d-flex flex-column text-center">
-	          <form>
+	          <form action="login.do" method="post">
 	            <div class="form-group">
-	              <input type="email" class="form-control" id="email1"placeholder="아이디를 입력해주세요.">
+	              <input type="text" class="form-control" name="mid" id="email1"placeholder="아이디를 입력해주세요.">
 	            </div>
 	            <div class="form-group">
-	              <input type="password" class="form-control" id="password1" placeholder="비밀번호를 입력해주세요.">
+	              <input type="password" class="form-control" name="mpw" id="password1" placeholder="비밀번호를 입력해주세요.">
 	            </div>
-	            <button type="button" class="btn btn-dark btn-block btn-round">로그인</button>
+	            <input type="submit" class="btn btn-dark btn-block btn-round" value="로그인">
 	          </form>
 	          
 	          <div class="text-center text-muted delimiter">다른 계정으로 로그인</div>
