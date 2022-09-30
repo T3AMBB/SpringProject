@@ -22,4 +22,9 @@ public class FavoriteServiceImpl implements FavoriteService{
 		return favoriteDAO.deleteFavorite(vo);
 	}
 
+	@Override
+	public FavoriteVO selectOneFavorite(FavoriteVO vo) {
+		return favoriteDAO.selectOneFavorite(vo);
+	}
+
 }
