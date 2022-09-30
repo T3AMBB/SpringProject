@@ -124,6 +124,7 @@
             </div>
             <div class="row product__filter">
             <!-- 상품 뽑아낼 반복문 위치 -->
+            <c:forEach var="n" items="${products}" begin="1" end="20">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
@@ -133,12 +134,13 @@
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6>Piqué Biker Jacket</h6>
+                            <h6>${n.pname}</h6>
                             <a href="#" class="add-cart">+ Add To Cart</a>
                             <h5>$67.24</h5>
                         </div>
                     </div>
                 </div>
+                </c:forEach>
                 <!-- 상품 뽑아낼 반복문 끝나는 위치 -->
             </div>
         </div>
@@ -149,16 +151,6 @@
 
 	<hearder:footer/>
 
-    <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search End -->
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -172,7 +164,8 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     
-    <script type="text/javascript">
+    
+     <script type="text/javascript">
 	$(document).ready(function(){
 		// 퀵메뉴 위치 제어
 		var quickMenu = $('#quick_menu');
@@ -246,7 +239,6 @@
     enp('create', 'common', 'toyntech', { device: 'W' });    
     enp('send', 'common', 'toyntech');
 </script>
-    
     
 </body>
 
