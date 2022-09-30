@@ -70,7 +70,7 @@
                         <h2>상품명</h2>
                         <br>
                         <h4>
-                           30,000원 
+                           <input type="text" class="product_price"value="30000">원
                         </h4>
                      	</div>
                         <br>
@@ -99,7 +99,7 @@
          							<td>
 										<div class="product__details__cart__option" >
                       					     <div class="quantity" >
-                           					   <div class="pro-qty" scope="row" style="text-align: center; margin-top: 20px; margin-left: 100px;">
+                           					   <div class="pro-qty" scope="row"style="text-align: center; margin-top: 20px; margin-left: 100px;">
                               					   <input type="text" value="1">
                            					   </div>
                           				 </div>
