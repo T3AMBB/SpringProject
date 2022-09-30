@@ -163,6 +163,7 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+<<<<<<< HEAD
     
     
      <script type="text/javascript">
@@ -240,6 +241,8 @@
     enp('send', 'common', 'toyntech');
 </script>
     
+=======
+>>>>>>> dd32d5ef57ea3e3c68326baeeb93d5087baf60f3
 </body>
 
 </html>
