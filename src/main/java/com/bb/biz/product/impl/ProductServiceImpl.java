@@ -14,21 +14,18 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDAO productdao;
 	
 	@Override
-	public ProductVO selectOne(ProductVO vo) {
-		return null;
+	public ProductVO selectOneProduct(ProductVO vo) {
+		return productdao.selectOneProduct(vo);
 	}
 
 	@Override
-	public List<ProductVO> selectAll(ProductVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductVO> selectAllProduct(ProductVO vo) {
+		return productdao.selectAllProduct(vo);
 	}
 	
 	@Override
 	public boolean insert(ProductVO vo) {
-
-		productdao.insertProduct(vo);
-		return true;
+		return productdao.insertProduct(vo);
 	}
 
 }
