@@ -1,14 +1,15 @@
 package com.bb.biz.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bb.biz.product.ProductService;
 import com.bb.biz.product.ProductVO;
@@ -47,5 +48,53 @@ public class ProductController {
 		return "product.jsp";
 		
 	}
+	
+	@RequestMapping(value="cart.do")
+	public String cart(ProductVO vo,HttpSession session,HttpServletRequest request){
+	   int cnt= Integer.parseInt(request.getParameter("cnt"));
+	   
+	   List<ProductVO> cart =(List<ProductVO>) session.getAttribute("productlist"); 
+	   
+	   if(cart==null){ 
+	   
+	    cart= new ArrayList<ProductVO>(); 
+	   session.setAttribute("productlist", cart);
+	   }
+	   vo = productService.selectOneProduct(vo);
+	   
+	  
+	   vo.setCnt(Integer.parseInt(request.getParameter("cnt")));
+	   cart.add(vo);
+	   session.setAttribute("productlist", cart);
+	   return "success";
+	     
+	}
+	@RequestMapping(value="cartU.do")
+	public String cartUpdate(ProductVO vo,HttpSession session,HttpServletRequest request) {
+		int cnt= Integer.parseInt(request.getParameter("cnt"));
+		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("productlist");
+		
+		for(int i=0;i<cart.size();i++) {
+			if(cart[i].equals(request.getParameter("pid"))){
+				session.removeAttribute(cart[i]);
+			}	
+		}
+		
+			vo=productService.selectOneProduct(vo);
+			vo.setCnt(cnt);
+			cart.add(vo);
+			 session.setAttribute("productlist", cart);
+			return "cart.jsp";
+		
+		
+	}
+	@RequestMapping(value="cartD.do")
+	public String cartDelete(ProductVO vo,HttpSession session) {
+		
+		
+		
+		return "";
+	}
+
 	
 }
