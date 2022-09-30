@@ -70,7 +70,7 @@
                         <h2>상품명</h2>
                         <br>
                         <h4>
-                           <input type="text" class="product_price"value="30000">원
+                           <input type="text" class="product_price"value="1564846" style="border: none;width: 60%; margin-left:20%" readonly>원
                         </h4>
                      	</div>
                         <br>
@@ -100,7 +100,7 @@
 										<div class="product__details__cart__option" >
                       					     <div class="quantity" >
                            					   <div class="pro-qty" scope="row"style="text-align: center; margin-top: 20px; margin-left: 100px;">
-                              					   <input type="text" value="1">
+                              					   <input type="text" value="1" readonly>
                            					   </div>
                           				 </div>
                      					 </div>
@@ -117,9 +117,9 @@
                         <table>
                         	<tbody>
                         		<tr>
-                                 	<th scope="row" style="text-align: left; padding-bottom: 25px;">총 구매금액</th>
+                                 	<th scope="row" style="width: 35%; text-align: left; padding-bottom: 25px;">총 구매금액</th>
          							<td style="padding-left: 0px; margin-top: 20px; text-align: left; padding-bottom: 25px;">
-         							<strong><input type="text" class="mbox" value="30000" style="color: #ff6623; font-size: 26px; font-weight: 700; width: 80%;">원</strong></td>
+         							<strong><input type="text" class="mbox" value="1564846" style="border:none;  width: 55%;color: #ff6623; font-size: 26px; font-weight: 700;">원</strong></td>
                         		</tr>
                         	</tbody>
                         </table>
