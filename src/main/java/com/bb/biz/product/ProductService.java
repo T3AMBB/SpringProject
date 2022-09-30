@@ -3,7 +3,7 @@ package com.bb.biz.product;
 import java.util.List;
 
 public interface ProductService {
-	boolean insert(ProductVO vo);
-	ProductVO selectOne(ProductVO vo);
-	List<ProductVO> selectAll(ProductVO vo);
+	boolean insertProduct(ProductVO vo);
+	ProductVO selectOneProduct(ProductVO vo);
+	List<ProductVO> selectAllProduct(ProductVO vo);
 }

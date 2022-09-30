@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.bb.biz.common.Crawling;
+import com.bb.biz.controller.Crawling;
 import com.bb.biz.product.ProductVO;
 
 @Repository("productDAO")
@@ -23,7 +23,7 @@ public class ProductDAO {
 	
 	
 	final String sql_selectOne="SELECT * FROM PRODUCT WHERE PID=?";
-	final String sql_selectAll="SELECT * FROM PRODUCT ORDER BY BID DESC";
+	final String sql_selectAll="SELECT * FROM PRODUCT ORDER BY PID DESC";
 	final String sql_insert="INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PID),0)+1 FROM PRODUCT),?,?,?,?,?,?,?,?,?)";
 	
 	boolean insertProduct(ProductVO vo) {
