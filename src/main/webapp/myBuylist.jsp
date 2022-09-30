@@ -137,7 +137,7 @@
 					    </ul>
 					</div>
 				</div>
-				<div class="col-md-4 col-lg-8 bg-light">
+				<div class="col-md-4 col-lg-8">
 					<br><br>
 					<div class="text-left">
 					<h5>구매 내역</h5>

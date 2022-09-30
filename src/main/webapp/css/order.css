@@ -376,3 +376,4 @@ a{
 table td select { width:100%; -webkit-appearance: none; -moz-appearance: none;  appearance: none; background: url(https://secsales.interparkb2b.co.kr/data/G94/main/sele_arr.gif) no-repeat 95% 50%;text-indent:20px; width:124px; height:50px;border:1px solid #ececec; font-size:14px; color:#ccc; float:left;}
 .point_div table input{ border:1px solid #ececec;font-size:14px;color:#4c4c4c; height:35px; padding:10px; width:100%; float:left;}
 .tb tr td input{ border:1px solid #ececec;font-size:14px;color:#4c4c4c; height:35px; padding:10px; width:70%; float:left;}
+.point_div p{font-size:14px;color:#9a9a9a;display: block;margin:0 0 45px 20px;}

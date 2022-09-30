@@ -137,7 +137,7 @@
 					    </ul>
 					</div>
 				</div>
-				<div class="col-md-4 col-lg-8 bg-light">
+				<div class="col-md-4 col-lg-8">
 					<br><br>
 									<div class="text-left">
 									<h5>쿠폰 </h5>

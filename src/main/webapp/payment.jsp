@@ -179,20 +179,54 @@
 					</table>
 				</div>
 				<hr>
+				<!-- 쿠폰&적립금 선택 -->
+				<div class="point_div">
+					<div class="point_div_subject">쿠폰 & 적립금</div>
+					<div class="row">
+					<div class="radio-wrap">
+						<div style="float:left; margin-left:10px; padding:0.75rem;" class="coupon-wrap">
+						<input type="radio" class="ds" name="ds" value="쿠폰"><span> 쿠폰 사용하기</span>
+						</div>
+						<div style="float:left; margin-left:10px; padding:0.75rem;" class="point-wrap">
+						<input type="radio" class="ds" name="ds" value="적립금"><span> 적립금 사용하기</span>
+						</div>
+					</div>
+					</div>
+					<p>쿠폰과 적립금 중 하나의 할인 방식을 선택해주세요.</p>
+				</div>		
+				<script>
+					$('.ds').on('click', function() {
+					    var valueCheck = $('.ds:checked').val(); // 체크된 Radio 버튼의 값을 가져온다.
+					    
+					    if ( valueCheck == '적립금' ) {
+					        $('.order_point_input').attr('disabled', false); 
+					        $('.coupon_select').prop("disabled", true);
+					        $('.order_point_input').focus(); 
+					    } 
+					    else {
+					        $('.order_point_input').attr('disabled', true); 
+					        $('.coupon_select').prop("disabled", false);
+					        $('.coupon_select').focus();
+					        console.log($('.coupon_select_h').attr('disabled', false));
+					    }
+					});
+				</script>
 				<!-- 쿠폰 정보 -->
-				<div class="coupon_div">
+				<div class="coupon_div" >
 					<div class="coupon_div_subject">쿠폰</div>
 					<table class="table table-borderless">
 						<colgroup>
 							<col width="25%">
 							<col width="*">
 						</colgroup>
-						<tbody  class="tb">
+						<tbody class="tb">
 							<tr>
 								<th>쿠폰 사용</th>
 								<td>
-									<select style="width:70%">
-										<option>쿠폰 목록</option>
+									<select style="width:70%" class="coupon_select" name="select_name">
+										<option>쿠폰 목록1</option>
+										<option>쿠폰 목록2</option>
+										<option>쿠폰 목록3</option>
 									</select>
 								</td>
 							</tr>
@@ -202,7 +236,7 @@
 				<hr>
 				<!-- 포인트 정보 -->
 				<div class="point_div">
-					<div class="point_div_subject">포인트</div>
+					<div class="point_div_subject">적립금</div>
 					<table class="table table-borderless">
 						<colgroup>
 							<col width="25%">
@@ -212,7 +246,7 @@
 							<tr>
 								<th>포인트 사용</th>
 								<td>
-									${memberInfo.point} <input style="width:70%" class="order_point_input" value="0">원&nbsp;&nbsp;&nbsp;
+									${memberInfo.point} <input style="width:70%" class="order_point_input" disabled value="0">원&nbsp;&nbsp;&nbsp;
 									<a style="color:#fff" class="order_point_input_btn order_point_input_btn_N" data-state="N">모두사용</a>
 									<a class="order_point_input_btn order_point_input_btn_Y" data-state="Y" style="display: none; color:#fff;">사용취소</a>
 								</td>
@@ -222,18 +256,6 @@
 				</div>
 
 			
-				<div class="point_div">
-					<div class="point_div_subject">쿠폰 & 적립금</div>
-					<div class="radio-wrap">
-						<div class="coupon-wrap">
-						<input type="radio" name="ds" value="쿠폰">쿠폰 사용하기
-						</div>
-						<div class="point-wrap">
-						<input type="radio" name="ds" value="포인트">적립금 사용하기
-						</div>
-					</div>
-				</div>				
-				
 				
 				</div>
 				<div class="col-lg-4">
@@ -300,17 +322,6 @@
 				</div>				
 				</div>
 			</div>
-
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="ds"
-						id="inlineCheckbox1" value="option1"> <label
-						class="form-check-label" for="inlineCheckbox1">1</label>
-				</div>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="ds"
-						id="inlineCheckbox2" value="option2"> <label
-						class="form-check-label" for="inlineCheckbox2">2</label>
-				</div>
 				<!-- 주문 요청 form -->
 			<form class="order_form" action="/order" method="post">
 				<!-- 주문자 회원번호 -->
@@ -329,7 +340,23 @@
 	</div>
 	<hearder:footer/>
 
+<script>
+	$('.ds').on('click', function() {
+	    var valueCheck = $('.ds:checked').val(); // 체크된 Radio 버튼의 값을 가져온다.
+	    
+	    if ( valueCheck == '적립금' ) {
 
+	        $('.order_point_input').attr('disabled', false); 
+	        $('.order_point_input').focus(); 
+	    } 
+	    else {
+	        $('.order_point_input').attr('disabled', true); 
+	        $('.coupon_select').attr('disabled', false);
+	        $('.coupon_select').focus();
+	        console.log($('.coupon_select').attr('disabled', false));
+	    }
+	});
+</script>
 <script>
 
 /* 주소입력란 버튼 동작(숨김, 등장) */

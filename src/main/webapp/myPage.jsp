@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" type="text/css">
 <link rel="stylesheet" href="css/myPage.css" type="text/css">
-<link rel="stylesheet" href="css/modal2.css" type="text/css">
+<link rel="stylesheet" href="css/modal.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
 	integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 	crossorigin="anonymous"></script>
@@ -133,7 +133,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-4 col-lg-9 bg-light">
+					<div class="col-md-4 col-lg-9">
 							<br><br>
 						<div class="text-left">
 						<h5>내 정보 수정 </h5>
@@ -193,45 +193,39 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="modal" id="delete">
-		<div class="modal-dialog">
-			<div class="modal-content">
+		<div class="row">
+	<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header border-bottom-0">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="text-center"><p style="font-size:13px; color:black" class="top-txt">회원탈퇴</p>
+	      </div>
+	      <hr>
+	      <div class="modal-body">
+	        <div class="d-flex flex-column text-center">
+	          <form>
+	            <div class="form-group">
+	              <input type="email" class="form-control" id="email1"placeholder="아이디를 입력해주세요.">
+	            </div>
+	            <div class="form-group">
+	              <input type="password" class="form-control" id="password1" placeholder="비밀번호를 입력해주세요.">
+	            </div>
+	            <button type="button" class="btn btn-dark btn-block btn-round">로그인</button>
+	          </form>
+	          
+	        </div>
+	        <br>
+	      </div>
+	    </div>
 
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<div class="text-center">
-			          <h4>회원탈퇴</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				</div>
-
-				<!-- Modal body -->
-				<div class="modal-body">
-					<!-- 닫기 섹션 -->
-					<section class="top-close">
-						<p style="color:black" class="top-txt">정말 회원탈퇴를 하실건가요?</p>
-						<a class="close" href="./Modalpop.html"> <img
-							src="images/Vector 2.png" alt=""> <img
-							src="images/Vector 3.png" alt="">
-						</a>
-					</section>
-					<!-- 입력창 -->
-					<section class="user-input">
-						<br>
-						<form action="" method="post" class="user-input">
-							<label for="id"></label> <input class="inp-id" type="text"
-								id="id" name="mid" value="" required placeholder="아이디"> <label
-								for="pw"></label> <input class="inp-pw" type="password"
-								id="pw" name="mpw" value="" required placeholder="비밀번호">
-							<div class="check-wrap"></div>
-							<button class="primary-btn" type="submit">회원탈퇴</button>
-						</form>
-					</section>
-				</div>
-			</div>
-		</div>
+	  </div>
 	</div>
+	</div>
+
 
 		<script>
 			function pointEffect() {
