@@ -164,7 +164,7 @@ public class Crawling  {
 			
 		}
 		
-      return "main.jsp";
+      return "main.do";
    }
     
 //	public static void main(String[] args) {
