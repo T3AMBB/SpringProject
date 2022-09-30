@@ -34,10 +34,4 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
-	@Override
-	public boolean updateMileage(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

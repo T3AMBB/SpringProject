@@ -22,18 +22,7 @@ public class MemberDAO {
 	final String sql_insert="INSERT INTO MEMBER VALUES(?,?,?,?,?)";
 	final String sql_update="UPDATE MEMBER SET MPW=? WHERE MID=?";
 	final String sql_delete="DELETE MEMBER WHERE MID=? AND MPW=?";
-	final String sql_updateMileage="UPDATE MEMBER SET MILEAGE=MILEAGE+? WHERE MID=?";
 	
-	
-	 boolean updateMileage(MemberVO vo) {
-		if(vo!=null && vo.getMid()!=null) {
-		jdbcTemplate.update(sql_updateMileage,vo.getMileage(),vo.getMid());
-		return true;
-		}
-		else {
-			return false;
-		}
-	}
 	boolean insertMember(MemberVO vo) {
 		if(vo.getMid()!=null) {
 		jdbcTemplate.update(sql_insert,vo.getMid(),vo.getMpw(),vo.getMname(),vo.getAddress(),vo.getMphone());
