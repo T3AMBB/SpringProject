@@ -73,7 +73,7 @@
 			<table class="table table-bordered" id="mypageHeader">
 				<tr>
 					<td class="text-center align-middle"
-						style="width: 20%; background-color: #212529; color: #ffffff; font-size: 1.4em; font-weight: 600;">닉네임</td>
+						style="width: 20%; background-color: #212529; color: #ffffff; font-size: 1.4em; font-weight: 600;">${data.mname}님 안녕하세요!</td>
 					<td class="align-middle" style="width: 20%">
 						<div class="row" onclick="pointEffect()" id="point">
 							<div class="col-md-8 col-lg-3">
@@ -81,7 +81,7 @@
 							</div>
 							<div class="col-md-4 col-lg-9">
 								<span>적립금</span><br>
-								<span class="emphasis">적립금</span>
+								<span class="emphasis">${data.mileage }</span>
 								<div class="square square-1"></div>
 								<div class="square square-2"></div>
 								<div class="circle circle-1"></div>
@@ -199,42 +199,38 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal" id="delete">
-			<div class="modal-dialog">
-				<div class="modal-content">
-	
-					<!-- Modal Header -->
-					<div class="modal-header">
-						<h4 class="modal-title">회원 탈퇴</h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-	
-					<!-- Modal body -->
-					<div class="modal-body">
-						<!-- 닫기 섹션 -->
-						<section class="top-close">
-							<p  style="color:black" class="top-txt">정말 회원탈퇴를 하실건가요?</p>
-							<a class="close" href="./Modalpop.html"> <img
-								src="images/Vector 2.png" alt=""> <img
-								src="images/Vector 3.png" alt="">
-							</a>
-						</section>
-						<!-- 입력창 -->
-						<section class="user-input">
-							<br>
-							<form action="" method="post" class="user-input">
-								<label for="id"></label> <input class="inp-id" type="text"
-									id="id" name="mid" value="" required placeholder="아이디"> <label
-									for="pw"></label> <input class="inp-pw" type="password"
-									id="pw" name="mpw" value="" required placeholder="비밀번호">
-								<div class="check-wrap"></div>
-								<button class="primary-btn" type="submit">회원탈퇴</button>
-							</form>
-						</section>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="row">
+	<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header border-bottom-0">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="text-center"><p style="font-size:13px; color:black" class="top-txt">회원탈퇴</p>
+	      </div>
+	      <hr>
+	      <div class="modal-body">
+	        <div class="d-flex flex-column text-center">
+	          <form action="deleteM.do">
+	            <div class="form-group">
+	              <input type="text" class="form-control" id="mid" placeholder="아이디를 입력해주세요.">
+	            </div>
+	            <div class="form-group">
+	              <input type="password" class="form-control" id="mpw" placeholder="비밀번호를 입력해주세요.">
+	            </div>
+	            <button type="submit" class="btn btn-dark btn-block btn-round">회원탈퇴</button>
+	          </form>
+	          
+	        </div>
+	        <br>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+	</div>
 	<script>
 		function pointEffect() {
 			$(".square, .circle, .triangle, .close, .star, .message").css(

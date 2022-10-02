@@ -51,7 +51,7 @@
                             <div class="header__top__links">
                                 <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
                                 <a href="signUp.jsp">회원가입</a>
-                                <a href="myPage.jsp">마이페이지</a>
+                                <a href="mypage.do">마이페이지</a>
                             </div>
                         </div>
                     </div>
@@ -103,14 +103,13 @@
 	        <div class="d-flex flex-column text-center">
 	          <form action="login.do" method="post">
 	            <div class="form-group">
-	              <input type="text" class="form-control" name="mid" id="email1"placeholder="아이디를 입력해주세요.">
+	              <input type="text" class="form-control" id="id" name="mid" placeholder="아이디를 입력해주세요.">
 	            </div>
 	            <div class="form-group">
-	              <input type="password" class="form-control" name="mpw" id="password1" placeholder="비밀번호를 입력해주세요.">
+	              <input type="password" class="form-control" id="password" name="mpw" placeholder="비밀번호를 입력해주세요.">
 	            </div>
-	            <input type="submit" class="btn btn-dark btn-block btn-round" value="로그인">
+	            <button type="submit" class="btn btn-dark btn-block btn-round">로그인</button>
 	          </form>
-	          
 	          <div class="text-center text-muted delimiter">다른 계정으로 로그인</div>
 	          <div class="d-flex justify-content-center social-buttons">
 	            <button type="button" style="margin-right:2%;"class="btn btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">

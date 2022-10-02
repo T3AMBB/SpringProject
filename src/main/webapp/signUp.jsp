@@ -38,6 +38,7 @@
 	  <div class="wrap wd668">
       <div class="container">
         <div class="form_txtInput">
+ 		<form action="signUp.do" method="post">
           <h2 class="sub_tit_txt">회원가입</h2>
           <p class="exTxt">회원가입시 이메일 인증을 반드시 진행하셔야 합니다.</p>
           <div class="join_form">
@@ -49,11 +50,11 @@
               <tbody>
                 <tr>
                   <th><span>아이디</span></th>
-                  <td class="row"><input type="text" placeholder="ID 를 입력하세요."></td>
+                  <td class="row"><input type="text" placeholder="ID 를 입력하세요." name="mid" required></td>
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td class="row"><input type="text" placeholder="비밀번호를 입력해주세요."></td>
+                  <td class="row"><input type="text" placeholder="비밀번호를 입력해주세요." name="mpw" required></td>
                 </tr>
                 <tr>
                   <th><span>비밀번호 확인</span></th>
@@ -61,11 +62,11 @@
                 </tr>
                 <tr>
                   <th><span>이름</span></th>
-                  <td class="row"><input type="text" placeholder="이름을 입력해주세요."></td>
+                  <td class="row"><input type="text" placeholder="이름을 입력해주세요." name="mname" required></td>
                 </tr>
                 <tr>
                   <th><span>휴대폰 번호</span></th>
-                  <td class="row"><input type="text" placeholder="휴대폰 번호를 입력하세요."></td>
+                  <td class="row"><input type="text" placeholder="휴대폰 번호를 입력하세요." name="mphone" required></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr><td></td></tr>
@@ -75,15 +76,15 @@
                 </tr>
                 <tr>
                   <th><span>주소</span></th>
-                  <td class="row"><input  type="text" id="add_zone" placeholder="우편번호" readonly="readonly"></td>
+                  <td class="row"><input  type="text" id="add_zone" placeholder="우편번호" name="zipcode" readonly="readonly"></td>
                 </tr>
                 <tr>
                   <th></th>
-                  <td class="row" colspan="2"><input type="text" id="add_load" placeholder="도로명 주소" readonly="readonly"></td>
+                  <td class="row" colspan="2"><input type="text" id="add_load" placeholder="도로명 주소" name="streetaddress" readonly="readonly"></td>
                 </tr>
                 <tr>
                 <th></th>
-                  <td class="row" colspan="2"><input type="text" name="address" placeholder="상세 주소"></td>
+                  <td class="row" colspan="2"><input type="text" name="address" placeholder="상세 주소" required></td>
                 </tr>
               </tbody>
             </table>
@@ -107,8 +108,10 @@
             </div>
           </div>
           <div class="btn_wrap2">
+          <input type="hidden" name="mileage" value="0">
             <button type="submit" class="btn btn-dark btn-lg">회원가입</button>
           </div>
+          </form>
         </div> <!-- form_txtInput E -->
       </div><!-- content E-->
     </div> <!-- container E -->
