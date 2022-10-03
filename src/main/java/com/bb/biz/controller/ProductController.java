@@ -53,47 +53,53 @@ public class ProductController {
 	public String cart(ProductVO vo,HttpSession session,HttpServletRequest request){
 	   int cnt= Integer.parseInt(request.getParameter("cnt"));
 	   
-	   List<ProductVO> cart =(List<ProductVO>) session.getAttribute("productlist"); 
+	   List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart"); 
 	   
 	   if(cart==null){ 
 	   
 	    cart= new ArrayList<ProductVO>(); 
-	   session.setAttribute("productlist", cart);
+	   session.setAttribute("cart", cart);
 	   }
 	   vo = productService.selectOneProduct(vo);
 	   
 	  
 	   vo.setCnt(Integer.parseInt(request.getParameter("cnt")));
 	   cart.add(vo);
-	   session.setAttribute("productlist", cart);
+	   session.setAttribute("cart", cart);
 	   return "success";
 	     
 	}
 	@RequestMapping(value="cartU.do")
 	public String cartUpdate(ProductVO vo,HttpSession session,HttpServletRequest request) {
 		int cnt= Integer.parseInt(request.getParameter("cnt"));
-		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("productlist");
-		
+		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
+//		vo=productService.selectOneProduct(vo);
 		for(int i=0;i<cart.size();i++) {
-			if(cart[i].equals(request.getParameter("pid"))){
-				session.removeAttribute(cart[i]);
+			if(cart.get(i).equals(request.getParameter("pid"))){			
+				cart.remove(cart.get(i));			
 			}	
 		}
 		
 			vo=productService.selectOneProduct(vo);
 			vo.setCnt(cnt);
 			cart.add(vo);
-			 session.setAttribute("productlist", cart);
+			 session.setAttribute("cart", cart);
 			return "cart.jsp";
 		
 		
 	}
 	@RequestMapping(value="cartD.do")
-	public String cartDelete(ProductVO vo,HttpSession session) {
+	public String cartDelete(ProductVO vo,HttpSession session,HttpServletRequest request) {
+		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
+//		vo=productService.selectOneProduct(vo);
+		for(int i=0;i<cart.size();i++) {
+			if(cart.get(i).equals(request.getParameter("pid"))){			
+				cart.remove(cart.get(i));			
+			}	
+		}
 		
 		
-		
-		return "";
+		return "cart.jsp";
 	}
 
 	
