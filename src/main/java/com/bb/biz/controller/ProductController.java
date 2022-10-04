@@ -49,7 +49,7 @@ public class ProductController {
 		
 	}
 	
-	@RequestMapping(value="cart.do")
+	@RequestMapping(value="/cart.do")
 	public String cart(ProductVO vo,HttpSession session,HttpServletRequest request){
 	   int cnt= Integer.parseInt(request.getParameter("cnt"));
 	   
@@ -69,7 +69,7 @@ public class ProductController {
 	   return "success";
 	     
 	}
-	@RequestMapping(value="cartU.do")
+	@RequestMapping(value="/cartU.do")
 	public String cartUpdate(ProductVO vo,HttpSession session,HttpServletRequest request) {
 		int cnt= Integer.parseInt(request.getParameter("cnt"));
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
@@ -88,7 +88,7 @@ public class ProductController {
 		
 		
 	}
-	@RequestMapping(value="cartD.do")
+	@RequestMapping(value="/cartD.do")
 	public String cartDelete(ProductVO vo,HttpSession session,HttpServletRequest request) {
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
 //		vo=productService.selectOneProduct(vo);
