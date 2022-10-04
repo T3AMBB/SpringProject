@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.bb.biz.favorite.FavoriteVO;
@@ -19,7 +20,7 @@ public class FavoriteDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	final String sql_insert="INSERT INTO FAVORITE(FID,MID,PID) "
-			+ "VALUES((SELECT NVL(MAX(FID),0)+1 FROM FAVORITE),?,?";
+			+ "VALUES((SELECT NVL(MAX(FID),0)+1 FROM FAVORITE),?,?)";
 	
 	final String sql_delete="DELETE FROM FAVORITE WHERE FID=?";
 	final String sql_selectOne="SELECT * FROM FAVORITE WHERE MID=? AND PID=?";
@@ -44,6 +45,7 @@ public class FavoriteDAO {
 	}
 	public FavoriteVO selectOneFavorite(FavoriteVO vo) {
 		System.out.println(vo);
+		System.out.println("DAO 로그 : "+jdbcTemplate);
 		Object[] args= {vo.getMid(),vo.getPid()};
 		try {
 			return jdbcTemplate.queryForObject(sql_selectOne,args,new FavoriteRowMapper());
