@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 
 <html lang="zxx">
@@ -39,14 +40,14 @@
 
     <!-- Shop Details Section Begin -->
     <section class="shop-details">
-      <div class="product__details__pic">
+      <div class="product__details__pic" style="padding-bottom: 1px;">
          <div class="container">
             <div class="product__details__breadcrumb">
-          	  <div class="col-lg-12">
+          	  <div class="col-lg-12" style="padding-bottom: 5%;">
                     <div class="breadcrumb__text">
                         <h4>Home</h4>
                         <div class="breadcrumb__links">
-                            <a href="./product.jsp">Shop</a>
+                            <a href="/selectAllP.do">Shop</a>
                             <span>상품상세</span>
                         </div>
                     </div>
@@ -59,40 +60,40 @@
                <div class="row">
                   <div class="col-lg-6" >
                   <div class="product__details__pic__item">
-                     <img src="img/shop-details/product-big-2.png" alt="" style="margin-top: 25%; margin-left: 15%;">
+                     <img src="img/figure/${product.pid }.png" alt="" style="margin-top: 25%; margin-block: auto; border: 1px solid black; padding: 1%">
                   </div>
                   <div>
                   </div>
                   </div>
-                  <div class="col-lg-6" style="border:1px solid black; padding:5%; padding-bottom: 1%;">
+                  <div class="col-lg-6" style="border:1px solid black; padding:5%; padding-bottom: 1%; padding-top: 1%;">
                      <div class="product__details__text">
-                     	<div class="producttext" style="margin-right:45%;">
-                        <h2>상품명</h2>
+                     	<div class="producttext" style="text-align:initial;">
+                        <h4>${product.pname }</h4>
                         <br>
-                        <h4>
-                           <input type="text" class="product_price"value="1564846" style="border: none;width: 60%; margin-left:20%" readonly>원
-                        </h4>
                      	</div>
+                        <h4 style=" margin-right: 45%;">
+                           <input type="text" class="product_price"value="${product.price }" style="border: none;width: 60%; margin-left:20%; -webkit-text-stroke-width: medium;" readonly>원
+                        </h4>
                         <br>
                         <br>
                         <div style="margin-left:16%;">
                         <table>
                     	    <tbody>
          						<tr>
-         							<th scope="row" style="text-align: left; margin-top: 20px; padding-bottom: 25px;">제조사</th>
-         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">반프레스토</td>
+         							<th scope="row" style="text-align: left; margin-top: 15px; padding-bottom: 15px;">제조사</th>
+         							<td style="padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">${product.pcom }</td>
          						</tr>
          						<tr>
-         							<th scope="row" style="text-align: left; margin-top: 20px; padding-bottom: 25px;" >원산지</th>
-         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">중국</td>
+         							<th scope="row" style="text-align: left; margin-top: 15px; padding-bottom: 15px;" >원산지</th>
+         							<td style="padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">${product.pmade }</td>
          						</tr>
          						<tr>
-         							<th scope="row" style="text-align: left; margin-top: 20px; padding-bottom: 25px;"> 재질</th>
-         							<td style="padding-left: 100px; margin-top: 20px; text-align: left;padding-bottom: 25px;">PVC / ASC</td>
+         							<th scope="row" style="text-align: left; margin-top: 15px; padding-bottom: 15px;"> 재질</th>
+         							<td style="padding-left: 100px; margin-top: 15px; text-align: left;padding-bottom: 15px;">${product.pmat }</td>
          						</tr>
          						<tr>
-         							<th scope="row" style="text-align: left; padding-bottom: 25px;">치수</th>
-         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">약 15cm</td>
+         							<th scope="row" style="text-align: left; padding-bottom: 15px;">치수</th>
+         							<td style="padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">${product.psize }cm</td>
          						</tr>
          						<tr>
          							<th scope="row" style="text-align: left; margin-top: 20px;">수량</th>
@@ -100,8 +101,7 @@
 										<div class="product__details__cart__option" >
                       					     <div class="quantity" >
                            					   <div class="pro-qty" scope="row"style="text-align: center; margin-top: 20px; margin-left: 100px;">
-                              					   <input type="text" value="1" id="cnt" name="cnt" readonly>
-                              					   <input type="hidden" value="${product.pid}" id="pid" name="pid">
+                              					   <input type="text" value="1" readonly>
                            					   </div>
                           				 </div>
                      					 </div>
@@ -112,21 +112,18 @@
                         </div>
 						 
                         <hr>
-                        <br>
-                        <br>
                         <div style="margin-left:16%;">
                         <table>
                         	<tbody>
                         		<tr>
                                  	<th scope="row" style="width: 35%; text-align: left; padding-bottom: 25px;">총 구매금액</th>
          							<td style="padding-left: 0px; margin-top: 20px; text-align: left; padding-bottom: 25px;">
-         							<strong><input type="text" class="mbox" value="1564846" style="border:none;  width: 55%;color: #ff6623; font-size: 26px; font-weight: 700;">원</strong></td>
+         							<strong><input type="text" class="mbox" value="${product.price }" style="border:none;  width: 55%;color: #ff6623; font-size: 26px; font-weight: 700;">원</strong></td>
                         		</tr>
                         	</tbody>
                         </table>
                         </div>
-                        
-                        <button type="button" onclick="cart()" id="btn-cart">장바구니</button>
+                        <a href="/cart.do" class="primary-btn">장바구니 담기</a>
                         <br>
                         <br>
                         <div class="product__details__btns__option">
@@ -134,7 +131,7 @@
                         </div>
                      </div>
                   </div>
-  
+
                </div>
             </div>
          </div>
@@ -158,108 +155,15 @@
                             <img src="img/official.jpg" alt="" >
                                 <div class="tab-pane active" id="tabs-5" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <p class="note">Nam tempus turpis at metus scelerisque placerat nulla deumantos
-                                            solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis
-                                            ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo
-                                        pharetras loremos.</p>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Products Infomation</h5>
-                                            <p>A Pocket PC is a handheld computer, which features many of the same
-                                                capabilities as a modern PC. These handy little devices allow
-                                                individuals to retrieve and store e-mail messages, create a contact
-                                                file, coordinate appointments, surf the internet, exchange text messages
-                                                and more. Every product that is labeled as a Pocket PC must be
-                                                accompanied with specific software to operate the unit and must feature
-                                            a touchscreen and touchpad.</p>
-                                            <p>As is the case with any new technology product, the cost of a Pocket PC
-                                                was substantial during it’s early release. For approximately $700.00,
-                                                consumers could purchase one of top-of-the-line Pocket PCs in 2003.
-                                                These days, customers are finding that prices have become much more
-                                                reasonable now that the newness is wearing off. For approximately
-                                            $350.00, a new Pocket PC can now be purchased.</p>
-                                        </div>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Material used</h5>
-                                            <p>Polyester is deemed lower quality due to its none natural quality’s. Made
-                                                from synthetic materials, not natural like wool. Polyester suits become
-                                                creased easily and are known for not being breathable. Polyester suits
-                                                tend to have a shine to them compared to wool and cotton suits, this can
-                                                make the suit look cheap. The texture of velvet is luxurious and
-                                                breathable. Velvet is a great choice for dinner party jacket and can be
-                                            worn all year round.</p>
-                                        </div>
+                                        <p class="note">${product.pdetail }</p>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="tabs-6" role="tabpanel">
-                                    <div class="product__details__tab__content">
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Products Infomation</h5>
-                                            <p>A Pocket PC is a handheld computer, which features many of the same
-                                                capabilities as a modern PC. These handy little devices allow
-                                                individuals to retrieve and store e-mail messages, create a contact
-                                                file, coordinate appointments, surf the internet, exchange text messages
-                                                and more. Every product that is labeled as a Pocket PC must be
-                                                accompanied with specific software to operate the unit and must feature
-                                            a touchscreen and touchpad.</p>
-                                            <p>As is the case with any new technology product, the cost of a Pocket PC
-                                                was substantial during it’s early release. For approximately $700.00,
-                                                consumers could purchase one of top-of-the-line Pocket PCs in 2003.
-                                                These days, customers are finding that prices have become much more
-                                                reasonable now that the newness is wearing off. For approximately
-                                            $350.00, a new Pocket PC can now be purchased.</p>
-                                        </div>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Material used</h5>
-                                            <p>Polyester is deemed lower quality due to its none natural quality’s. Made
-                                                from synthetic materials, not natural like wool. Polyester suits become
-                                                creased easily and are known for not being breathable. Polyester suits
-                                                tend to have a shine to them compared to wool and cotton suits, this can
-                                                make the suit look cheap. The texture of velvet is luxurious and
-                                                breathable. Velvet is a great choice for dinner party jacket and can be
-                                            worn all year round.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="tabs-7" role="tabpanel">
-                                    <div class="product__details__tab__content">
-                                        <p class="note">Nam tempus turpis at metus scelerisque placerat nulla deumantos
-                                            solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis
-                                            ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo
-                                        pharetras loremos.</p>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Products Infomation</h5>
-                                            <p>A Pocket PC is a handheld computer, which features many of the same
-                                                capabilities as a modern PC. These handy little devices allow
-                                                individuals to retrieve and store e-mail messages, create a contact
-                                                file, coordinate appointments, surf the internet, exchange text messages
-                                                and more. Every product that is labeled as a Pocket PC must be
-                                                accompanied with specific software to operate the unit and must feature
-                                            a touchscreen and touchpad.</p>
-                                            <p>As is the case with any new technology product, the cost of a Pocket PC
-                                                was substantial during it’s early release. For approximately $700.00,
-                                                consumers could purchase one of top-of-the-line Pocket PCs in 2003.
-                                                These days, customers are finding that prices have become much more
-                                                reasonable now that the newness is wearing off. For approximately
-                                            $350.00, a new Pocket PC can now be purchased.</p>
-                                        </div>
-                                        <div class="product__details__tab__content__item">
-                                            <h5>Material used</h5>
-                                            <p>Polyester is deemed lower quality due to its none natural quality’s. Made
-                                                from synthetic materials, not natural like wool. Polyester suits become
-                                                creased easily and are known for not being breathable. Polyester suits
-                                                tend to have a shine to them compared to wool and cotton suits, this can
-                                                make the suit look cheap. The texture of velvet is luxurious and
-                                                breathable. Velvet is a great choice for dinner party jacket and can be
-                                            worn all year round.</p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </section>
     <!-- Shop Details Section End -->
 	<br>
@@ -313,29 +217,6 @@
         </div>
     </div>
     <!-- Search End -->
-	<script type="text/javascript">
-function cart(){
-      
-         var cnt = $('#cnt').val();
-         var pid = $('#pid').val();
-         $.ajax({   
-            type : 'POST',
-            url : 'cart.do',
-            data :  {
-            	'cnt': cnt,
-            	'pid': pid
-            },
-            success : function(result) {
-               
-               if (result == 'success') {
-                  $("#btn-cart").text("장바구니 담기완료!");
-                  $("#btn-cart").attr('disabled','disabled');
-                  }
-               
-               } 
-            });
-         }
-</script>
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -348,7 +229,7 @@ function cart(){
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-  
 </body>
+
 
 </html>

@@ -70,7 +70,7 @@
     <!-- Hero Section End -->
 
 	<hr>
-	<img alt="" src="img/WEEK.png" style="padding-right: 15%;padding-left: 15%;">
+		<img alt="" src="img/WEEK.png" style="padding-right: 15%;padding-left: 15%;">
                 <div class="row product__filter" style="padding: 10%; padding-top: 2%;">
             <!-- 상품 뽑아낼 반복문 위치 -->
             <c:forEach var="n" items="${products}" begin="1" end="4">

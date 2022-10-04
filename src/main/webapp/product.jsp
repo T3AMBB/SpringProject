@@ -196,7 +196,7 @@
                             		    <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
                                     </ul>
                                 </div>
-                                <div class="product__item__text">
+                                 <div class="product__item__text">
                                     <h6>${n.pname }</h6>
                                     <h5>${n.price}</h5>
                                 </div>
