@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 
 <html lang="zxx">
@@ -39,14 +40,14 @@
 
     <!-- Shop Details Section Begin -->
     <section class="shop-details">
-      <div class="product__details__pic">
+      <div class="product__details__pic" style="padding-bottom: 1px;">
          <div class="container">
             <div class="product__details__breadcrumb">
-          	  <div class="col-lg-12">
+          	  <div class="col-lg-12" style="padding-bottom: 5%;">
                     <div class="breadcrumb__text">
                         <h4>Home</h4>
                         <div class="breadcrumb__links">
-                            <a href="./product.jsp">Shop</a>
+                            <a href="/selectAllP.do">Shop</a>
                             <span>상품상세</span>
                         </div>
                     </div>
@@ -59,40 +60,40 @@
                <div class="row">
                   <div class="col-lg-6" >
                   <div class="product__details__pic__item">
-                     <img src="img/shop-details/product-big-2.png" alt="" style="margin-top: 25%; margin-left: 15%;">
+                     <img src="img/figure/${product.pid }.png" alt="" style="margin-top: 25%; margin-block: auto; border: 1px solid black; padding: 1%">
                   </div>
                   <div>
                   </div>
                   </div>
-                  <div class="col-lg-6" style="border:1px solid black; padding:5%; padding-bottom: 1%;">
+                  <div class="col-lg-6" style="border:1px solid black; padding:5%; padding-bottom: 1%; padding-top: 1%;">
                      <div class="product__details__text">
-                     	<div class="producttext" style="margin-right:45%;">
-                        <h2>상품명</h2>
+                     	<div class="producttext" style="text-align:initial;">
+                        <h4>${product.pname }</h4>
                         <br>
-                        <h4>
-                           <input type="text" class="product_price"value="1564846" style="border: none;width: 60%; margin-left:20%" readonly>원
-                        </h4>
                      	</div>
+                        <h4 style=" margin-right: 45%;">
+                           <input type="text" class="product_price"value="${product.price }" style="border: none;width: 60%; margin-left:20%; -webkit-text-stroke-width: medium;" readonly>원
+                        </h4>
                         <br>
                         <br>
                         <div style="margin-left:16%;">
                         <table>
                     	    <tbody>
          						<tr>
-         							<th scope="row" style="text-align: left; margin-top: 20px; padding-bottom: 25px;">제조사</th>
-         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">반프레스토</td>
+         							<th scope="row" style="text-align: left; margin-top: 15px; padding-bottom: 15px;">제조사</th>
+         							<td style="padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">${product.pcom }</td>
          						</tr>
          						<tr>
-         							<th scope="row" style="text-align: left; margin-top: 20px; padding-bottom: 25px;" >원산지</th>
-         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">중국</td>
+         							<th scope="row" style="text-align: left; margin-top: 15px; padding-bottom: 15px;" >원산지</th>
+         							<td style="padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">${product.pmade }</td>
          						</tr>
          						<tr>
-         							<th scope="row" style="text-align: left; margin-top: 20px; padding-bottom: 25px;"> 재질</th>
-         							<td style="padding-left: 100px; margin-top: 20px; text-align: left;padding-bottom: 25px;">PVC / ASC</td>
+         							<th scope="row" style="text-align: left; margin-top: 15px; padding-bottom: 15px;"> 재질</th>
+         							<td style="padding-left: 100px; margin-top: 15px; text-align: left;padding-bottom: 15px;">${product.pmat }</td>
          						</tr>
          						<tr>
-         							<th scope="row" style="text-align: left; padding-bottom: 25px;">치수</th>
-         							<td style="padding-left: 100px; margin-top: 20px; text-align: left; padding-bottom: 25px;">약 15cm</td>
+         							<th scope="row" style="text-align: left; padding-bottom: 15px;">치수</th>
+         							<td style="padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">${product.psize }cm</td>
          						</tr>
          						<tr>
          							<th scope="row" style="text-align: left; margin-top: 20px;">수량</th>
@@ -111,20 +112,18 @@
                         </div>
 						 
                         <hr>
-                        <br>
-                        <br>
                         <div style="margin-left:16%;">
                         <table>
                         	<tbody>
                         		<tr>
                                  	<th scope="row" style="width: 35%; text-align: left; padding-bottom: 25px;">총 구매금액</th>
          							<td style="padding-left: 0px; margin-top: 20px; text-align: left; padding-bottom: 25px;">
-         							<strong><input type="text" class="mbox" value="1564846" style="border:none;  width: 55%;color: #ff6623; font-size: 26px; font-weight: 700;">원</strong></td>
+         							<strong><input type="text" class="mbox" value="${product.price }" style="border:none;  width: 55%;color: #ff6623; font-size: 26px; font-weight: 700;">원</strong></td>
                         		</tr>
                         	</tbody>
                         </table>
                         </div>
-                        <a href="#" class="primary-btn">add to cart</a>
+                        <a href="#" class="primary-btn">장바구니 담기</a>
                         <br>
                         <br>
                         <div class="product__details__btns__option">

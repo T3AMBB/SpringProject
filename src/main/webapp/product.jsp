@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 
 <html lang="zxx">
@@ -44,7 +45,7 @@
                     <div class="breadcrumb__text">
                         <h4>Shop</h4>
                         <div class="breadcrumb__links">
-                            <a href="./main.jsp">Home</a>
+                            <a href="/main.do">Home</a>
                             <span>Shop</span>
                         </div>
                     </div>
@@ -115,12 +116,12 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__price">
                                                 <ul>
-                                                    <li><a href="#">$0.00 - $50.00</a></li>
-                                                    <li><a href="#">$50.00 - $100.00</a></li>
-                                                    <li><a href="#">$100.00 - $150.00</a></li>
-                                                    <li><a href="#">$150.00 - $200.00</a></li>
-                                                    <li><a href="#">$200.00 - $250.00</a></li>
-                                                    <li><a href="#">250.00+</a></li>
+                                                    <li><a href="#">10,000 ~ 100,000</a></li>
+                                                    <li><a href="#">10,000 ~ 200,000</a></li>
+                                                    <li><a href="#">200,000 ~ 300,000</a></li>
+                                                    <li><a href="#">300,000 ~ 400,000</a></li>
+                                                    <li><a href="#">400,000 ~ 500,000</a></li>
+                                                    <li><a href="#">500,000원 이상~</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -161,64 +162,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- 
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
-                                    </div>
-                                    <div id="collapseFive" class="collapse show">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__color">
-                                                <label class="c-1" for="sp-1">
-                                                    <input type="radio" id="sp-1">
-                                                </label>
-                                                <label class="c-2" for="sp-2">
-                                                    <input type="radio" id="sp-2">
-                                                </label>
-                                                <label class="c-3" for="sp-3">
-                                                    <input type="radio" id="sp-3">
-                                                </label>
-                                                <label class="c-4" for="sp-4">
-                                                    <input type="radio" id="sp-4">
-                                                </label>
-                                                <label class="c-5" for="sp-5">
-                                                    <input type="radio" id="sp-5">
-                                                </label>
-                                                <label class="c-6" for="sp-6">
-                                                    <input type="radio" id="sp-6">
-                                                </label>
-                                                <label class="c-7" for="sp-7">
-                                                    <input type="radio" id="sp-7">
-                                                </label>
-                                                <label class="c-8" for="sp-8">
-                                                    <input type="radio" id="sp-8">
-                                                </label>
-                                                <label class="c-9" for="sp-9">
-                                                    <input type="radio" id="sp-9">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                -->
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseSix">태그</a>
-                                    </div>
-                                    <div id="collapseSix" class="collapse show">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__tags">
-                                                <a href="#">Product</a>
-                                                <a href="#">Bags</a>
-                                                <a href="#">Shoes</a>
-                                                <a href="#">Fashio</a>
-                                                <a href="#">Clothing</a>
-                                                <a href="#">Hats</a>
-                                                <a href="#">Accessories</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -237,8 +180,6 @@
                                     <select>
                                         <option value="">낮은 금액부터</option>
                                         <option value="">높은 금액부터</option>
-                                        <option value="">$0 - $55</option>
-                                        <option value="">$55 - $100</option>
                                     </select>
                                 </div>
                             </div>
@@ -246,33 +187,29 @@
                     </div>
                     <div class="row">
                     	<!-- 상품 뽑아낼 반복문 위치 -->
+                     <c:forEach var="n" items="${products}" begin="1" end="24">
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
+                                <div class="product__item__pic set-bg" data-setbg="img/figure/${n.pid }.png">
                                     <ul class="product__hover">
                             		    <li><a href="favorite.jsp"><img src="img/icon/heart.png" alt=""></a></li>
-                            		    <li><a href="productDetail.jsp"><img src="img/icon/search.png" alt=""></a></li>
+                            		    <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6>상품이름</h6>
-                                    <h5>상품금액</h5>
+                                    <h6>${n.pname }</h6>
+                                    <h5>${n.price}</h5>
                                 </div>
                             </div>
                         </div>
+                        </c:forEach>
                         <!-- 상품 뽑아낼 반복문 끝 위치 -->
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="product__pagination">
-                                <a class="active" href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <span>...</span>
-                                <a href="#">21</a>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
+                    <!-- 더보기 버튼 자리 -->
+                    
+                    
                 </div>
             </div>
         </div>

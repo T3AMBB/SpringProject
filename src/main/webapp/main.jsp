@@ -122,22 +122,21 @@
                     </ul>
                 </div>
             </div>
-             <c:set var="p" value="${products}" />
             <div class="row product__filter">
             <!-- 상품 뽑아낼 반복문 위치 -->
-            <c:forEach var="p" items="${products}" begin="1" end="20">
+            <c:forEach var="n" items="${products}" begin="1" end="20">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="img/figure/${n.pid }.png">
                             <ul class="product__hover">
-                                <li><img id="favorite" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${p.pid});"></li>
-                                <li><a href="productDetail.do"><img src="img/icon/search.png" alt=""></a></li>
+                                <li><img id="favorite" src="img/icon/heartOff.png" alt="좋아요비활성화" onclick="favorite();"></li>
+                                <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6>${p.pname}</h6>
+                            <h6>${n.pname}</h6>
                             <a href="#" class="add-cart">+ Add To Cart</a>
-                            <h5>$67.24</h5>
+                            <h5>${n.price}원</h5>
                         </div>
                     </div>
                 </div>
@@ -164,35 +163,6 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-    <script type="text/javascript">
-      function favorite(pid) {
-         var mid = '${data.mid}';
-         console.log('로그: Favorite');
-         $.ajax({
-            type : 'POST',
-            url : 'Favorite',
-            data : {
-               mid : mid,
-               pid : pid
-            },
-            success : function(result) {
-               console.log("로그1 [" + result + "]");
-               if (result == 1) {
-                  console.log("로그2 [좋아요+1]");
-                  $("#favorite").prop("src", "./img/icon/heartOn.png");
-               } else {
-                  console.log("로그3 [좋아요-1]");
-                  $("#favorite").prop("src", "./img/icon/heart.png");
-               }
-            },
-            error : function(request, status, error) { 
-               console.log("상태코드: " + request.status);
-               console.log("메세지: " + request.responseText);
-               console.log("에러설명: " + error);
-            }
-         });
-      }
-   </script>
 <<<<<<< HEAD
     
     
