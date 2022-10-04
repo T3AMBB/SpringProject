@@ -36,7 +36,7 @@
 <body>
    
     <hearder:header/>
-    <hr>
+    	<hr>
 
     <!-- Shop Details Section Begin -->
     <section class="shop-details">
