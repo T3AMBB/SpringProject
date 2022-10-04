@@ -70,47 +70,33 @@
     <!-- Hero Section End -->
 
 	<hr>
-    <!-- Banner Section Begin -->
-    <section class="banner spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-7 offset-lg-4">
-                    <div class="banner__item">
-                        <div class="banner__item__pic">
-                            <img src="img/banner/banner-1.jpg" alt="">
+	<img alt="" src="img/WEEK.png" style="padding-right: 15%;padding-left: 15%;">
+                <div class="row product__filter" style="padding: 10%; padding-top: 2%;">
+            <!-- 상품 뽑아낼 반복문 위치 -->
+            <c:forEach var="n" items="${products}" begin="1" end="4">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/figure/${n.pid }.png">
+                            <ul class="product__hover">
+                                <li><img id="favorite" src="img/icon/heartOff.png" alt="좋아요비활성화" onclick="favorite();"></li>
+                                <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
+                            </ul>
                         </div>
-                        <div class="banner__item__text">
-                            <h2>Clothing Collections 2030</h2>
-                            <a href="#">Shop now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="banner__item banner__item--middle">
-                        <div class="banner__item__pic">
-                            <img src="img/banner/banner-2.jpg" alt="">
-                        </div>
-                        <div class="banner__item__text">
-                            <h2>Accessories</h2>
-                            <a href="#">Shop now</a>
+                        <div class="productitem_">
+                            <h6 style="font-weight: 600;">${n.pname}</h6>
+                            <h5 style="font-weight: 800;">${n.price}원</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="banner__item banner__item--last">
-                        <div class="banner__item__pic">
-                            <img src="img/banner/banner-3.jpg" alt="">
-                        </div>
-                        <div class="banner__item__text">
-                            <h2>Shoes Spring 2030</h2>
-                            <a href="#">Shop now</a>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
+                <!-- 상품 뽑아낼 반복문 끝나는 위치 -->
             </div>
-        </div>
-    </section>
-    <!-- Banner Section End -->
+    
+    
+    
+    
+    
+    
 
     <!-- Product Section Begin -->
     <section class="product spad">
@@ -133,10 +119,9 @@
                                 <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
-                        <div class="product__item__text">
-                            <h6>${n.pname}</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
-                            <h5>${n.price}원</h5>
+                        <div class="productitem_">
+                            <h6 style="font-weight: 600;">${n.pname}</h6>
+                            <h5 style="font-weight: 800;">${n.price}원</h5>
                         </div>
                     </div>
                 </div>
