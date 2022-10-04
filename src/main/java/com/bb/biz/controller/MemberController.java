@@ -79,7 +79,7 @@ public class MemberController {
 	public String mypage(MemberVO mVO) {
 		
 		if(mVO != null) {
-			return "mypage.jsp";
+			return "myPage.jsp";
 		}
 		else {
 			return "main.do";
