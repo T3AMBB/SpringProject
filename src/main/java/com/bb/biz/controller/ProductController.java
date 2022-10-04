@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bb.biz.product.ProductService;
 import com.bb.biz.product.ProductVO;
@@ -48,9 +49,10 @@ public class ProductController {
 		return "product.jsp";
 		
 	}
-	
+	@ResponseBody
 	@RequestMapping(value="/cart.do")
 	public String cart(ProductVO vo,HttpSession session,HttpServletRequest request){
+		
 	   int cnt= Integer.parseInt(request.getParameter("cnt"));
 	   
 	   List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart"); 
@@ -66,23 +68,23 @@ public class ProductController {
 	   vo.setCnt(Integer.parseInt(request.getParameter("cnt")));
 	   cart.add(vo);
 	   session.setAttribute("cart", cart);
+	   System.out.println(cart);
 	   return "success";
 	     
 	}
+	
 	@RequestMapping(value="/cartU.do")
 	public String cartUpdate(ProductVO vo,HttpSession session,HttpServletRequest request) {
 		int cnt= Integer.parseInt(request.getParameter("cnt"));
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
 //		vo=productService.selectOneProduct(vo);
 		for(int i=0;i<cart.size();i++) {
-			if(cart.get(i).equals(request.getParameter("pid"))){			
-				cart.remove(cart.get(i));			
+			if(cart.get(i).getPid()==Integer.parseInt(request.getParameter("pid"))){			
+				cart.get(i).setCnt(cnt);			
 			}	
 		}
 		
-			vo=productService.selectOneProduct(vo);
-			vo.setCnt(cnt);
-			cart.add(vo);
+			
 			 session.setAttribute("cart", cart);
 			return "cart.jsp";
 		
