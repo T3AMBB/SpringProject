@@ -198,7 +198,7 @@
                                 </div>
                                  <div class="product__item__text">
                                     <h6>${n.pname }</h6>
-                                    <h5>${n.price}</h5>
+                                    <h5>${n.price}원</h5>
                                 </div>
                             </div>
                         </div>
