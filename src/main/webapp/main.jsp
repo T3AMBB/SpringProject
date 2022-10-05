@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 
@@ -86,7 +86,8 @@
                         </div>
                         <div class="productitem_">
                             <h6 style="font-weight: 600;">${n.pname}</h6>
-                            <h5 style="font-weight: 800;">${n.price}원</h5>
+                            <h5 style="font-weight: 800;">
+                            <fmt:formatNumber pattern="###,###,###" value="${n.price}"/>원</h5>
                         </div>
                     </div>
                 </div>
@@ -123,9 +124,11 @@
                                 <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
                            </ul>
                         </div>
+                        <br>
                         <div class="productitem_">
                             <h6 style="font-weight: 600;">${n.pname}</h6>
-                            <h5 style="font-weight: 800;">${n.price}원</h5>
+                            <h5 style="font-weight: 800;">
+                            <fmt:formatNumber pattern="###,###,###" value="${n.price}"/>원</h5>
                         </div>
                     </div>
                 </div>
