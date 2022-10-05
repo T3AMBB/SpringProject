@@ -22,30 +22,18 @@ public class FavoriteDAO {
 	final String sql_insert="INSERT INTO FAVORITE(FID,MID,PID) "
 			+ "VALUES((SELECT NVL(MAX(FID),0)+1 FROM FAVORITE),?,?)";
 	
-	final String sql_delete="DELETE FROM FAVORITE WHERE FID=?";
+	final String sql_delete="DELETE FROM FAVORITE WHERE MID=? AND PID=?";
 	final String sql_selectOne="SELECT * FROM FAVORITE WHERE MID=? AND PID=?";
 	
 	public boolean insertFavorite(FavoriteVO vo) {
-		if(!vo.isFlag()) {
 			jdbcTemplate.update(sql_insert,vo.getMid(),vo.getPid());
 			return true;
-		}
-		else {
-			return false;
-		}
 	}
 	public boolean deleteFavorite(FavoriteVO vo) {
-		if(vo.isFlag()) {
-		jdbcTemplate.update(sql_delete,vo.getFid());
+		jdbcTemplate.update(sql_delete,vo.getMid(),vo.getPid());
 		return true;
-		}
-		else {
-			return false;
-		}
 	}
 	public FavoriteVO selectOneFavorite(FavoriteVO vo) {
-		System.out.println(vo);
-		System.out.println("DAO 로그 : "+jdbcTemplate);
 		Object[] args= {vo.getMid(),vo.getPid()};
 		try {
 			return jdbcTemplate.queryForObject(sql_selectOne,args,new FavoriteRowMapper());

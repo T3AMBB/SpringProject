@@ -26,7 +26,6 @@ public class FavoriteController {
 			favoriteService.insertFavorite(fVO);
 			return "1";
 		}
-		
 	}
 	
 }
