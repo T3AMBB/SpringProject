@@ -129,7 +129,48 @@
 	<!-- Shopping Cart Section End -->
 
 	<hearder:footer />
-
+<script type="text/javascript">
+function cartU(){
+      
+         var cnt = $('#cnt').val();
+         var pid = $('#pid').val();
+         $.ajax({   
+            type : 'POST',
+            url : 'cartU.do',
+            data :  {
+               'cnt': cnt,
+               'pid': pid
+            },
+            success : function(result) {
+               
+               if (result == 'success') {
+            	   $("#btn-cart").text("변경");
+                  }
+               } 
+            });
+         }
+</script>
+<script type="text/javascript">
+function cartD(){
+      
+        
+         var pid = $('#pid').val();
+         $.ajax({   
+            type : 'POST',
+            url : 'cartD.do',
+            data :  {
+               'pid': pid
+            },
+            success : function(result) {
+               
+               if (result == 'success') {
+            	   $("#btn-cart").text("삭제");
+                  }
+               
+               } 
+            });
+         }
+</script>
 
 	<!-- Js Plugins -->
 

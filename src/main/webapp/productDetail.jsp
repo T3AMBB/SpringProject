@@ -217,7 +217,29 @@
         </div>
     </div>
     <!-- Search End -->
-
+<script type="text/javascript">
+function cart(){
+      
+         var cnt = $('#cnt').val();
+         var pid = $('#pid').val();
+         $.ajax({   
+            type : 'POST',
+            url : 'cart.do',
+            data :  {
+               'cnt': cnt,
+               'pid': pid
+            },
+            success : function(result) {
+               
+               if (result == 'success') {
+                  $("#btn-cart").text("장바구니 담기완료!");
+                  $("#btn-cart").attr('disabled','disabled');
+                  }
+               
+               } 
+            });
+         }
+</script>
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
