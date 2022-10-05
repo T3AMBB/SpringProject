@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bb.biz.product.ProductService;
@@ -50,7 +51,7 @@ public class ProductController {
 		
 	}
 	@ResponseBody
-	@RequestMapping(value="/cart.do")
+	@RequestMapping(value="/cart.do") // 장바구니 추가
 	public String cart(ProductVO vo,HttpSession session,HttpServletRequest request){
 		
 	   int cnt= Integer.parseInt(request.getParameter("cnt"));
@@ -73,11 +74,12 @@ public class ProductController {
 	     
 	}
 	
-	@RequestMapping(value="/cartU.do")
+	@ResponseBody
+	@RequestMapping(value="/cartU.do") // 장바구니 수량수정
 	public String cartUpdate(ProductVO vo,HttpSession session,HttpServletRequest request) {
 		int cnt= Integer.parseInt(request.getParameter("cnt"));
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
-//		vo=productService.selectOneProduct(vo);
+
 		for(int i=0;i<cart.size();i++) {
 			if(cart.get(i).getPid()==Integer.parseInt(request.getParameter("pid"))){			
 				cart.get(i).setCnt(cnt);			
@@ -86,22 +88,47 @@ public class ProductController {
 		
 			
 			 session.setAttribute("cart", cart);
-			return "cart.jsp";
+			return "success";
 		
 		
 	}
-	@RequestMapping(value="/cartD.do")
+	
+	@ResponseBody
+	@RequestMapping(value="/cartD.do") // 장바구니 상품 삭제
 	public String cartDelete(ProductVO vo,HttpSession session,HttpServletRequest request) {
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
-//		vo=productService.selectOneProduct(vo);
+
 		for(int i=0;i<cart.size();i++) {
 			if(cart.get(i).equals(request.getParameter("pid"))){			
 				cart.remove(cart.get(i));			
 			}	
 		}
+		session.setAttribute("cart", cart);
 		
+		return "success";
+	}
+	@RequestMapping(value="/cartM.do") // 장바구니 비우기 
+	public String cartEmpty(ProductVO vo,HttpSession session,HttpServletRequest request) {
+		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
+		session.setAttribute("cart", cart);
+		session.removeAttribute("cart");
 		
 		return "cart.jsp";
+	}
+	@RequestMapping(value="/pay.do" ,method=RequestMethod.POST)
+	public String pay(ProductVO vo,Model model,HttpServletRequest request) {
+		
+		vo=productService.selectOneProduct(vo);
+		vo.setCnt(Integer.parseInt(request.getParameter("cnt")));
+		model.addAttribute("pay", vo);
+		
+		return "payment.jsp";
+	}
+	@RequestMapping(value="/pay.do" ,method=RequestMethod.GET)
+	public String pay() {
+		
+		
+		return "payment.jsp";
 	}
 
 	
