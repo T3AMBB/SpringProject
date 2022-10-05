@@ -1,4 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://kit.fontawesome.com/b7488a2ad9.js" crossorigin="anonymous"></script>
 
  <!-- Page Preloder -->
@@ -10,9 +11,19 @@
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__option">
             <div class="offcanvas__links">
-                <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
-                <a href="signUp.jsp">회원가입</a>
-                <a href="myPage.jsp">마이페이지</a>
+              <c:choose>
+              	<c:when test="${member!=null }">
+                  <a href="cart.do"><img src="img/icon/cart.png" alt="장바구니"></a>
+                  <a href="mypage.do"><img src="img/icon/heart.png" alt="찜목록"></a>
+                  <a href="mypage.do">마이페이지</a>
+                  <a href="logout.do">로그아웃</a>
+                  </c:when>
+                  <c:otherwise>
+                  <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
+                  <a href="signUp.jsp">회원가입</a>
+                  <a href="cart.do"><img src="img/icon/cart.png" alt="장바구니"></a>
+                  </c:otherwise>
+              </c:choose>
             </div>
             <div class="offcanvas__top__hover">
                 <span>Usd <i class="arrow_carrot-down"></i></span>
@@ -49,9 +60,19 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
+                            <c:choose>
+                            	<c:when test="${member!=null }">
+                                <a href="cart.do"><img src="img/icon/cart.png" alt="장바구니"></a>
+                                <a href="mypage.do"><img src="img/icon/heart.png" alt="찜목록"></a>
+                                <a href="mypage.do">마이페이지</a>
+                                <a href="logout.do">로그아웃</a>
+                                </c:when>
+                                <c:otherwise>
                                 <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
                                 <a href="signUp.jsp">회원가입</a>
-                                <a href="mypage.do">마이페이지</a>
+                                <a href="cart.do"><img src="img/icon/cart.png" alt="장바구니"></a>
+                                </c:otherwise>
+                            </c:choose>
                             </div>
                         </div>
                     </div>
@@ -63,14 +84,14 @@
                 <div class="col-lg-5 col-md-4">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./main.jsp">Home</a></li>
-                            <li><a href="./product.jsp">Shop</a></li>
+                            <li class="active"><a href="./main.do">Home</a></li>
+                            <li><a href="./selectAllP.do">Shop</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3 col-md-5">
                     <div class="header__logo">
-                        <a href="./main.jsp"><img src="img/logo.png" alt=""></a>
+                        <a href="./main.do"><img src="img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-3">
@@ -101,23 +122,23 @@
 	          <h4>로그인</h4>
 	        </div>
 	        <div class="d-flex flex-column text-center">
-	          <form action="login.do" method="post">
+	          <form action="login.do" name="login" method="post">
 	            <div class="form-group">
-	              <input type="text" class="form-control" id="id" name="mid" placeholder="아이디를 입력해주세요.">
+	              <input type="text" class="form-control" id="mid" name="mid" placeholder="아이디를 입력해주세요.">
 	            </div>
 	            <div class="form-group">
-	              <input type="password" class="form-control" id="password" name="mpw" placeholder="비밀번호를 입력해주세요.">
+	              <input type="password" class="form-control" id="mpw" name="mpw" placeholder="비밀번호를 입력해주세요.">
 	            </div>
 	            <button type="submit" class="btn btn-dark btn-block btn-round">로그인</button>
 	          </form>
 	          <div class="text-center text-muted delimiter">다른 계정으로 로그인</div>
 	          <div class="d-flex justify-content-center social-buttons">
-	            <button type="button" style="margin-right:2%;"class="btn btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
+	            <a href="javascript:kakaoLogin();"><button type="button" style="margin-right:2%;"class="btn btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
 	              <img style="width:30px; height:30px;" src="img/kakao.png" alt="kakao">
-	            </button>
-	            <button type="button" style="margin-right:2%;"class="btn btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
+	            </button></a>
+	            <a href="javascript:void(0);" id="naverIdLogin_loginButton"><button type="button" style="margin-right:2%;"class="btn btn-round" data-toggle="tooltip" data-placement="top" title="Twitter">
 	              <img style="width:30px; height:30px;" src="img/naver.png" alt="naver">
-	            </button>
+	            </button></a>
 
 	          </div>
 	        </div>
@@ -133,3 +154,99 @@
 	  </div>
 	</div>
 	</div>
+	
+<!-- 네이버 스크립트 -->
+<script
+	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"
+	charset="utf-8"></script>
+<script>
+	var naverLogin = new naver.LoginWithNaverId({
+		clientId : "dSuSr97hQ_8Q6nsvdKk_", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+		callbackUrl : "http://localhost:8088/app1/naverLogin.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+		isPopup : false,
+		callbackHandle : true
+	});
+	naverLogin.init();
+
+	var testPopUp;
+	function openPopUp() { // 팝업이 나옴
+		testPopUp = window.open("https://nid.naver.com/nidlogin.logout",
+				"_blank",
+				"toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+	}
+	function closePopUp() { // 그 후 팝업 종료
+		testPopUp.close();
+	}
+
+	function naverLogout() { // 로그아웃시 팝업 등장했다 사라짐
+		openPopUp();
+		setTimeout(function() {
+			closePopUp();
+		}, 1000);
+	}
+</script>
+<!-- 네이버 스크립트 종료-->
+<!-- 카카오 스크립트 시작 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+        window.Kakao.init('7c680401a97de1baad85ebc5da673f27');
+
+        function kakaoLogin() {
+            window.Kakao.Auth.login({
+//                 scope: 'account_email', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+                success: function(response) {
+                      Kakao.API.request({
+                           url : '/v2/user/me',
+                           success : function(response) {
+                        	   
+                               var email=response.kakao_account.email;
+                               var name=response.kakao_account.profile.nickname;
+                               var mpw=response.id;
+                               console.log(response)
+                               console.log('이메일:'+response.kakao_account.email);
+                               console.log('닉네임:'+response.kakao_account.profile.nickname);
+//                                location.href="login.do?amid="+email;
+								alert(response.id);
+							   alert(email);
+							   alert(name);
+							   location.href ='kakaoLogin.do?mid='+ email+'&mname='+name+'&mpw='+mpw;
+                           },
+                           fail : function(error) {
+                               console.log(error)
+                           },
+                       })
+                   },
+
+                fail: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+        
+       function kakaoLogout() {
+           if (!Kakao.Auth.getAccessToken()) {
+              console.log('Not logged in.');
+              return;
+           }
+           Kakao.Auth.logout(function(response) {
+              alert(response +' logout');
+              window.location.href='main.do'
+           });
+    };
+    
+    function secession() {
+       Kakao.API.request({
+           url: '/v1/user/unlink',
+           success: function(response) {
+              console.log(response);
+              //callback(); //연결끊기(탈퇴)성공시 서버에서 처리할 함수
+              window.location.href='main.jsp'
+           },
+           fail: function(error) {
+              console.log('탈퇴 미완료')
+              console.log(error);
+           },
+       });
+    };
+    </script>
+<!-- 카카오 스크립트 종료 -->

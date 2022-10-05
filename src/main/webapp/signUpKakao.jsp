@@ -27,9 +27,6 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/modal.css" type="text/css">
     <link rel="stylesheet" href="css/signUp.css" type="text/css">
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-	integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-	crossorigin="anonymous"></script>
     <!-- 폰트 어썸 -->
 <script src="https://kit.fontawesome.com/9bd2faeab5.js"
 	crossorigin="anonymous"></script>
@@ -43,7 +40,7 @@
         <div class="form_txtInput">
  		<form action="signUp.do" method="post">
           <h2 class="sub_tit_txt">회원가입</h2>
-          <p class="exTxt">회원가입시 이메일 인증을 반드시 진행하셔야 합니다.</p>
+          <p class="exTxt">카카오 계정을 사용하기 위한 추가 회원가입을 진행합니다.</p>
           <div class="join_form">
             <table>
               <colgroup>
@@ -53,19 +50,11 @@
               <tbody>
                 <tr>
                   <th><span>아이디</span></th>
-                  <td class="row"><input type="text" placeholder="ID 를 입력하세요." id="mid" name="mid" value="${naver.mid}" required></td>
-                </tr>
-                <tr>
-                  <th><span>비밀번호</span></th>
-                  <td class="row"><input type="text" placeholder="비밀번호를 입력해주세요." name="mpw" required></td>
-                </tr>
-                <tr>
-                  <th><span>비밀번호 확인</span></th>
-                  <td class="row"><input type="text" placeholder="비밀번호를 확인하세요."></td>
+                  <td class="row"><input type="text" placeholder="ID 를 입력하세요." id="mid" name="mid" value="${kakao.mid}" required readonly="readonly"></td>
                 </tr>
                 <tr>
                   <th><span>이름</span></th>
-                  <td class="row"><input type="text" placeholder="이름을 입력해주세요." id="mname" name="mname"  value="${naver.mname}" required></td>
+                  <td class="row"><input type="text" placeholder="이름을 입력해주세요." id="mname" name="mname"  value="${kakao.mname}" required readonly="readonly"></td>
                 </tr>
                 <tr>
                   <th><span>휴대폰 번호</span></th>
@@ -111,6 +100,7 @@
             </div>
           </div>
           <div class="btn_wrap2">
+          <input type="hidden" name="mpw" value="${kakao.mpw}">
           <input type="hidden" name="mileage" value="0">
             <button type="submit" class="btn btn-dark btn-lg">회원가입</button>
           </div>
