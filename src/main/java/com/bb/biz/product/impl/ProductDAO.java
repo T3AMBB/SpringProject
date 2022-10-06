@@ -28,7 +28,8 @@ public class ProductDAO {
 	
 	final String sql_selectAll_LPrice="SELECT * FROM PRODUCT ORDER BY PRICE DESC";
 	final String sql_selectAll_HPrice="SELECT * FROM PRODUCT ORDER BY PRICE ASC";
-	
+	final String sql_selectAll_Pcnt="SELECT * FROM PRODUCT ORDER BY PCNT ASC";
+
 	final String sql_insert="INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PID),0)+1 FROM PRODUCT),?,?,?,?,?,?,?,?,?)";
 	
 	
@@ -36,6 +37,9 @@ public class ProductDAO {
 		Object[] args= {vo.getPid()};
 		return jdbcTemplate.queryForObject(sql_selectOne,args,new ProductRowMapper());
 		
+	}
+	List<ProductVO> selectAllProductCnt(ProductVO vo){
+		return jdbcTemplate.query(sql_selectAll_Pcnt,new ProductRowMapper());	
 	}
 	
 	List<ProductVO> selectAllProduct(ProductVO vo){
