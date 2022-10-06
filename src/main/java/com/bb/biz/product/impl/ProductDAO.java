@@ -21,9 +21,11 @@ public class ProductDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	
 	final String sql_selectOne="SELECT * FROM PRODUCT WHERE PID=?";
-	final String sql_selectAll="SELECT * FROM PRODUCT ORDER BY PID DESC";
+	final String sql_selectAll="SELECT * FROM PRODUCT ORDER BY PID ASC";
+	final String sql_selectAll_PriceASC="SELECT * FROM PRODUCT ORDER BY PRICE ASC";
+	final String sql_selectAll_PriceDESC="SELECT * FROM PRODUCT ORDER BY PRICE DESC";
+	final String sql_selectAll_Pcnt="SELECT * FROM PRODUCT ORDER BY PCNT ASC";
 	final String sql_insert="INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PID),0)+1 FROM PRODUCT),?,?,?,?,?,?,?,?,?)";
 	
 	boolean insertProduct(ProductVO vo) {
@@ -40,8 +42,16 @@ public class ProductDAO {
 		
 	}
 	List<ProductVO> selectAllProduct(ProductVO vo){
-		return jdbcTemplate.query(sql_selectAll,new ProductRowMapper());
-		
+		return jdbcTemplate.query(sql_selectAll,new ProductRowMapper());	
+	}
+	List<ProductVO> selectAllProductPriceASC(ProductVO vo){
+		return jdbcTemplate.query(sql_selectAll_PriceASC,new ProductRowMapper());	
+	}
+	List<ProductVO> selectAllProductPriceDESC(ProductVO vo){
+		return jdbcTemplate.query(sql_selectAll_PriceDESC,new ProductRowMapper());	
+	}
+	List<ProductVO> selectAllProductCnt(ProductVO vo){
+		return jdbcTemplate.query(sql_selectAll_Pcnt,new ProductRowMapper());	
 	}
 }
 class ProductRowMapper implements RowMapper<ProductVO>{
