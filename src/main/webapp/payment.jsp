@@ -115,11 +115,11 @@
 							<table style="border-collapse: separate; border-spacing: 0 10px;">
 								<tr>
 									<th style="width:13%">주문자</th>
-									<td>${data.mname}</td>
+									<td>${user.mname}</td>
 								</tr>
 								<tr>
 									<th><span>주소</span></th>
-									<td><input style="width:70% "type="text" id="" value="${data.streetaddress} ${data.address}"
+									<td><input style="width:70% "type="text" id="" value="${user.streetaddress} ${user.address}"
 											readonly="readonly"></td>
 								</tr>
 								</tbody>
@@ -131,22 +131,22 @@
 								<tbody>
 									<tr>
 										<th>주문자</th>
-										<td>${data.mname}</td>
+										<td>${user.mname}</td>
 									</tr>
 									<tr>
 										<th><span>주소</span></th>
-										<td><input style="width:70% "type="text" value="${data.zipcode}" id="add_zone"
+										<td><input style="width:70% "type="text" value="${user.zipcode}" id="add_zone"
 											placeholder="우편번호" readonly="readonly"><button style="width:30%; height:37px" type="button" id="searchAdd"
 												class="btn btn-dark">우편번호 검색</button></td>
 									</tr>
 									<tr>
 										<th></th>
 										<td colspan="2"><input type="text"
-											id="add_load" value="${data.streetaddress}" placeholder="도로명 주소" readonly="readonly"></td>
+											id="add_load" value="${user.streetaddress}" placeholder="도로명 주소" readonly="readonly"></td>
 									</tr>
 									<tr>
 										<th></th>
-										<td colspan="2"><input type="text" value="${data.address}"
+										<td colspan="2"><input type="text" value="${user.address}"
 											name="address" placeholder="상세 주소"></td>
 									</tr>
 									</tbody>
@@ -193,7 +193,7 @@
 					    if ( valueCheck == '적립금' ) {
 					        $('.order_point_input').attr('disabled', false); 
 					        $('.coupon_select').prop("disabled", true);
-					        $('.order_point_input').focus(); 
+					        $('.order_point_input').focus();
 					    } 
 					    else {
 					        $('.order_point_input').attr('disabled', true); 
@@ -238,7 +238,7 @@
 							<tr>
 								<th>포인트 사용</th>
 								<td>
-									${data.mileage} <input style="width:70%" class="order_point_input" disabled value="0">원&nbsp;&nbsp;&nbsp;
+									<input style="width:70%" class="order_point_input" value="${user.mileage }" disabled value="0">&nbsp;&nbsp;&nbsp;
 									<a style="color:#fff" class="order_point_input_btn order_point_input_btn_N" data-state="N">모두사용</a>
 									<a class="order_point_input_btn order_point_input_btn_Y" data-state="Y" style="display: none; color:#fff;">사용취소</a>
 								</td>
@@ -262,11 +262,11 @@
 						</colgroup>
 							<tr>
 								<th>주문자</th>
-								<td>${data.mname}</td>
+								<td>${user.mname}</td>
 							</tr>
 							<tr>
 								<th>휴대폰번호</th>
-								<td>${data.mphone}</td>
+								<td>${user.mphone}</td>
 							</tr>
 						</table>
 					</div>
@@ -308,7 +308,7 @@
 					</div>
 					<!-- 버튼 영역 -->
 					<div class="total_info_btn_div">
-						<a style="color:#fff"class="order_btn" id="check_module">결제하기</a>
+						<a style="color:#fff" class="order_btn" id="check_module">결제하기</a>
 					</div>
 				</div>
 				
@@ -316,25 +316,89 @@
 				<br><br><br><br><br><br><br><br>
 			</div>
 
-				<!-- 주문 요청 form -->
-			<form class="order_form" action="/order" method="post">
-				<!-- 주문자 회원번호 -->
-				<input name="memberId" value="${memberInfo.memberId}" type="hidden">
-				<!-- 주소록 & 받는이-->
-				<input name="addressee" type="hidden">
-				<input name="memberAddr1" type="hidden">
-				<input name="memberAddr2" type="hidden">
-				<input name="memberAddr3" type="hidden">
-				<!-- 사용 포인트 -->
-				<input name="usePoint" type="hidden">
-				<!-- 상품 정보 -->
+				<!-- 주문 요청 form
+			<form class="order_form" action="insertB.do" method="post">
+				<input name="mid" value="${data.mid}" type="hidden">
+				<input name="pid" value="${pay.pid }" type="hidden">
+				<input name="buycnt" value="${pay.cnt }" type="hidden">
+				<input name="shipping" type="hidden">
 			</form>
+			 -->
 		</div>
 		</div>
 	</div>
 	<hearder:footer/>
+	<script>
+var total_price=0;
+var delivery_price=0;
+var usePoint=0;
+var finalTotalPrice=0; // 최종 가격(총 가격 + 배송비)	
 
-<script>
+total_price= ${pay.cnt } * ${pay.price};
+
+/* 배송비 결정 */
+if(total_price >= 30000){
+	delivery_price = 0;
+} else if(total_price == 0){
+	delivery_price = 0;
+} else {
+	delivery_price = 3000;	
+}
+// 배송비
+$(".delivery_price_span").text(delivery_price.toLocaleString());	
+
+// 물건 가격
+$(".totalPrice_span").text(total_price.toLocaleString());
+
+finalTotalPrice = total_price + delivery_price - usePoint;	
+
+usePoint = $(".order_point_input").val();
+
+totalPoint = total_price*0.01;
+
+
+// 최종 가격(총 가격 + 배송비)
+$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
+// 총 마일리지
+$(".totalPoint_span").text(totalPoint.toLocaleString());
+
+function setInfo(){
+	var total_price=0;
+	var delivery_price=0;
+	var usePoint=0;
+	var finalTotalPrice=0; // 최종 가격(총 가격 + 배송비)	
+	total_price= ${pay.cnt } * ${pay.price};
+
+	
+	/* 배송비 결정 */
+	if(total_price >= 30000){
+		delivery_price = 0;
+	} else if(total_price == 0){
+		delivery_price = 0;
+	} else {
+		delivery_price = 3000;	
+	}
+	// 배송비
+	$(".delivery_price_span").text(delivery_price.toLocaleString());	
+	
+	// 물건 가격
+	$(".totalPrice_span").text(total_price.toLocaleString());
+	
+	finalTotalPrice = total_price + delivery_price - usePoint;	
+	
+	usePoint = $(".order_point_input").val();
+	
+	totalPoint = total_price*0.01;
+	
+
+	// 최종 가격(총 가격 + 배송비)
+	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
+	// 총 마일리지
+	$(".totalPoint_span").text(totalPoint.toLocaleString());
+}
+
+</script>
+	<script>
 	$('.ds').on('click', function() {
 	    var valueCheck = $('.ds:checked').val(); // 체크된 Radio 버튼의 값을 가져온다.
 	    
@@ -351,7 +415,7 @@
 	    }
 	});
 </script>
-<script>
+	<script>
 
 /* 주소입력란 버튼 동작(숨김, 등장) */
 function showAdress(className){
@@ -431,7 +495,7 @@ function execution_daum_address(){
 //0 이상 & 최대 포인트 수 이하
 $(".order_point_input").on("propertychange change keyup paste input", function(){
 
-	const maxPoint = parseInt('${memberInfo.point}');	
+	const maxPoint = parseInt('${user.mileage}');	
 	
 	let inputValue = parseInt($(this).val());	
 	
@@ -442,7 +506,7 @@ $(".order_point_input").on("propertychange change keyup paste input", function()
 	}	
 	
 	/* 주문 조합정보란 최신화 */
-	setTotalInfo();	
+	setInfo();	
 	
 });
 
@@ -452,7 +516,7 @@ $(".order_point_input").on("propertychange change keyup paste input", function()
  */
 $(".order_point_input_btn").on("click", function(){
 
-	const maxPoint = parseInt('${memberInfo.point}');	
+	const maxPoint = parseInt('${user.mileage}');	
 	
 	let state = $(this).data("state");	
 	
@@ -475,96 +539,17 @@ $(".order_point_input_btn").on("click", function(){
 	}	
 	
 	/* 주문 조합정보란 최신화 */
-	setTotalInfo();	
+	setInfo();	
 	
 });
 
-
-/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-function setTotalInfo(){
-
-	let totalPrice = 0;				// 총 가격
-	let totalCount = 0;				// 총 갯수
-	let totalKind = 0;				// 총 종류
-	let totalPoint = 0;				// 총 마일리지
-	let deliveryPrice = 0;			// 배송비
-	let usePoint = 0;				// 사용 포인트(할인가격)
-	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)	
-	
-	$(".goods_table_price_td").each(function(index, element){
-		// 총 가격
-		totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
-		// 총 갯수
-		totalCount += parseInt($(element).find(".individual_bookCount_input").val());
-		// 총 종류
-		totalKind += 1;
-		// 총 마일리지
-		totalPoint += parseInt($(element).find(".individual_totalPoint_input").val());
-	});	
-
-	/* 배송비 결정 */
-	if(totalPrice >= 30000){
-		deliveryPrice = 0;
-	} else if(totalPrice == 0){
-		deliveryPrice = 0;
-	} else {
-		deliveryPrice = 3000;	
-	}
-	
-	finalTotalPrice = totalPrice + deliveryPrice;	
-	
-	/* 사용 포인트 */
-	usePoint = $(".order_point_input").val();
-	
-	finalTotalPrice = totalPrice - usePoint;	
-	
-	/* 값 삽입 */
-	// 총 가격
-	$(".totalPrice_span").text(totalPrice.toLocaleString());
-	// 총 갯수
-	$(".goods_kind_div_count").text(totalCount);
-	// 총 종류
-	$(".goods_kind_div_kind").text(totalKind);
-	// 총 마일리지
-	$(".totalPoint_span").text(totalPoint.toLocaleString());
-	// 배송비
-	$(".delivery_price_span").text(deliveryPrice.toLocaleString());	
-	// 최종 가격(총 가격 + 배송비)
-	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());		
-	// 할인가(사용 포인트)
-	$(".usePoint_span").text(usePoint.toLocaleString());	
-	
-}
-
 /* 주문 요청 */
 $(".order_btn").on("click", function(){
-
-	/* 주소 정보 & 받는이*/
-	$(".addressInfo_input_div").each(function(i, obj){
-		if($(obj).find(".selectAddress").val() === 'T'){
-			$("input[name='addressee']").val($(obj).find(".addressee_input").val());
-			$("input[name='memberAddr1']").val($(obj).find(".address1_input").val());
-			$("input[name='memberAddr2']").val($(obj).find(".address2_input").val());
-			$("input[name='memberAddr3']").val($(obj).find(".address3_input").val());
-		}
-	});	
 	
-	/* 사용 포인트 */
-	$("input[name='usePoint']").val($(".order_point_input").val());	
+	/* 데이트피커 값 넣기 */
+	$("input[name='shipping']").val($("#from").val());	
 	
-	/* 상품정보 */
-	let form_contents = ''; 
-	$(".goods_table_price_td").each(function(index, element){
-		let bookId = $(element).find(".individual_bookId_input").val();
-		let bookCount = $(element).find(".individual_bookCount_input").val();
-		let bookId_input = "<input name='orders[" + index + "].bookId' type='hidden' value='" + bookId + "'>";
-		form_contents += bookId_input;
-		let bookCount_input = "<input name='orders[" + index + "].bookCount' type='hidden' value='" + bookCount + "'>";
-		form_contents += bookCount_input;
-	});	
-	$(".order_form").append(form_contents);	
-	
-	/* 서버 전송 */
+	/* 전송 */
 	$(".order_form").submit();	
 	
 });	
@@ -584,22 +569,23 @@ $(document).ready(function () {
     }).scroll();
 });
 </script>
-
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-    <!-- 결제 -->
-    <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script>
+	<!-- Js Plugins -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/jquery.slicknav.js"></script>
+	<script src="js/mixitup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
+	<!-- 결제 -->
+	<script type="text/javascript"
+		src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
    $("#check_module").click(function () {
       var IMP = window.IMP; // 생략가능
       IMP.init('imp17445447'); 
@@ -614,11 +600,11 @@ $(document).ready(function () {
           *  https://docs.iamport.kr/implementation/payment
           *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
           */
-         name: '주문명 : 아메리카노',
+         name: '${pay.pname}',
          // 결제창에서 보여질 이름
          // name: '주문명 : ${auction.a_title}',
          // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-         amount: 100,
+         amount: finalTotalPrice,
          // amount: ${bid.b_bid},
          // 가격 
          buyer_name: '이름',
@@ -639,14 +625,20 @@ $(document).ready(function () {
             msg += '에러내용 : ' + rsp.error_msg;
          }
          alert(msg);
-         location.href='payment.jsp';
+         location.href='insertB.do?mid='+${user.mid}+'&pid='+${pay.pid}+'&buycnt='+${pay.cnt}+'&shipping'+shipping;
       });
    }); 
 	</script>
-    <!-- 데이트피커 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
+	<!-- 데이트피커 -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+		integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+		integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
     // 데이트피커 한글화
 	$.datepicker.setDefaults({
 		  dateFormat: 'yy-mm-dd',
