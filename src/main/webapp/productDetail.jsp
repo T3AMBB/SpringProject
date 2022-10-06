@@ -67,7 +67,7 @@
                   </div>
                   
                   
-                  <form class="col-lg-6" action="pay.do" method="post" style="display : inline; margin:0px;">
+                  <form class="col-lg-6" action="pay.do?pid=${product.pid}&pcnt=${product.pcnt}" method="post" style="display : inline; margin:0px;">
                   <div class="col-lg-12" style="border:1px solid black; padding:3%;padding-bottom: 1%;padding-top: 4%;">
                      <div class="product__details__text">
                      	<div class="producttext" style="text-align:initial;">

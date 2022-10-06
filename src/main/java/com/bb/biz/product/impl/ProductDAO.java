@@ -21,38 +21,44 @@ public class ProductDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	
 	final String sql_selectOne="SELECT * FROM PRODUCT WHERE PID=?";
-	final String sql_selectAll="SELECT * FROM PRODUCT ORDER BY PID ASC";
-	final String sql_selectAll_PriceASC="SELECT * FROM PRODUCT ORDER BY PRICE ASC";
-	final String sql_selectAll_PriceDESC="SELECT * FROM PRODUCT ORDER BY PRICE DESC";
-	final String sql_selectAll_Pcnt="SELECT * FROM PRODUCT ORDER BY PCNT ASC";
+	final String sql_selectAll="SELECT * FROM PRODUCT ORDER BY PID DESC";
+	
+	
+	final String sql_selectAll_LPrice="SELECT * FROM PRODUCT ORDER BY PRICE DESC";
+	final String sql_selectAll_HPrice="SELECT * FROM PRODUCT ORDER BY PRICE ASC";
+	
 	final String sql_insert="INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PID),0)+1 FROM PRODUCT),?,?,?,?,?,?,?,?,?)";
 	
-	boolean insertProduct(ProductVO vo) {
-			
-			System.out.println("insertProduct로그"+vo);
-			jdbcTemplate.update(sql_insert,vo.getPname(),vo.getPrice(),vo.getPcnt(),vo.getPcom(),vo.getPmade(),vo.getPmat(),vo.getPsize(),vo.getPimg(),vo.getPdetail());
-			
-			return true;
-	}
 	
 	ProductVO selectOneProduct(ProductVO vo) {
 		Object[] args= {vo.getPid()};
 		return jdbcTemplate.queryForObject(sql_selectOne,args,new ProductRowMapper());
 		
 	}
+	
 	List<ProductVO> selectAllProduct(ProductVO vo){
-		return jdbcTemplate.query(sql_selectAll,new ProductRowMapper());	
+		
+		if(vo.getPdetail().equals("low")) {
+			return jdbcTemplate.query(sql_selectAll_LPrice,new ProductRowMapper());
+		}
+		else if(vo.getPdetail().equals("high")) {
+			return jdbcTemplate.query(sql_selectAll_HPrice,new ProductRowMapper());
+		}
+		return jdbcTemplate.query(sql_selectAll,new ProductRowMapper());
+		
 	}
-	List<ProductVO> selectAllProductPriceASC(ProductVO vo){
-		return jdbcTemplate.query(sql_selectAll_PriceASC,new ProductRowMapper());	
+		
+	boolean insertProduct(ProductVO vo) {
+		
+		System.out.println("insertProduct로그"+vo);
+		jdbcTemplate.update(sql_insert,vo.getPname(),vo.getPrice(),vo.getPcnt(),vo.getPcom(),vo.getPmade(),vo.getPmat(),vo.getPsize(),vo.getPimg(),vo.getPdetail());
+		
+		return true;
 	}
-	List<ProductVO> selectAllProductPriceDESC(ProductVO vo){
-		return jdbcTemplate.query(sql_selectAll_PriceDESC,new ProductRowMapper());	
-	}
-	List<ProductVO> selectAllProductCnt(ProductVO vo){
-		return jdbcTemplate.query(sql_selectAll_Pcnt,new ProductRowMapper());	
-	}
+	
+	
 }
 class ProductRowMapper implements RowMapper<ProductVO>{
 
