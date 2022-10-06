@@ -66,8 +66,7 @@
                   </div>
                   </div>
                   
-                  
-                  <form class="col-lg-6" action="pay.do?pid=${product.pid}&pcnt=${product.pcnt}" method="post" style="display : inline; margin:0px;">
+				<form class="col-lg-6" action="pay.do?pid=${product.pid}&pcnt=${product.pcnt}" method="post" style="display : inline; margin:0px;">
                   <div class="col-lg-12" style="border:1px solid black; padding:3%;padding-bottom: 1%;padding-top: 4%;">
                      <div class="product__details__text">
                      	<div class="producttext" style="text-align:initial;">
@@ -141,7 +140,7 @@
                         <br>
                         <br>
                         <div class="product__details__btns__option">
-                          <a href="favorite.do?pid=${product.pid}"><i class="fa fa-heart"></i> 찜하기</a>
+                          <img id="fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${product.pid});"> 찜하기
                         </div>
                      </div>
                   </div>
@@ -258,7 +257,35 @@ function cart(){
          }
 </script>
 
-
+<script type="text/javascript">
+      function favorite(pid) {
+         var mid = '${data.mid}';
+         console.log('로그: Favorite');
+         $.ajax({
+            type : 'POST',
+            url : 'favorite.do',
+            data : {
+               mid : mid,
+               pid : pid
+            },
+            success : function(result) {
+               console.log("로그1 [" + result + "]");
+               if (result == 1) {
+                  console.log("로그2 [좋아요+1]");
+                  $("#fav_btn").prop("src", "./img/icon/heartOn.png");
+               } else if(result == 0){
+                  console.log("로그3 [좋아요-1]");
+                  $("#fav_btn").prop("src", "./img/icon/heart.png");
+               }
+            },
+            error : function(request, status, error) { 
+               console.log("상태코드: " + request.status);
+               console.log("메세지: " + request.responseText);
+               console.log("에러설명: " + error);
+            }
+         });
+      }
+   </script>
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>

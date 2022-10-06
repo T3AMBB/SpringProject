@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-
 <!DOCTYPE html>
 
 <html lang="zxx">
@@ -77,16 +76,18 @@
             <c:forEach var="n" items="${products}" begin="1" end="4">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/figure/${n.pid }.png">
+                        <div class="product__item__pic set-bg" >
+                        <a href="boardP.do?pid=${n.pid}"><img src="${n.pimg}"
+								alt="" width="280" height="280"></a>
                             <ul class="product__hover">
-                                <li><img id="favorite" src="img/icon/heartOff.png" alt="" onclick="favorite();"></li>
+                                <li><img id="fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
                                 <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
-                        <br>
                         <div class="productitem_">
                             <h6 style="font-weight: 600;">${n.pname}</h6>
-                             <h5 style="font-weight: 600;" ><fmt:formatNumber pattern="###,###,###" value="${n.price}"/>원</h5>
+                            <h5 style="font-weight: 800;">
+                            <fmt:formatNumber pattern="###,###,###" value="${n.price}"/>원</h5>
                         </div>
                     </div>
                 </div>
@@ -115,16 +116,19 @@
             <c:forEach var="n" items="${products}" begin="1" end="20">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/figure/${n.pid }.png">
+                    <div class="product__item__pic set-bg" >
+                        <a href="boardP.do?pid=${n.pid}"><img src="${n.pimg}"
+								alt="" width="280" height="280"></a>
                             <ul class="product__hover">
-                         	    <li><a href="favorite.do"><img src="img/icon/heart.png" alt="" ></a></li>
+                                <li><img id="fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
                                 <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
+                           </ul>
                         </div>
                         <br>
                         <div class="productitem_">
                             <h6 style="font-weight: 600;">${n.pname}</h6>
-                            <h5 style="font-weight: 800;"><fmt:formatNumber pattern="###,###,###" value="${n.price}"/>원</h5>
+                            <h5 style="font-weight: 800;">
+                            <fmt:formatNumber pattern="###,###,###" value="${n.price}"/>원</h5>
                         </div>
                     </div>
                 </div>
@@ -151,6 +155,35 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+     <script type="text/javascript">
+      function favorite(pid) {
+         var mid = '${data.mid}';
+         console.log('로그: Favorite');
+         $.ajax({
+            type : 'POST',
+            url : 'favorite.do',
+            data : {
+               mid : mid,
+               pid : pid
+            },
+            success : function(result) {
+               console.log("로그1 [" + result + "]");
+               if (result == 1) {
+                  console.log("로그2 [좋아요+1]");
+                  $("#fav_btn").prop("src", "./img/icon/heartOn.png");
+               } else if(result == 0){
+                  console.log("로그3 [좋아요-1]");
+                  $("#fav_btn").prop("src", "./img/icon/heart.png");
+               }
+            },
+            error : function(request, status, error) { 
+               console.log("상태코드: " + request.status);
+               console.log("메세지: " + request.responseText);
+               console.log("에러설명: " + error);
+            }
+         });
+      }
+   </script>
 <<<<<<< HEAD
     
     
