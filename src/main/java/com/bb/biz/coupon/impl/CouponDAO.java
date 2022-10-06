@@ -25,7 +25,7 @@ public class CouponDAO {
 	final String sql_updateCD="UPDATE COUPON SET CSTATUS=CSTATUS-1 WHERE CID=?";
 	
 	
-	final String sql_selectAll="SELECT * FROM COUPON ORDER BY BID DESC";
+	final String sql_selectAll="SELECT * FROM COUPON WHERE CSTATUS=1 ORDER BY CID ASC;";
 
 
 	boolean insertCoupon(CouponVO vo) {
