@@ -60,13 +60,13 @@
                <div class="row">
                   <div class="col-lg-6" >
                   <div class="product__details__pic__item">
-                     <img src="img/figure/${product.pid }.png" alt="" style="margin-top: 25%; margin-block: auto; border: 1px solid black; padding: 1%">
+                          <img src="${product.pimg}" alt="상품이미지" style="margin-top: 25%; margin-block: auto; border: 1px solid black; padding: 1%">
                   </div>
                   <div>
                   </div>
                   </div>
                   
-				<form class="col-lg-6" action="pay.do?pid=${product.pid}&pcnt=${product.pcnt}" method="post" style="display : inline; margin:0px;">
+				<form class="col-lg-6" action="pay.do" method="post" style="display : inline; margin:0px;">
                   <div class="col-lg-12" style="border:1px solid black; padding:3%;padding-bottom: 1%;padding-top: 4%;">
                      <div class="product__details__text">
                      	<div class="producttext" style="text-align:initial;">
@@ -106,8 +106,7 @@
 										<div class="product__details__cart__option" >
                       					     <div class="quantity" >
                            					   <div class="pro-qty" scope="row"style="text-align: center; margin-top: 20px; margin-left: 100px;">
-                              					   <input type="text" value="1" id="cnt" name="cnt" readonly>
-                              					   <input type="hidden" value="${product.pid}" id="pid" name="pid">
+                              					   <input type="text" value="1" readonly>
                            					   </div>
                           				 </div>
                      					 </div>
@@ -131,9 +130,8 @@
                         </div>
                         <div>
 							
-                        <button type="button" class="primary-btn" id="btn-cart" onclick="cart();"style="border-radius: 30px;border: 1px solid black;background:white;color: #333 !important;">장바구니 담기</button>
+                        <a href="/cart.do" class="primary-btn" style="border-radius: 30px;border: 1px solid black;background:white;color: #333 !important;">장바구니 담기</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="hidden" value="${product.pid }${product.pcnt}">
                         <input type="submit" class="primary-btn" style="border-radius: 30px;" value="바로 구매하기">
 							
                         </div>
