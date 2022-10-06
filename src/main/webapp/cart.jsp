@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>          
+
+
 <!DOCTYPE html>
 <html>
 
@@ -58,44 +62,52 @@
 						<table>
 							<thead>
 								<tr>
+									<th>check</th>
 									<th>Product</th>
 									<th>Quantity</th>
 									<th>Total</th>
 									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody>							
 								<!-- For each문 시작 지점 -->
+								<c:forEach var="c" items="${cart}">								
 								<tr>
+									<td>
+									<input type="checkbox">
+									</td>
 									<!-- 크롤링한 이미지 삽입 -->
 									<td class="product__cart__item">
 										<div class="product__cart__item__pic">
-											<img src="img/shopping-cart/cart-1.jpg" alt="">
+											<img src="${c.pimg}" style="width:90px;"alt="img">
 										</div>
 
 										<div class="product__cart__item__text">
-											<h6>v:datas {p.name}</h6>
-											<!-- value에 {p.price}  -->
-											<h6><input class="product_price" type="text" value="30000"
-												style="border: none; width: inherit;"></h6>
+											<h6>${c.pname}</h6>
+									<h6><span class="product_price"><fmt:formatNumber value="${c.price}" pattern="#,###,### 원"/></span>
+												</h6>
 										</div>
 									</td>
 									<td class="quantity__item">
 										<div class="quantity">
 											<div class="pro-qty-2">
-												<input type="text" value="1">
+												<input type="text" value="${c.cnt}">												
 											</div>
+												<button type="button" class="primary-btn" id="btn-cart" onclick="cartU();" style="size:inherit;">변경</button>
 										</div>
 									</td>
 									<td><input class="cart_price" type="text"
-										value="30000"
+										value="${c.price * c.cnt}"
 										style="border: none; width: inherit; background: inherit;">
 									</td>
 									<td class="cart__close"><a href="delete.do"><i
-											class="fa fa-close"></i></a></td>
+											class="fa fa-close"></i>
+									<!-- <button type="button" class="primary-btn" id="btn-cart" onclick="cartD();" style="size:inherit;">삭제</button> -->
+											</a></td>
 								</tr>
+								</c:forEach>
 								<!-- For each문 끝 -->
-
+								
 							</tbody>
 						</table>
 					</div>
@@ -118,8 +130,8 @@
 						<hr>
 						<div>
 							<input class="cart_total_price" type="text"
-								value="40000" style="border: none; width: 100%; color:red; font-size:22px; text-align:right; background:inherit;">
-						</div>
+								value=""${c.price * c.cnt}" style="border: none; width: 100%; color:red; font-size:22px; text-align:right; background:inherit;">
+						</div>                   
 						<a href="payment.jsp" class="primary-btn">주문하기</a>
 					</div>
 				</div>
