@@ -192,7 +192,7 @@
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="img/figure/${n.pid }.png">
                                     <ul class="product__hover">
-                            		    <li><a href="favorite.jsp"><img src="img/icon/heart.png" alt=""></a></li>
+                            		    <li><img id="fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
                             		    <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
                                     </ul>
                                 </div>
@@ -305,6 +305,36 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+        <script type="text/javascript">
+      function favorite(pid) {
+         var mid = '${data.mid}';
+         console.log('로그: Favorite');
+         $.ajax({
+            type : 'POST',
+            url : 'favorite.do',
+            data : {
+               mid : mid,
+               pid : pid
+            },
+            success : function(result) {
+               console.log("로그1 [" + result + "]");
+               if (result == 1) {
+                  console.log("로그2 [좋아요+1]");
+                  $("#fav_btn").prop("src", "./img/icon/heartOn.png");
+               } else if(result == 0){
+                  console.log("로그3 [좋아요-1]");
+                  $("#fav_btn").prop("src", "./img/icon/heart.png");
+               }
+            },
+            error : function(request, status, error) { 
+               console.log("상태코드: " + request.status);
+               console.log("메세지: " + request.responseText);
+               console.log("에러설명: " + error);
+            }
+         });
+      }
+   </script>
+    
 </body>
 
 </html>

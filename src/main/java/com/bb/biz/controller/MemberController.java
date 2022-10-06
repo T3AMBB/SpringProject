@@ -1,5 +1,6 @@
 package com.bb.biz.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.bb.biz.member.MemberService;
 import com.bb.biz.member.MemberVO;
-import com.bb.biz.member.impl.MemberDAO;
 
 @Controller
 @SessionAttributes("data")
@@ -20,6 +20,37 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	  @RequestMapping(value="/naverLogin.do")
+	   public String naverLogin(MemberVO mvo, MemberVO mVO,HttpSession session, HttpServletRequest request, Model model){
+	     
+		  mvo.setMid(request.getParameter("mid"));
+	      mVO=memberService.selectOneMember(mvo);
+	      if(mVO == null) {
+	         model.addAttribute("mname",request.getParameter("mname"));
+	         model.addAttribute("mid",request.getParameter("mid"));
+	         return "signUp.jsp";
+	      }
+	      session.setAttribute("member", mVO.getMid());
+	      System.out.println("네이버 로그인 성공");
+	      model.addAttribute("data", mVO);
+	      return "main.do";
+	   }
+	   @RequestMapping(value="/kakaoLogin.do")
+	   public String kakaoLogin(MemberVO mvo, MemberVO mVO,HttpSession session, HttpServletRequest request, Model model){
+		  
+		   mvo.setMid(request.getParameter("mid")); 
+		   mVO=memberService.selectOneMember(mvo);
+		      if(mVO == null) {
+		         model.addAttribute("mname",request.getParameter("mname"));
+		         model.addAttribute("mid",request.getParameter("mid"));
+		         return "signUp.jsp";
+		      }
+		      session.setAttribute("member", mVO.getMid());
+		      System.out.println("카카오 로그인 성공");
+		      model.addAttribute("data", mVO);
+		      return "main.do";
+		   }
 	
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
 	public String selectOneMember(Model model,MemberVO mVO,HttpSession session){

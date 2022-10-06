@@ -34,4 +34,10 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	@Override
+	public MemberVO selectOneMember_CHECK(MemberVO vo) {
+		
+		return memberDAO.selectOneMember_CHECK(vo);
+	}
+
 }
