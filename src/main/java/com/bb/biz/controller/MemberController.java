@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.bb.biz.coupon.CouponService;
+import com.bb.biz.coupon.CouponVO;
 import com.bb.biz.member.MemberService;
 import com.bb.biz.member.MemberVO;
 
 @Controller
-@SessionAttributes("data")
+@SessionAttributes("user")
 public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private CouponService couponService;
 	
 	  @RequestMapping(value="/naverLogin.do")
 	   public String naverLogin(MemberVO mvo, MemberVO mVO,HttpSession session, HttpServletRequest request, Model model){
@@ -33,7 +37,7 @@ public class MemberController {
 	      }
 	      session.setAttribute("member", mVO.getMid());
 	      System.out.println("네이버 로그인 성공");
-	      model.addAttribute("data", mVO);
+	      model.addAttribute("user", mVO);
 	      return "main.do";
 	   }
 	   @RequestMapping(value="/kakaoLogin.do")
@@ -48,7 +52,7 @@ public class MemberController {
 		      }
 		      session.setAttribute("member", mVO.getMid());
 		      System.out.println("카카오 로그인 성공");
-		      model.addAttribute("data", mVO);
+		      model.addAttribute("user", mVO);
 		      return "main.do";
 		   }
 	
@@ -62,7 +66,7 @@ public class MemberController {
 		else {
 			session.setAttribute("member", mVO.getMid());
 			
-			model.addAttribute("data", mVO);
+			model.addAttribute("user", mVO);
 			return "main.do";
 		}
 
@@ -74,7 +78,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/signUp.do",method=RequestMethod.POST)
-	public String insertMember(MemberVO mVO) {
+	public String insertMember(MemberVO mVO,CouponVO cVO) {
+		
+		cVO.setMid(mVO.getMid());
+		cVO.setCode("회원가입 10% 쿠폰");
+		cVO.setDcrate(0.9);
+		couponService.insetCoupon(cVO);	
 		memberService.insertMember(mVO);
 		
 		return "redirect:main.do";
