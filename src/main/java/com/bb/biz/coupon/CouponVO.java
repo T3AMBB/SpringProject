@@ -3,7 +3,7 @@ package com.bb.biz.coupon;
 public class CouponVO {
 	private int cid;
 	private String code;
-	private String dcrate;
+	private double dcrate;
 	private int cstatus;
 	private String mid;
 	public int getCid() {
@@ -18,10 +18,10 @@ public class CouponVO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getDcrate() {
+	public double getDcrate() {
 		return dcrate;
 	}
-	public void setDcrate(String dcrate) {
+	public void setDcrate(double dcrate) {
 		this.dcrate = dcrate;
 	}
 	public int getCstatus() {
@@ -38,7 +38,8 @@ public class CouponVO {
 	}
 	@Override
 	public String toString() {
-		return "FavoriteVO [cid=" + cid + ", code=" + code + ", dcrate=" + dcrate + ", cstatus=" + cstatus + ", mid="
+		return "CouponVO [cid=" + cid + ", code=" + code + ", dcrate=" + dcrate + ", cstatus=" + cstatus + ", mid="
 				+ mid + "]";
 	}
+	
 }

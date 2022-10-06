@@ -18,7 +18,7 @@ public class CouponDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	final String sql_insert="INSERT INTO COUPON(CID,CODE,DCRATE,CSTATUS,MID) "
-			+ "VALUES((SELECT NVL(MAX(CID),0)+1 FROM COUPON),?,?,?,?";
+			+ "VALUES((SELECT NVL(MAX(CID),0)+1 FROM COUPON),?,?,?,?)";
 	
 
 	final String sql_updateCI="UPDATE COUPON SET CSTATUS=CSTATUS+1 WHERE CID=?";
