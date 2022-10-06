@@ -46,6 +46,17 @@ public class ProductController {
 		return "main.jsp";
 
 	}
+
+	@ResponseBody
+	@RequestMapping(value="/sortPrice.do")
+	public List<ProductVO> sortPrice(ProductVO pVO, Model model) {
+		
+//		System.out.println("sortPrice.do 로그"+pVO.getPdetail());
+		List<ProductVO> products=productService.selectAllProduct(pVO);
+		
+		return products;
+		
+	}
 	
 	@RequestMapping(value="/selectAllP.do")
 	public String selectAllProduct(ProductVO pVO,Model model) {

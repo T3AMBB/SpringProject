@@ -177,15 +177,16 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__right">
                                     <p>가격순으로 보기:</p>
-                                    <select>
-                                        <option value="">낮은 금액부터</option>
-                                        <option value="">높은 금액부터</option>
-                                    </select>
+                                    <select name="pdetail" onchange="sortPrice()" id="sortPrice">
+	                                   <option>----</option>
+	                                   <option value="low" >낮은 금액부터</option>
+	                                   <option value="high" >높은 금액부터</option>
+	                         </select>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" id="figures">
                     	<!-- 상품 뽑아낼 반복문 위치 -->
                      <c:forEach var="n" items="${products}" begin="1" end="24">
                         <div class="col-lg-4 col-md-6 col-sm-6">
@@ -336,6 +337,53 @@
          });
       }
    </script>
+
+                    <script type="text/javascript">
+						function sortPrice(){
+						      
+						         var sortPrice = $("#sortPrice").val();
+						         console.log("정렬 [" + sortPrice + "]");
+						         $.ajax({   
+						            type : "post",
+						            url : "sortPrice.do",
+						            data :  {
+						            	"pdetail": sortPrice
+						            },
+						            success : function(result) {
+						                console.log(result);
+										$('.figure').remove();
+										
+										for(var n of result){
+											
+											var item = "<div class='col-lg-4 col-md-6 col-sm-6 figure'>";
+
+											item += "<div class='product__item'>";
+											item += "<div class='product__item__pic set-bg'>";
+											item += "<img alt='이미지' src='"+n.pimg+"'>";
+											item += "<ul class='product__hover'>";
+											item +=	"<li><a href='favorite.jsp'><img src='img/icon/heart.png' alt=''></a></li>";
+											item += "<li><a href='boardP.do?pid="+n.pid+"'><img src='img/icon/search.png' alt=''></a></li>";
+											item += "</ul>";
+											item += "</div>";
+											item += "<div class='product__item__text'>";
+											item += "<h6>"+n.pname+"</h6>";
+											item += "<h5>"+n.price+"원</h5>";
+											item += "</div>";
+											item += "</div>";
+											item += "</div>";
+											
+											$('#figures').append(item);
+										}
+										
+						             },
+						             error : function(request, status, error) { // 순서 체크해보기!
+						                console.log("상태코드: " + request.status);
+						                console.log("메세지: " + request.responseText);
+						                console.log("에러설명: " + error);
+						             }
+						          });
+						         }
+					</script>
     
 </body>
 
