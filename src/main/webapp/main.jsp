@@ -80,7 +80,7 @@
                         <a href="boardP.do?pid=${n.pid}"><img src="${n.pimg}"
 								alt="" width="280" height="280"></a>
                             <ul class="product__hover">
-                                <li><img id="fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
+                                <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
                                 <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
@@ -120,7 +120,7 @@
                         <a href="boardP.do?pid=${n.pid}"><img src="${n.pimg}"
 								alt="" width="280" height="280"></a>
                             <ul class="product__hover">
-                                <li><img id="fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
+                                <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
                                 <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
                            </ul>
                         </div>
@@ -170,10 +170,10 @@
                console.log("로그1 [" + result + "]");
                if (result == 1) {
                   console.log("로그2 [좋아요+1]");
-                  $("#fav_btn").prop("src", "./img/icon/heartOn.png");
+                  $('#'+pid+'fav_btn').prop("src", "./img/icon/heartOn.png");
                } else if(result == 0){
                   console.log("로그3 [좋아요-1]");
-                  $("#fav_btn").prop("src", "./img/icon/heart.png");
+                  $('#'+pid+'fav_btn').prop("src", "./img/icon/heart.png");
                }
             },
             error : function(request, status, error) { 
