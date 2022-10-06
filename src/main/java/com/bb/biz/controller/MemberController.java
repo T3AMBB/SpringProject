@@ -29,7 +29,7 @@ public class MemberController {
 	   public String naverLogin(MemberVO mvo, MemberVO mVO,HttpSession session, HttpServletRequest request, Model model){
 	     
 		  mvo.setMid(request.getParameter("mid"));
-	      mVO=memberService.selectOneMember(mvo);
+	      mVO=memberService.selectOneMember_CHECK(mvo);
 	      if(mVO == null) {
 	         model.addAttribute("mname",request.getParameter("mname"));
 	         model.addAttribute("mid",request.getParameter("mid"));
@@ -44,7 +44,7 @@ public class MemberController {
 	   public String kakaoLogin(MemberVO mvo, MemberVO mVO,HttpSession session, HttpServletRequest request, Model model){
 		  
 		   mvo.setMid(request.getParameter("mid")); 
-		   mVO=memberService.selectOneMember(mvo);
+		   mVO=memberService.selectOneMember_CHECK(mvo);
 		      if(mVO == null) {
 		         model.addAttribute("mname",request.getParameter("mname"));
 		         model.addAttribute("mid",request.getParameter("mid"));
