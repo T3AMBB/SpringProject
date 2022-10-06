@@ -106,7 +106,8 @@
 										<div class="product__details__cart__option" >
                       					     <div class="quantity" >
                            					   <div class="pro-qty" scope="row"style="text-align: center; margin-top: 20px; margin-left: 100px;">
-                              					   <input type="text" value="1" readonly>
+                              					   <input type="text" value="1" id="cnt" name="cnt" readonly>
+                              					   <input type="hidden" value="${product.pid}" id="pid" name="pid">
                            					   </div>
                           				 </div>
                      					 </div>
@@ -130,7 +131,7 @@
                         </div>
                         <div>
 							
-                        <a href="/cart.do" class="primary-btn" style="border-radius: 30px;border: 1px solid black;background:white;color: #333 !important;">장바구니 담기</a>
+                        <button type="button" class="primary-btn" id="btn-cart" onclick="cart();"style="border-radius: 30px;border: 1px solid black;background:white;color: #333 !important;">장바구니 담기</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="hidden" value="${product.pid }${product.pcnt}">
                         <input type="submit" class="primary-btn" style="border-radius: 30px;" value="바로 구매하기">
