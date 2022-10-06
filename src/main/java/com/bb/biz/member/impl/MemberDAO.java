@@ -20,6 +20,7 @@ public class MemberDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	final String sql_selectOne="SELECT * FROM MEMBER WHERE MID=? AND MPW=?";
+	final String sql_selectOne_CHECK="SELECT * FROM MEMBER WHERE MID=?";
 	final String sql_insert="INSERT INTO MEMBER VALUES(?,?,?,?,?)";
 	final String sql_update="UPDATE MEMBER SET MPW=? WHERE MID=?";
 	final String sql_delete="DELETE MEMBER WHERE MID=? AND MPW=?";
@@ -53,6 +54,15 @@ public class MemberDAO {
 	}
 	MemberVO selectOneMember(MemberVO vo) {
 		Object[] args= {vo.getMid(),vo.getMpw()};
+		try {
+			return jdbcTemplate.queryForObject(sql_selectOne,args,new MemberRowMapper());
+		}
+		catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	MemberVO selectOneMember_CHECK(MemberVO vo) {
+		Object[] args= {vo.getMid()};
 		try {
 			return jdbcTemplate.queryForObject(sql_selectOne,args,new MemberRowMapper());
 		}
