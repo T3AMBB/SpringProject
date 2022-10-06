@@ -13,7 +13,7 @@
             <div class="offcanvas__links">
               <c:choose>
               	<c:when test="${member!=null }">
-                  <a href="cart.do"><img src="img/icon/cart.png" alt="장바구니"></a>
+                  <a href="cart.jsp"><img src="img/icon/cart.png" alt="장바구니"></a>
                   <a href="mypage.do"><img src="img/icon/heart.png" alt="찜목록"></a>
                   <a href="mypage.do">마이페이지</a>
                   <a href="logout.do">로그아웃</a>
@@ -21,7 +21,7 @@
                   <c:otherwise>
                   <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
                   <a href="signUp.jsp">회원가입</a>
-                  <a href="cart.do"><img src="img/icon/cart.png" alt="장바구니"></a>
+                  <a href="cart.jsp"><img src="img/icon/cart.png" alt="장바구니"></a>
                   </c:otherwise>
               </c:choose>
             </div>
@@ -62,7 +62,7 @@
                             <div class="header__top__links">
                             <c:choose>
                             	<c:when test="${member!=null }">
-                                <a href="cart.do"><img src="img/icon/cart.png" alt="장바구니"></a>
+                                <a href="cart.jsp"><img src="img/icon/cart.png" alt="장바구니"></a>
                                 <a href="mypage.do"><img src="img/icon/heart.png" alt="찜목록"></a>
                                 <a href="mypage.do">마이페이지</a>
                                 <a href="logout.do">로그아웃</a>
@@ -70,7 +70,7 @@
                                 <c:otherwise>
                                 <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
                                 <a href="signUp.jsp">회원가입</a>
-                                <a href="cart.do"><img src="img/icon/cart.png" alt="장바구니"></a>
+                                <a href="cart.jsp"><img src="img/icon/cart.png" alt="장바구니"></a>
                                 </c:otherwise>
                             </c:choose>
                             </div>
