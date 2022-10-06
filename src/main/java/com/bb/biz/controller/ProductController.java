@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bb.biz.coupon.CouponService;
 import com.bb.biz.coupon.CouponVO;
-import com.bb.biz.favorite.FavoriteService;
-import com.bb.biz.favorite.FavoriteVO;
 import com.bb.biz.product.ProductService;
 import com.bb.biz.product.ProductVO;
 
@@ -27,32 +25,24 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private CouponService couponService;
-	@Autowired
-	private FavoriteService favoriteService;
 	
 	
 	@RequestMapping(value="/boardP.do")
-	public String selectOneProduct(Model model,FavoriteVO fVO ,ProductVO pVO){
+	public String selectOneProduct(Model model,ProductVO pVO){
 
 		pVO=productService.selectOneProduct(pVO);
 	
 		model.addAttribute("product", pVO);
-		model.addAttribute("fav", favoriteService.selectOneFavorite(fVO));
 		return "productDetail.jsp";
 		
 	}
 	
 	@RequestMapping(value="/main.do")
-	public String main(ProductVO pVO,Model model) {
-		
-		if(pVO.getPdetail()==null) {
-			pVO.setPdetail("");
-		}
+	public String main(ProductVO pVO, Model model) {
 		
 		List<ProductVO> products=productService.selectAllProduct(pVO);
 		
 		model.addAttribute("products", products);
-		
 		return "main.jsp";
 
 	}
@@ -69,7 +59,7 @@ public class ProductController {
 	@ResponseBody
 	@RequestMapping(value="/cart.do") // 장바구니 추가
 	public String cart(ProductVO pVO,HttpSession session,HttpServletRequest request){
-		
+		System.out.println("cart.do 로그: "+pVO);
 	   int cnt= Integer.parseInt(request.getParameter("cnt"));
 	   
 	   List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart"); 
@@ -115,7 +105,7 @@ public class ProductController {
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
 
 		for(int i=0;i<cart.size();i++) {
-			if(cart.get(i).equals(request.getParameter("pid"))){			
+			if(cart.get(i).getPid()==Integer.parseInt(request.getParameter("pid"))){			
 				cart.remove(cart.get(i));			
 			}	
 		}
@@ -123,6 +113,7 @@ public class ProductController {
 		
 		return "success";
 	}
+	
 	@RequestMapping(value="/cartM.do") // 장바구니 비우기 
 	public String cartEmpty(ProductVO pVO,HttpSession session,HttpServletRequest request) {
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
