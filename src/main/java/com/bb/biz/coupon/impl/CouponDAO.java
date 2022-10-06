@@ -61,7 +61,7 @@ class CouponRowMapper implements RowMapper<CouponVO>{
 		CouponVO data = new CouponVO();
 		data.setCid(rs.getInt("CID"));
 		data.setCode(rs.getString("CODE"));
-		data.setDcrate(rs.getString("DCRATE"));
+		data.setDcrate(rs.getDouble("DCRATE"));
 		data.setCstatus(rs.getInt("CSTATUS"));
 		data.setMid(rs.getString("MID"));
 		return data;
