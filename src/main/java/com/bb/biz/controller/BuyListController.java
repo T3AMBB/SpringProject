@@ -34,7 +34,7 @@ public class BuyListController {
 			couponService.updateCoupon(cVO);
 		}
 		if(mVO!=null) {
-//			memberService.updateMileage(mVO);
+			memberService.updateMileage(mVO);
 		}
 		
 		buylistService.insertBuylist(bVO);

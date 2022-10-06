@@ -7,4 +7,5 @@ public interface MemberService {
 	MemberVO selectOneMember_CHECK(MemberVO vo);
 	boolean updateMember(MemberVO vo);
 	boolean deleteMember(MemberVO vo);
+	boolean updateMileage(MemberVO vo);
 }

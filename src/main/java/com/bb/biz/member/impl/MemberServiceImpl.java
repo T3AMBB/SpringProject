@@ -40,4 +40,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.selectOneMember_CHECK(vo);
 	}
 
+	@Override
+	public boolean updateMileage(MemberVO vo) {
+		
+		return memberDAO.updateMileage(vo);
+	}
+
 }
