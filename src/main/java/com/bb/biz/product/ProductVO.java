@@ -9,14 +9,15 @@ public class ProductVO {
 	private String pmade;
 	private String pmat;
 	private String psize;
+	private String pdetail;
+	private int cnt;
+	private String pimg;
 	@Override
 	public String toString() {
 		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", pcnt=" + pcnt + ", pcom=" + pcom
 				+ ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", cnt=" + cnt + ", pimg=" + pimg
 				+ ", pdetail=" + pdetail + "]";
 	}
-	private int cnt;
-	private String pimg;
 	public String getPimg() {
 		return pimg;
 	}
@@ -29,7 +30,6 @@ public class ProductVO {
 	public void setPdetail(String pdetail) {
 		this.pdetail = pdetail;
 	}
-	private String pdetail;
 	public int getPid() {
 		return pid;
 	}
