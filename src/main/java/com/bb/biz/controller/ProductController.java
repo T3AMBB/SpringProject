@@ -13,13 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bb.biz.coupon.CouponService;
+import com.bb.biz.coupon.CouponVO;
 import com.bb.biz.product.ProductService;
 import com.bb.biz.product.ProductVO;
 
 @Controller
 public class ProductController {
+	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private CouponService couponService;
+	
 	
 	@RequestMapping(value="/boardP.do")
 	public String selectOneProduct(Model model,ProductVO pVO){
@@ -52,7 +58,7 @@ public class ProductController {
 	}
 	@ResponseBody
 	@RequestMapping(value="/cart.do") // 장바구니 추가
-	public String cart(ProductVO vo,HttpSession session,HttpServletRequest request){
+	public String cart(ProductVO pVO,HttpSession session,HttpServletRequest request){
 		
 	   int cnt= Integer.parseInt(request.getParameter("cnt"));
 	   
@@ -63,11 +69,11 @@ public class ProductController {
 	    cart= new ArrayList<ProductVO>(); 
 	   session.setAttribute("cart", cart);
 	   }
-	   vo = productService.selectOneProduct(vo);
+	   pVO = productService.selectOneProduct(pVO);
 	   
 	  
-	   vo.setCnt(Integer.parseInt(request.getParameter("cnt")));
-	   cart.add(vo);
+	   pVO.setCnt(Integer.parseInt(request.getParameter("cnt")));
+	   cart.add(pVO);
 	   session.setAttribute("cart", cart);
 	   System.out.println(cart);
 	   return "success";
@@ -76,7 +82,7 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping(value="/cartU.do") // 장바구니 수량수정
-	public String cartUpdate(ProductVO vo,HttpSession session,HttpServletRequest request) {
+	public String cartUpdate(ProductVO pVO,HttpSession session,HttpServletRequest request) {
 		int cnt= Integer.parseInt(request.getParameter("cnt"));
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
 
@@ -95,7 +101,7 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping(value="/cartD.do") // 장바구니 상품 삭제
-	public String cartDelete(ProductVO vo,HttpSession session,HttpServletRequest request) {
+	public String cartDelete(ProductVO pVO,HttpSession session,HttpServletRequest request) {
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
 
 		for(int i=0;i<cart.size();i++) {
@@ -108,7 +114,7 @@ public class ProductController {
 		return "success";
 	}
 	@RequestMapping(value="/cartM.do") // 장바구니 비우기 
-	public String cartEmpty(ProductVO vo,HttpSession session,HttpServletRequest request) {
+	public String cartEmpty(ProductVO pVO,HttpSession session,HttpServletRequest request) {
 		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
 		session.setAttribute("cart", cart);
 		session.removeAttribute("cart");
@@ -116,11 +122,14 @@ public class ProductController {
 		return "cart.jsp";
 	}
 	@RequestMapping(value="/pay.do" ,method=RequestMethod.POST)
-	public String pay(ProductVO vo,Model model,HttpServletRequest request) {
+	public String pay(CouponVO cVO,ProductVO pVO,Model model,HttpServletRequest request) {
 		
-		vo=productService.selectOneProduct(vo);
-		vo.setCnt(Integer.parseInt(request.getParameter("cnt")));
-		model.addAttribute("pay", vo);
+		List<CouponVO> coupon = couponService.selectAllCoupon(cVO);
+		
+		pVO=productService.selectOneProduct(pVO);
+		pVO.setCnt(Integer.parseInt(request.getParameter("cnt")));
+		model.addAttribute("pay", pVO);
+		model.addAttribute("coupon", coupon);
 		
 		return "payment.jsp";
 	}
