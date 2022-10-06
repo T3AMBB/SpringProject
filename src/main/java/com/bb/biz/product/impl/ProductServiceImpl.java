@@ -28,19 +28,4 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.insertProduct(vo);
 	}
 
-	@Override
-	public List<ProductVO> selectAllProductPriceASC(ProductVO vo) {
-		return productdao.selectAllProductPriceASC(vo);
-	}
-
-	@Override
-	public List<ProductVO> selectAllProductPriceDESC(ProductVO vo) {
-		return productdao.selectAllProductPriceDESC(vo);
-	}
-
-	@Override
-	public List<ProductVO> selectAllProductCnt(ProductVO vo) {
-		return productdao.selectAllProductCnt(vo);
-	}
-
 }
