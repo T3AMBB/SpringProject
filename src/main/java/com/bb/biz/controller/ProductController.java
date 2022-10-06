@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bb.biz.coupon.CouponService;
 import com.bb.biz.coupon.CouponVO;
+import com.bb.biz.favorite.FavoriteService;
+import com.bb.biz.favorite.FavoriteVO;
 import com.bb.biz.product.ProductService;
 import com.bb.biz.product.ProductVO;
 
@@ -25,24 +27,32 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private CouponService couponService;
+	@Autowired
+	private FavoriteService favoriteService;
 	
 	
 	@RequestMapping(value="/boardP.do")
-	public String selectOneProduct(Model model,ProductVO pVO){
+	public String selectOneProduct(Model model,FavoriteVO fVO ,ProductVO pVO){
 
 		pVO=productService.selectOneProduct(pVO);
 	
 		model.addAttribute("product", pVO);
+		model.addAttribute("fav", favoriteService.selectOneFavorite(fVO));
 		return "productDetail.jsp";
 		
 	}
 	
 	@RequestMapping(value="/main.do")
-	public String main(ProductVO pVO, Model model) {
+	public String main(ProductVO pVO,Model model) {
+		
+		if(pVO.getPdetail()==null) {
+			pVO.setPdetail("");
+		}
 		
 		List<ProductVO> products=productService.selectAllProduct(pVO);
 		
 		model.addAttribute("products", products);
+		
 		return "main.jsp";
 
 	}
