@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Male-Fashion | Template</title>
-
+ 
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -98,7 +98,7 @@
 								<i class="fas fa-shopping-basket"></i><br />
 							</div>
 							<div class="col-md-4 col-lg-9">
-								<a href="myBuylist.jsp"> <span>구매내역</span><br> <span
+								<a href="selectAllB.do"> <span>구매내역</span><br> <span
 									class="emphasis">구매건수</span>
 								</a>
 							</div>
@@ -110,7 +110,7 @@
 								<i class="far fa-edit"></i><br />
 							</div>
 							<div class="col-md-4 col-lg-9">
-								<a href="myCoupon.jsp"><span>내 쿠폰함</span><br> <span class="emphasis">확인▶</span></a>
+								<a href="selectAllC.do"><span>내 쿠폰함</span><br> <span class="emphasis">확인▶</span></a>
 							</div>
 						</div>
 					</td>
@@ -126,10 +126,10 @@
 						        <a class="nav-link" href="myPage.jsp"><span>내 정보 보기</span></a>
 						    </li>
 						    <li class="nav-item">
-						        <a class="nav-link" href="myBuylist.jsp"><span>내 구매 내역</span></a>
+						        <a class="nav-link" href="selectAllB.do"><span>내 구매 내역</span></a>
 						    </li>
 						    <li class="nav-item">
-						        <a class="nav-link" href="myCoupon.jsp"><span>내 쿠폰함</span></a>
+						        <a class="nav-link" href="selectAllC.do"><span>내 쿠폰함</span></a>
 						    </li>
 						    <li class="nav-item">
 						        <a class="nav-link" data-toggle="modal" data-target="#delete" href="#"><span>회원 탈퇴</span></a>

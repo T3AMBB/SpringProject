@@ -34,7 +34,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/datepicker.css">
 
-    
     <!-- 폰트 어썸 -->
 <script src="https://kit.fontawesome.com/9bd2faeab5.js"
 	crossorigin="anonymous"></script>
@@ -42,6 +41,12 @@
 	integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 	crossorigin="anonymous"></script>
 	
+	<style>
+    .total_info_div {
+        position: sticky;
+        top: 400px;
+    }
+	</style>
 </head>
 
 <body>
@@ -87,26 +92,13 @@
 								<th>구매수량</th>
 								<th>가격</th>
 							</tr>
-						</tbody>
-					</table>
-					<table class="table table-borderless">
-						<tbody>
-								<tr>
-									<td>
-										<div class="image_wrap" data-bookid="" data-path="" data-uuid="" data-filename="">
-											<img>
-										</div>
-									</td>
-									<td class="goods_table_price_td">
-										<input type="hidden" class="individual_bookPrice_input" value="${ol.bookPrice}">
-										<input type="hidden" class="individual_salePrice_input" value="${ol.salePrice}">
-										<input type="hidden" class="individual_bookCount_input" value="${ol.bookCount}">
-										<input type="hidden" class="individual_totalPrice_input" value="${ol.salePrice * ol.bookCount}">
-										<input type="hidden" class="individual_point_input" value="${ol.point}">
-										<input type="hidden" class="individual_totalPoint_input" value="${ol.totalPoint}">
-										<input type="hidden" class="individual_bookId_input" value="${ol.bookId}">
-									</td>
-								</tr>							
+							<tr>
+								<td><img src="${pay.pimg}"
+								alt="" width="100" height="100"></td>
+								<td>${pay.pname}</td>
+								<td>${pay.cnt}</td>
+								<td>${pay.price}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>		
@@ -123,11 +115,11 @@
 							<table style="border-collapse: separate; border-spacing: 0 10px;">
 								<tr>
 									<th style="width:13%">주문자</th>
-									<td>주문자</td>
+									<td>${data.mname}</td>
 								</tr>
 								<tr>
 									<th><span>주소</span></th>
-									<td><input style="width:70% "type="text" id="" value="주소 넣을 공간"
+									<td><input style="width:70% "type="text" id="" value="${data.streetaddress} ${data.address}"
 											readonly="readonly"></td>
 								</tr>
 								</tbody>
@@ -139,22 +131,22 @@
 								<tbody>
 									<tr>
 										<th>주문자</th>
-										<td>주문자</td>
+										<td>${data.mname}</td>
 									</tr>
 									<tr>
 										<th><span>주소</span></th>
-										<td><input style="width:70% "type="text" id="add_zone"
+										<td><input style="width:70% "type="text" value="${data.zipcode}" id="add_zone"
 											placeholder="우편번호" readonly="readonly"><button style="width:30%; height:37px" type="button" id="searchAdd"
 												class="btn btn-dark">우편번호 검색</button></td>
 									</tr>
 									<tr>
 										<th></th>
 										<td colspan="2"><input type="text"
-											id="add_load" placeholder="도로명 주소" readonly="readonly"></td>
+											id="add_load" value="${data.streetaddress}" placeholder="도로명 주소" readonly="readonly"></td>
 									</tr>
 									<tr>
 										<th></th>
-										<td colspan="2"><input type="text"
+										<td colspan="2"><input type="text" value="${data.address}"
 											name="address" placeholder="상세 주소"></td>
 									</tr>
 									</tbody>
@@ -246,7 +238,7 @@
 							<tr>
 								<th>포인트 사용</th>
 								<td>
-									${memberInfo.point} <input style="width:70%" class="order_point_input" disabled value="0">원&nbsp;&nbsp;&nbsp;
+									${data.mileage} <input style="width:70%" class="order_point_input" disabled value="0">원&nbsp;&nbsp;&nbsp;
 									<a style="color:#fff" class="order_point_input_btn order_point_input_btn_N" data-state="N">모두사용</a>
 									<a class="order_point_input_btn order_point_input_btn_Y" data-state="Y" style="display: none; color:#fff;">사용취소</a>
 								</td>
@@ -258,7 +250,30 @@
 			
 				
 				</div>
-				<div class="col-lg-4">
+				<div  style="height:800px" class="col-lg-4">
+				<div class="user_info_div">
+					<!-- 가격 종합 정보 -->
+					<br><br><br><br>
+					<div class="user_info_price_div">
+						<table>
+						<colgroup>
+							<col width="30%">
+							<col width="*">
+						</colgroup>
+							<tr>
+								<th>주문자</th>
+								<td>${data.mname}</td>
+							</tr>
+							<tr>
+								<th>휴대폰번호</th>
+								<td>${data.mphone}</td>
+							</tr>
+						</table>
+					</div>
+					<hr>
+					<!-- 버튼 영역 -->
+				</div>	
+				
 				<!-- 주문 종합 정보 -->
 				&nbsp;&nbsp;&nbsp;
 				<div class="total_info_div">
@@ -295,33 +310,12 @@
 					<div class="total_info_btn_div">
 						<a style="color:#fff"class="order_btn" id="check_module">결제하기</a>
 					</div>
-				</div>		
-				<br><br>
-				<hr>
-				<div class="user_info_div">
-					<!-- 가격 종합 정보 -->
-					<br><br>
-					<div class="user_info_price_div">
-						<table>
-						<colgroup>
-							<col width="30%">
-							<col width="*">
-						</colgroup>
-							<tr>
-								<th>주문자</th>
-								<td>허허허</td>
-							</tr>
-							<tr><td></td></tr><tr><td></td></tr>
-							<tr>
-								<th>휴대폰번호</th>
-								<td>000</td>
-							</tr>
-						</table>
-					</div>
-					<!-- 버튼 영역 -->
-				</div>				
 				</div>
+				
+				</div>
+				<br><br><br><br><br><br><br><br>
 			</div>
+
 				<!-- 주문 요청 form -->
 			<form class="order_form" action="/order" method="post">
 				<!-- 주문자 회원번호 -->
@@ -345,11 +339,11 @@
 	    var valueCheck = $('.ds:checked').val(); // 체크된 Radio 버튼의 값을 가져온다.
 	    
 	    if ( valueCheck == '적립금' ) {
-
 	        $('.order_point_input').attr('disabled', false); 
 	        $('.order_point_input').focus(); 
 	    } 
 	    else {
+	    	$('.order_point_input').text('쿠폰 사용시 적립금 사용은 불가능합니다.');
 	        $('.order_point_input').attr('disabled', true); 
 	        $('.coupon_select').attr('disabled', false);
 	        $('.coupon_select').focus();
@@ -576,6 +570,19 @@ $(".order_btn").on("click", function(){
 });	
 
 
+$(document).ready(function () {
+    var tmp = parseInt($(".total_info_div").css('top'));
+
+    $(window).scroll(function () {
+        var scrollTop = $(window).scrollTop();
+        var obj_position = scrollTop + tmp + "px";
+		
+        $(".total_info_div").stop().animate({
+            "top": obj_position
+        }, 500);
+
+    }).scroll();
+});
 </script>
 
     <!-- Js Plugins -->
@@ -634,7 +641,7 @@ $(".order_btn").on("click", function(){
          alert(msg);
          location.href='payment.jsp';
       });
-   });
+   }); 
 	</script>
     <!-- 데이트피커 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
