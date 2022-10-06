@@ -12,16 +12,16 @@
         <div class="offcanvas__option">
             <div class="offcanvas__links">
               <c:choose>
-              	<c:when test="${member!=null }">
-                  <a href="cart.jsp"><img src="img/icon/cart.png" alt="장바구니"></a>
-                  <a href="mypage.do"><img src="img/icon/heart.png" alt="찜목록"></a>
+              	<c:when test="${member!=null }">                  
+              	  <a href="favorite.jsp"><i class="fa fa-heart" style="color:white;">찜목록</i></a>
+                  <a href="cart.jsp"><i class="fa fa-shopping-cart" style="color:white;">장바구니</i></a>
                   <a href="mypage.do">마이페이지</a>
                   <a href="logout.do">로그아웃</a>
                   </c:when>
                   <c:otherwise>
                   <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
                   <a href="signUp.jsp">회원가입</a>
-                  <a href="cart.jsp"><img src="img/icon/cart.png" alt="장바구니"></a>
+                  <a href="cart.jsp"><i class="fa fa-shopping-cart" style="color:white;">장바구니</i></a>
                   </c:otherwise>
               </c:choose>
             </div>
@@ -36,8 +36,8 @@
         </div>
         <div class="offcanvas__nav__option">
             <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-            <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
+                  <a href="favorite.jsp"><i class="fa fa-heart" style="color:white;">찜목록</i></a>
+                  <a href="cart.jsp"><i class="fa-shopping-cart" style="color:white;">장바구니</i></a>
             <div class="price">$0.00</div>
         </div>
         <div id="mobile-menu-wrap"></div>
@@ -62,15 +62,15 @@
                             <div class="header__top__links">
                             <c:choose>
                             	<c:when test="${member!=null }">
-                                <a href="cart.jsp"><img src="img/icon/cart.png" alt="장바구니"></a>
-                                <a href="mypage.do"><img src="img/icon/heart.png" alt="찜목록"></a>
+                			    <a href="cart.jsp"><i class="fa fa-shopping-cart" style="color:white;">장바구니</i></a>
+                                <a href="favorite.jsp"><i class="fa fa-heart" style="color:white;">찜목록</i></a>
                                 <a href="mypage.do">마이페이지</a>
                                 <a href="logout.do">로그아웃</a>
                                 </c:when>
                                 <c:otherwise>
                                 <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
                                 <a href="signUp.jsp">회원가입</a>
-                                <a href="cart.jsp"><img src="img/icon/cart.png" alt="장바구니"></a>
+                                <a href="cart.jsp"><i class="fa fa-shopping-cart" style="color:white;">장바구니</i></a>
                                 </c:otherwise>
                             </c:choose>
                             </div>
