@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 
 <html lang="zxx">
@@ -37,9 +38,7 @@
     <!-- 폰트 어썸 -->
 <script src="https://kit.fontawesome.com/9bd2faeab5.js"
 	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
-	integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-	crossorigin="anonymous"></script>
+
 	
 	<style>
     .total_info_div {
@@ -47,10 +46,11 @@
         top: 400px;
     }
 	</style>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-   
+
     <hearder:header/>
     			<!-- Breadcrumb Section Begin -->
 			   <section class="breadcrumb-option">
@@ -75,14 +75,13 @@
 			<div class="content_main">
 			<div class="row">
 			<div class="col-lg-8">
-
-
 				<!-- 상품 정보 -->
 				<div class="orderGoods_div">
 					<!-- 상품 종류 -->
 					<div class="goods_kind_div">
 						주문상품 <span style="color:red" class="goods_kind_div_count">3</span>개
 					</div>
+					<c:if test="${pay!=null}">
 					<!-- 상품 테이블 -->
 					<table class="table table-borderless">
 						<tbody>
@@ -94,13 +93,43 @@
 							</tr>
 							<tr>
 								<td><img src="${pay.pimg}"
-								alt="" width="100" height="100"></td>
+								alt="상품 사진" width="100" height="100"></td>
 								<td>${pay.pname}</td>
 								<td>${pay.cnt}</td>
 								<td>${pay.price}</td>
 							</tr>
 						</tbody>
 					</table>
+					</c:if>
+					<c:if test="${pay==null }">
+					<!-- 상품 테이블 -->
+					<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<th>상품사진</th>
+								<th>상품명</th>
+								<th>가격</th>
+								<th>구매수량</th>
+								<th>합계</th>
+							</tr>
+							<c:forEach var="cart" items="${cart}">
+								<tr class="cart_price">
+								<td><img src="${cart.pimg }" 
+								alt="상품 사진" width="100" height="100"></td>
+								<td>${cart.pname}</td>
+								<td>${cart.price}</td>
+								<td>${cart.cnt}</td>
+								<td>${cart.price*cart.cnt}</td>
+								</tr>
+								<tr>
+								<td class="goods_table_price_td">
+									<input type="hidden" class="cart_price" value="${cart.price}">
+									<input type="hidden" class="cart_cnt" value="${cart.cnt}">
+								</td></tr>
+								</c:forEach>
+						</tbody>
+					</table>
+					</c:if>
 				</div>		
 				<hr>
 					<!-- 배송지 정보 -->
@@ -186,23 +215,7 @@
 					</div>
 					<p>쿠폰과 적립금 중 하나의 할인 방식을 선택해주세요.</p>
 				</div>		
-				<script>
-					$('.ds').on('click', function() {
-					    var valueCheck = $('.ds:checked').val(); // 체크된 Radio 버튼의 값을 가져온다.
-					    
-					    if ( valueCheck == '적립금' ) {
-					        $('.order_point_input').attr('disabled', false); 
-					        $('.coupon_select').prop("disabled", true);
-					        $('.order_point_input').focus();
-					    } 
-					    else {
-					        $('.order_point_input').attr('disabled', true); 
-					        $('.coupon_select').prop("disabled", false);
-					        $('.coupon_select').focus();
-					        console.log($('.coupon_select_h').attr('disabled', false));
-					    }
-					});
-				</script>
+
 				<!-- 쿠폰 정보 -->
 				<div class="coupon_div" >
 					<div class="coupon_div_subject">쿠폰</div>
@@ -215,10 +228,11 @@
 							<tr>
 								<th>쿠폰 사용</th>
 								<td>
-									<select style="width:70%" class="coupon_select" name="select_name">
-										<option>쿠폰 목록1</option>
-										<option>쿠폰 목록2</option>
-										<option>쿠폰 목록3</option>
+									<select style="width:70%" class="coupon_select" id="select_coupon" onchange='coupon()' name="select_name">
+										<option>쿠폰 선택</option>
+										<c:forEach var="c" items="${coupon}">
+										<option>${c}</option>
+										</c:forEach>
 									</select>
 								</td>
 							</tr>
@@ -238,7 +252,7 @@
 							<tr>
 								<th>포인트 사용</th>
 								<td>
-									<input style="width:70%" class="order_point_input" value="${user.mileage }" disabled value="0">&nbsp;&nbsp;&nbsp;
+									<input style="width:70%" class="order_point_input" onkeyup='point()' disabled value="0">&nbsp;&nbsp;&nbsp;
 									<a style="color:#fff" class="order_point_input_btn order_point_input_btn_N" data-state="N">모두사용</a>
 									<a class="order_point_input_btn order_point_input_btn_Y" data-state="Y" style="display: none; color:#fff;">사용취소</a>
 								</td>
@@ -288,9 +302,9 @@
 								<span class="price_span_label">배송비</span>
 								<span class="delivery_price_span">100000</span>원
 							</li>
-																					<li>
+							<li>
 								<span class="price_span_label">할인금액</span>
-								<span class="usePoint_span">100000</span>원
+								<span class="usePoint_span"></span>원
 							</li>
 							<li class="price_total_li">
 								<strong class="price_span_label total_price_label">최종 결제 금액</strong>
@@ -316,106 +330,135 @@
 				<br><br><br><br><br><br><br><br>
 			</div>
 
-				<!-- 주문 요청 form
-			<form class="order_form" action="insertB.do" method="post">
-				<input name="mid" value="${data.mid}" type="hidden">
-				<input name="pid" value="${pay.pid }" type="hidden">
-				<input name="buycnt" value="${pay.cnt }" type="hidden">
-				<input name="shipping" type="hidden">
-			</form>
-			 -->
 		</div>
 		</div>
 	</div>
 	<hearder:footer/>
-	<script>
-var total_price=0;
-var delivery_price=0;
-var usePoint=0;
-var finalTotalPrice=0; // 최종 가격(총 가격 + 배송비)	
-
-total_price= ${pay.cnt } * ${pay.price};
-
-/* 배송비 결정 */
-if(total_price >= 30000){
-	delivery_price = 0;
-} else if(total_price == 0){
-	delivery_price = 0;
-} else {
-	delivery_price = 3000;	
-}
-// 배송비
-$(".delivery_price_span").text(delivery_price.toLocaleString());	
-
-// 물건 가격
-$(".totalPrice_span").text(total_price.toLocaleString());
-
-finalTotalPrice = total_price + delivery_price - usePoint;	
-
-usePoint = $(".order_point_input").val();
-
-totalPoint = total_price*0.01;
-
-
-// 최종 가격(총 가격 + 배송비)
-$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
-// 총 마일리지
-$(".totalPoint_span").text(totalPoint.toLocaleString());
-
-function setInfo(){
-	var total_price=0;
-	var delivery_price=0;
-	var usePoint=0;
-	var finalTotalPrice=0; // 최종 가격(총 가격 + 배송비)	
-	total_price= ${pay.cnt } * ${pay.price};
-
-	
-	/* 배송비 결정 */
-	if(total_price >= 30000){
-		delivery_price = 0;
-	} else if(total_price == 0){
-		delivery_price = 0;
-	} else {
-		delivery_price = 3000;	
+		
+	<script type="text/javascript">
+		var finalTotalPrice=0;
+	function setInfo(){
+		var totalPrice=0;
+		var totalCount=0;
+		var delivery_price=0;
+		var totalPoint=0;
+		$(".goods_table_price_td").each(function(index, element){
+			// 총 가격
+			totalPrice += $(element).find(".cart_price").val()*$(element).find(".cart_cnt").val();
+			// 총 갯수
+			console.log(totalPrice);
+		});	
+			/* 배송비 결정 */
+			if(totalPrice >= 30000){
+				delivery_price = 0;
+			} else if(totalPrice == 0){
+				delivery_price = 0;
+			} else {
+				delivery_price = 3000;	
+			}
+			// 배송비
+			$(".delivery_price_span").text(delivery_price.toLocaleString());	
+			
+			usePoint = $(".order_point_input").val();
+			$(".usePoint_span").text(usePoint.toLocaleString());
+			console.log(usePoint.toLocaleString());
+			// 물건 가격
+			$(".totalPrice_span").text(totalPrice.toLocaleString());
+			finalTotalPrice = totalPrice + delivery_price - usePoint;
+			console.log(finalTotalPrice);
+			totalPoint = totalPrice*0.01;
+			
+			// 최종 가격(총 가격 + 배송비)
+			$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
+			// 총 마일리지
+			$(".totalPoint_span").text(totalPoint.toLocaleString());
 	}
-	// 배송비
-	$(".delivery_price_span").text(delivery_price.toLocaleString());	
-	
-	// 물건 가격
-	$(".totalPrice_span").text(total_price.toLocaleString());
-	
-	finalTotalPrice = total_price + delivery_price - usePoint;	
-	
-	usePoint = $(".order_point_input").val();
-	
-	totalPoint = total_price*0.01;
-	
-
-	// 최종 가격(총 가격 + 배송비)
-	$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
-	// 총 마일리지
-	$(".totalPoint_span").text(totalPoint.toLocaleString());
-}
-
 </script>
-	<script>
-	$('.ds').on('click', function() {
-	    var valueCheck = $('.ds:checked').val(); // 체크된 Radio 버튼의 값을 가져온다.
-	    
-	    if ( valueCheck == '적립금' ) {
-	        $('.order_point_input').attr('disabled', false); 
-	        $('.order_point_input').focus(); 
-	    } 
-	    else {
-	    	$('.order_point_input').text('쿠폰 사용시 적립금 사용은 불가능합니다.');
-	        $('.order_point_input').attr('disabled', true); 
-	        $('.coupon_select').attr('disabled', false);
-	        $('.coupon_select').focus();
-	        console.log($('.coupon_select').attr('disabled', false));
-	    }
+<script>
+$(function(){
+	setInfo();
 	});
 </script>
+<script>
+var usePoint=0;
+var finalTotalPrice=0;
+	function coupon() {
+		var totalPrice = 0;
+		var totalCount = 0;
+		var delivery_price = 0;
+		var totalPoint = 0;
+
+		$(".goods_table_price_td").each(
+				function(index, element) {
+					// 총 가격
+					totalPrice += $(element).find(".cart_price").val()
+							* $(element).find(".cart_cnt").val();
+					// 총 갯수
+					console.log(totalPrice);
+				});
+		/* 배송비 결정 */
+		if (totalPrice >= 30000) {
+			delivery_price = 0;
+		} else if (totalPrice == 0) {
+			delivery_price = 0;
+		} else {
+			delivery_price = 3000;
+		}
+		// 배송비
+		$(".delivery_price_span").text(delivery_price.toLocaleString());
+
+		var coupon = $("#select_coupon option:selected").val();
+		if (coupon == '고객감사쿠폰20%') {
+			usePoint = totalPrice * 0.2;
+		} else {
+			usePoint = totalPrice * 0.1;
+		}
+		alert(usePoint);
+		$(".usePoint_span").text(usePoint.toLocaleString());
+		console.log(usePoint.toLocaleString());
+		// 물건 가격
+		$(".totalPrice_span").text(totalPrice.toLocaleString());
+		finalTotalPrice = totalPrice + delivery_price - usePoint;
+		console.log(finalTotalPrice);
+		totalPoint = totalPrice * 0.01;
+
+		// 최종 가격(총 가격 + 배송비)
+		$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
+		// 총 마일리지
+		$(".totalPoint_span").text(totalPoint.toLocaleString());
+	}
+</script>
 	<script>
+	var usePoint =0;
+	function point(){
+		if (window.event.keyCode == 13) {
+			usePoint = $(".order_point_input").val();
+			console.log(usePoint);
+	    	// 할인 금액
+	    	$(".usePoint_span").text(usePoint.toLocaleString());
+	    	console.log(typeof(usePoint));
+		}
+	}
+	</script>
+	<script>
+	$('.ds').on('click', function() {
+
+	    var valueCheck = $('.ds:checked').val(); // 체크된 Radio 버튼의 값을 가져온다.
+	    if ( valueCheck == '적립금' ) {
+	        $('.order_point_input').attr('disabled', false); 
+	        $('.coupon_select').prop("disabled", true);
+	        $('.order_point_input').focus();
+	    }
+	    else {
+	        $('.order_point_input').attr('disabled', true); 
+	        $('.coupon_select').prop("disabled", false);
+	        $('.order_point_input').val(0);
+	        $('.coupon_select').focus();
+	    }
+		setInfo();
+	});
+	</script>
+<script>
 
 /* 주소입력란 버튼 동작(숨김, 등장) */
 function showAdress(className){
@@ -483,14 +526,9 @@ function execution_daum_address(){
                 // 커서를 상세주소 필드로 이동한다.
                 $(".address3_input").attr("readonly", false);
                 $(".address3_input").focus();	 
-	            
-	            
 	        }
 	    }).open();  	
-	
 }
-
-
 /* 포인트 입력 */
 //0 이상 & 최대 포인트 수 이하
 $(".order_point_input").on("propertychange change keyup paste input", function(){
@@ -509,8 +547,6 @@ $(".order_point_input").on("propertychange change keyup paste input", function()
 	setInfo();	
 	
 });
-
-
 /* 포인트 모두사용 취소 버튼 
  * Y: 모두사용 상태 / N : 모두 취소 상태
  */
@@ -540,7 +576,6 @@ $(".order_point_input_btn").on("click", function(){
 	
 	/* 주문 조합정보란 최신화 */
 	setInfo();	
-	
 });
 
 /* 주문 요청 */
@@ -569,6 +604,7 @@ $(document).ready(function () {
     }).scroll();
 });
 </script>
+
 	<!-- Js Plugins -->
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -585,49 +621,50 @@ $(document).ready(function () {
 		src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		
 	<script>
    $("#check_module").click(function () {
-      var IMP = window.IMP; // 생략가능
-      IMP.init('imp17445447'); 
-      // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
-      // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
-      IMP.request_pay({
-         pg: 'html5_inicis',
-         pay_method: 'card',
-         merchant_uid: 'merchant_' + new Date().getTime(),
-         /* `
-          *  merchant_uid에 경우 
-          *  https://docs.iamport.kr/implementation/payment
-          *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
-          */
-         name: '${pay.pname}',
-         // 결제창에서 보여질 이름
-         // name: '주문명 : ${auction.a_title}',
-         // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-         amount: finalTotalPrice,
-         // amount: ${bid.b_bid},
-         // 가격 
-         buyer_name: '이름',
-         // 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
-         // 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
-         buyer_postcode: '123-456',
-         
-         }, function (rsp) {
-            console.log(rsp);
-         if (rsp.success) {
-            var msg = '결제가 완료되었습니다.';
-            msg += '결제 금액 : ' + rsp.paid_amount;
-            // success.submit();
-            // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
-            // 자세한 설명은 구글링으로 보시는게 좋습니다.
-         } else {
-            var msg = '결제에 실패하였습니다.';
-            msg += '에러내용 : ' + rsp.error_msg;
-         }
-         alert(msg);
-         location.href='insertB.do?mid='+${user.mid}+'&pid='+${pay.pid}+'&buycnt='+${pay.cnt}+'&shipping'+shipping;
-      });
-   }); 
+	      var IMP = window.IMP; // 생략가능
+	      IMP.init('imp17445447'); 
+	      // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+	      // ''안에 띄어쓰기 없이 가맹점 식별코드를 붙여넣어주세요. 안그러면 결제창이 안뜹니다.
+	      IMP.request_pay({
+	         pg: 'html5_inicis',
+	         pay_method: 'card',
+	         merchant_uid: 'merchant_' + new Date().getTime(),
+	         /* `
+	          *  merchant_uid에 경우 
+	          *  https://docs.iamport.kr/implementation/payment
+	          *  위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+	          */
+	         name: '${cart[0].pname}',
+	         // 결제창에서 보여질 이름
+	         // name: '주문명 : ${auction.a_title}',
+	         // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
+	         amount: finalTotalPrice,
+	         // amount: ${bid.b_bid},
+	         // 가격 
+	         buyer_name: '${user.mname}',
+	         // 구매자 이름, 구매자 정보도 model값으로 바꿀 수 있습니다.
+	         // 구매자 정보에 여러가지도 있으므로, 자세한 내용은 맨 위 링크를 참고해주세요.
+	         buyer_postcode: '123-456',
+	         
+	         }, function (rsp) {
+	            console.log(rsp);
+	         if (rsp.success) {
+	            var msg = '결제가 완료되었습니다.';
+	            msg += '결제 금액 : ' + rsp.paid_amount;
+	            // success.submit();
+	            // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
+	            // 자세한 설명은 구글링으로 보시는게 좋습니다.
+	         } else {
+	            var msg = '결제에 실패하였습니다.';
+	            msg += '에러내용 : ' + rsp.error_msg;
+	         }
+	         alert(msg);
+	         location.href='insertB.do?mid='+${user.mid}+'&pid='+${cart[0].pid}+'&buycnt='+${cart[0].cnt}+'&shipping'+shipping;
+	      });
+	   }); 
 	</script>
 	<!-- 데이트피커 -->
 	<script
