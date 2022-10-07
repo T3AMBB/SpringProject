@@ -4,6 +4,8 @@ public class MemberVO {
 	private String mid;
 	private String mpw;
 	private String mname;
+	private String streetaddress;
+	private String zipcode;
 	private String address;
 	private String mphone;
 	private int mileage;
@@ -42,6 +44,18 @@ public class MemberVO {
 	}
 	public void setMileage(int mileage) {
 		this.mileage = mileage;
+	}
+	public String getStreetaddress() {
+		return streetaddress;
+	}
+	public void setStreetaddress(String streetadress) {
+		this.streetaddress = streetadress;
+	}
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 	@Override
 	public String toString() {

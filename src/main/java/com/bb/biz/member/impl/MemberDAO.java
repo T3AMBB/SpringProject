@@ -21,7 +21,7 @@ public class MemberDAO {
 	
 	final String sql_selectOne="SELECT * FROM MEMBER WHERE MID=? AND MPW=?";
 	final String sql_selectOne_CHECK="SELECT * FROM MEMBER WHERE MID=?";
-	final String sql_insert="INSERT INTO MEMBER VALUES(?,?,?,?,?)";
+	final String sql_insert="INSERT INTO MEMBER (MID,MPW,MNAME,STREETADDRESS,ZIPCODE,ADDRESS,MPHONE) VALUES(?,?,?,?,?,?,?)";
 	final String sql_update="UPDATE MEMBER SET MPW=? WHERE MID=?";
 	final String sql_delete="DELETE MEMBER WHERE MID=? AND MPW=?";
 	final String sql_updateMileage="UPDATE MEMBER SET MILEAGE=MILEAGE+? WHERE MID=?";
@@ -39,7 +39,7 @@ public class MemberDAO {
 	
 	boolean insertMember(MemberVO vo) {
 		if(vo.getMid()!=null) {
-		jdbcTemplate.update(sql_insert,vo.getMid(),vo.getMpw(),vo.getMname(),vo.getAddress(),vo.getMphone());
+		jdbcTemplate.update(sql_insert,vo.getMid(),vo.getMpw(),vo.getMname(),vo.getStreetaddress(),vo.getZipcode(),vo.getAddress(),vo.getMphone());
 		return true;
 		}
 		else {
