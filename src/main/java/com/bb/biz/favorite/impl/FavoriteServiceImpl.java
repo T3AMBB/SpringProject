@@ -28,7 +28,7 @@ public class FavoriteServiceImpl implements FavoriteService{
 	}
 	@Override
 	public List<FavoriteVO> selectAllFavorite(FavoriteVO vo) {
-		return favoriteDAO.selectAllFavorite(FavoriteVO vo);
+		return favoriteDAO.selectAllFavorite(vo);
 	}
 
 }
