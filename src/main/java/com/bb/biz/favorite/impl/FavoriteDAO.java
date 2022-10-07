@@ -46,7 +46,7 @@ public class FavoriteDAO {
 			return null;
 		}
 	}
-	public List<FavoriteVO> selectAllFavorite(favoriteVO vo) {
+	public List<FavoriteVO> selectAllFavorite(FavoriteVO vo) {
 		Object[] args= {vo.getMid()};
 		return jdbcTemplate.query(sql_selectAllFavorite,args,new FavoriteRowMapper());
 		}
