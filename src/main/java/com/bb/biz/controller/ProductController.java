@@ -68,6 +68,36 @@ public class ProductController {
 		
 	}
 	@ResponseBody
+	@RequestMapping(value="/selectAllPajax.do")
+	public HashMap<String,Object> selectAllProductajax(ProductVO pVO,HttpServletRequest request) {
+		request.getParameter("cnt");
+		int cnt = pVO.getCnt();
+		List<ProductVO> products=productService.selectAllProduct(pVO);
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		List<ProductVO> pro = new ArrayList<ProductVO>();
+		
+		pVO.setCnt(cnt+24);
+		if(cnt+24 < products.size()) {
+			for(int i=cnt; i<cnt+24;i++ ) {
+				pro.add(products.get(i));
+				hm.put("more",1);
+			}
+		}
+			else {	
+			for(int i=cnt; i < products.size();i++) {
+				pro.add(products.get(i));
+				hm.put("more",0);
+			}		
+		}
+		hm.put("pro", pro);
+		
+		System.out.println("로그: "+products);
+		return hm;
+		
+	}
+	
+	
+	@ResponseBody
 	@RequestMapping(value="/cart.do") // 장바구니 추가
 	public String cart(ProductVO pVO,HttpSession session,HttpServletRequest request){
 		System.out.println("cart.do 로그: "+pVO);
