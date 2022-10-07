@@ -24,10 +24,14 @@ public class FavoriteDAO {
 	
 	final String sql_delete="DELETE FROM FAVORITE WHERE MID=? AND PID=?";
 	final String sql_selectOne="SELECT * FROM FAVORITE WHERE MID=? AND PID=?";
+
+	final String sql_selectAllFavorite="SELECT * FROM FAVORITE LEFT OUTER JOIN PRODUCT ON FAVORITE.PID=PRODUCT.PID ORDER BY FID ASC;";
 	
+	
+
 	public boolean insertFavorite(FavoriteVO vo) {
-			jdbcTemplate.update(sql_insert,vo.getMid(),vo.getPid());
-			return true;
+		jdbcTemplate.update(sql_insert,vo.getMid(),vo.getPid());
+		return true;
 	}
 	public boolean deleteFavorite(FavoriteVO vo) {
 		jdbcTemplate.update(sql_delete,vo.getMid(),vo.getPid());
@@ -42,6 +46,9 @@ public class FavoriteDAO {
 			return null;
 		}
 	}
+	public List<FavoriteVO> selectAllFavorite(favoriteVO vo) {
+		return jdbcTemplate.query(sql_selectAllFavorite,new FavoriteRowMapper());
+		}
 	
 	
 }
