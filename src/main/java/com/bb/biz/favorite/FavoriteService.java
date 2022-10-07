@@ -4,5 +4,5 @@ public interface FavoriteService {
 	boolean insertFavorite(FavoriteVO vo);
 	boolean deleteFavorite(FavoriteVO vo);
 	FavoriteVO selectOneFavorite(FavoriteVO vo);
-	List<FavoriteVO> selectAllFavorite(favoriteVO vo);
+	List<FavoriteVO> selectAllFavorite(FavoriteVO vo);
 }
