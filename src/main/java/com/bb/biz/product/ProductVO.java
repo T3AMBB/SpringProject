@@ -12,11 +12,19 @@ public class ProductVO {
 	private String pdetail;
 	private int cnt;
 	private String pimg;
+	private int fav;
+	public int getFav() {
+		return fav;
+	}
+	public void setFav(int fav) {
+		this.fav = fav;
+	}
+	
 	@Override
 	public String toString() {
 		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", pcnt=" + pcnt + ", pcom=" + pcom
-				+ ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", cnt=" + cnt + ", pimg=" + pimg
-				+ ", pdetail=" + pdetail + "]";
+				+ ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", pdetail=" + pdetail + ", cnt=" + cnt
+				+ ", pimg=" + pimg + ", fav=" + fav + "]";
 	}
 	public String getPimg() {
 		return pimg;

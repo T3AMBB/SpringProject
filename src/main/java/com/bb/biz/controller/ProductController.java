@@ -1,6 +1,7 @@
 package com.bb.biz.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bb.biz.coupon.CouponService;
 import com.bb.biz.coupon.CouponVO;
+import com.bb.biz.favorite.FavoriteService;
+import com.bb.biz.favorite.FavoriteVO;
 import com.bb.biz.product.ProductService;
 import com.bb.biz.product.ProductVO;
 
@@ -25,6 +28,9 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private CouponService couponService;
+	
+	@Autowired
+	private FavoriteService favoriteService;
 	
 	
 	@RequestMapping(value="/boardP.do")
@@ -38,9 +44,20 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/main.do")
-	public String main(ProductVO pVO, Model model) {
+	public String main(ProductVO pVO, Model model,FavoriteVO fVO) {
 		
 		List<ProductVO> products=productService.selectAllProduct(pVO);
+		List<FavoriteVO> favorite = favoriteService.selectAllFavorite(fVO);
+		
+		for(int i=0; i<favorite.size();i++) {
+			for(int j=0; j<products.size();j++) {
+				if(products.get(j).getPid()==favorite.get(i).getPid()) {
+					products.get(j).setFav(1);
+					break;
+				}
+			}
+			
+		}
 		
 		model.addAttribute("products", products);
 		return "main.jsp";
