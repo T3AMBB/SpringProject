@@ -48,7 +48,7 @@ public class FavoriteDAO {
 	}
 	public List<FavoriteVO> selectAllFavorite(FavoriteVO vo) {
 		Object[] args= {vo.getMid()};
-		return jdbcTemplate.query(sql_selectAllFavorite,args,new FavoriteRowMapper());
+		return jdbcTemplate.query(sql_selectAllFavorite,args,new FavoriteRowMapper2());
 		}
 	
 	
@@ -61,6 +61,21 @@ class FavoriteRowMapper implements RowMapper<FavoriteVO>{
 		data.setFid(rs.getInt("FID"));
 		data.setMid(rs.getString("MID"));
 		data.setPid(rs.getInt("PID"));
+		return data;
+	}
+	
+}
+class FavoriteRowMapper2 implements RowMapper<FavoriteVO>{
+	
+	@Override
+	public FavoriteVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		FavoriteVO data = new FavoriteVO();
+		data.setFid(rs.getInt("FID"));
+		data.setMid(rs.getString("MID"));
+		data.setPid(rs.getInt("PID"));
+		data.setPimg(rs.getString("PIMG"));
+		data.setPname(rs.getString("PNAME"));
+		data.setPrice(rs.getInt("PRICE"));
 		return data;
 	}
 	
