@@ -28,4 +28,12 @@ public class FavoriteController {
 		}
 	}
 	
+	@RequestMapping(value="/favAll.do")
+	public String FavoriteAll(FavoriteVO fVO) {
+		
+		favoriteService.selectAllFavorite(fVO);
+		
+		return "favorite.jsp";
+	}
+	
 }

@@ -63,7 +63,7 @@
                             <c:choose>
                             	<c:when test="${member!=null }">
                 			    <a href="cart.jsp"><i class="fa fa-shopping-cart" style="color:white;">장바구니</i></a>
-                                <a href="favorite.jsp"><i class="fa fa-heart" style="color:white;">찜목록</i></a>
+                                <a href="favAll.do"><i class="fa fa-heart" style="color:white;">찜목록</i></a>
                                 <a href="mypage.do">마이페이지</a>
                                 <a href="logout.do">로그아웃</a>
                                 </c:when>
