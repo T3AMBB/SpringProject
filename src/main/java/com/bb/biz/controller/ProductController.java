@@ -34,10 +34,16 @@ public class ProductController {
 	
 	
 	@RequestMapping(value="/boardP.do")
-	public String selectOneProduct(Model model,ProductVO pVO){
+	public String selectOneProduct(Model model,ProductVO pVO,FavoriteVO fVO,HttpSession session){
 
 		pVO=productService.selectOneProduct(pVO);
-	
+		
+		fVO.setMid((String)session.getAttribute("member"));
+		fVO.setPid(pVO.getPid());
+		
+		if(favoriteService.selectOneFavorite(fVO)!=null) {
+			pVO.setFav(1);
+		}
 		model.addAttribute("product", pVO);
 		return "productDetail.jsp";
 		
@@ -76,9 +82,20 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/selectAllP.do")
-	public String selectAllProduct(ProductVO pVO,Model model) {
+	public String selectAllProduct(ProductVO pVO,Model model, FavoriteVO fVO) {
 		
 		List<ProductVO> products=productService.selectAllProduct(pVO);
+		List<FavoriteVO> favorite = favoriteService.selectAllFavorite(fVO);
+		
+		for(int i=0; i<favorite.size();i++) {
+			for(int j=0; j<products.size();j++) {
+				if(products.get(j).getPid()==favorite.get(i).getPid()) {
+					products.get(j).setFav(1);
+					break;
+				}
+			}
+			
+		}
 		
 		model.addAttribute("products", products);
 		return "product.jsp";
