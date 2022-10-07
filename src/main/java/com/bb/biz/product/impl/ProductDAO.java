@@ -26,8 +26,8 @@ public class ProductDAO {
 	final String sql_selectAll="SELECT * FROM PRODUCT ORDER BY PID DESC";
 	
 	
-	final String sql_selectAll_LPrice="SELECT * FROM PRODUCT ORDER BY PRICE DESC";
-	final String sql_selectAll_HPrice="SELECT * FROM PRODUCT ORDER BY PRICE ASC";
+	final String sql_selectAll_LPrice="SELECT * FROM PRODUCT ORDER BY PRICE ASC";
+	final String sql_selectAll_HPrice="SELECT * FROM PRODUCT ORDER BY PRICE DESC";
 	final String sql_selectAll_Pcnt="SELECT * FROM PRODUCT ORDER BY PCNT ASC";
 	final String sql_selectAll_Pname="SELECT PNAME FROM PRODUCT WHERE PNAME LIKE  '%'||?||'%' ORDER BY PID ASC";
 
@@ -44,6 +44,10 @@ public class ProductDAO {
 	}
 	
 	List<ProductVO> selectAllProduct(ProductVO vo){
+
+		if(vo.getPdetail()==null) {
+			vo.setPdetail("");
+		}
 		
 		if(vo.getPdetail().equals("low")) {
 			return jdbcTemplate.query(sql_selectAll_LPrice,new ProductRowMapper());
