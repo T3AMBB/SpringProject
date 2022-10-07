@@ -85,7 +85,8 @@
 									<!-- 크롤링한 이미지 삽입 -->
 									<td class="product__cart__item">
 										<div class="product__cart__item__pic">
-											<img src="${f.pimg}" style="width:90px;"alt="img">
+											 <a href="boardP.do?pid=${f.pid}">
+											<img src="${f.pimg}" style="width:90px;"alt="img"></a>
 										</div>
 
 										<div class="product__cart__item__text">
@@ -97,7 +98,6 @@
 									<td class="quantity__item">
 										<div class="quantity">
 											<div class="pro-qty-2">
-												<input type="text" value="${f.cnt}">												
 											</div>
 												<button type="button" class="primary-btn" id="btn-cart" onclick="cartU();" style="size:inherit;">변경</button>
 										</div>
