@@ -189,7 +189,7 @@
                     <div class="row" id="figures">
                     	<!-- 상품 뽑아낼 반복문 위치 -->
                      <c:forEach var="n" items="${products}" begin="1" end="24">
-                        <div class="col-lg-4 col-md-6 col-sm-6 figure">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg">
                                   <a href="boardP.do?pid=${n.pid}"><img src="${n.pimg}"
@@ -211,7 +211,8 @@
                     <!-- 더보기 버튼 자리 -->
 					<div>
 					<hr>
-					<a id="moreProduct" href="javascript:b();">더보기</a>
+					<a id="moreProduct" href="javascript:b();" style="background-color: white;color: black;margin-left: 48%;border: 1px solid black;border-radius: 30px;padding: 1%;">
+					더 보기( More )</a>
 					<input type="hidden" id="cnt" value="24">
 					</div>                    
                 </div>
@@ -236,19 +237,20 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     
-          <script type="text/javascript">
+          <script type="text/javascript"> // 더보기 스크립트
                     function b(){
                      var cnt = $('#cnt').val();
                     	console.log("b()함수에 진입");
                     	$.ajax({
                     		url : "selectAllPajax.do",
                     		type : "POST",
-                    		data : { "cnt" : cnt
+                    		data : { "cnt" : cnt // 위 벨류에서 가져온 cnt를 controller 로 보냈다.
                     			
                     		},
-                    		success : function(result){
+                    		success : function(result){  // controller 에서 받은 hm 이 result 로 들어가고 pro/more 사용 가능
                     			console.log("b함수 실행 중");
                     			console.log(result);
+                    			console.log(cnt);
                     			if(result.more==1){
                     			for(var n of result.pro){
                     				var product = "<div class='col-lg-4 col-md-6 col-sm-6'>";
@@ -271,8 +273,10 @@
                     				$('#figures').append(product);
                     				
                     			}	
-                    				cnt += 24;
-                    				$('#cnt').val() = cnt;
+                    				cnt = Number(cnt);
+                    				var cnt2 = 24;
+                    				console.log(cnt+cnt2);
+                    				$('#cnt').val(cnt+cnt2);
                     			}
                     			else {
                     				for(var n of result.pro){
