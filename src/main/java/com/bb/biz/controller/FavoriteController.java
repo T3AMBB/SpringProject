@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bb.biz.favorite.FavoriteService;
 import com.bb.biz.favorite.FavoriteVO;
-import com.bb.biz.product.ProductVO;
 
 @Controller
 public class FavoriteController {
@@ -38,7 +37,6 @@ public class FavoriteController {
 	public String FavoriteAll(FavoriteVO fVO,Model model,HttpSession session) {
 		fVO.setMid((String)session.getAttribute("member"));
 		List<FavoriteVO> favorite=favoriteService.selectAllFavorite(fVO);
-		System.out.println(favorite);
 		model.addAttribute("favorite", favorite);
 		
 		return "favorite.jsp";
