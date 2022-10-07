@@ -189,7 +189,7 @@
                     <div class="row" id="figures">
                     	<!-- 상품 뽑아낼 반복문 위치 -->
                      <c:forEach var="n" items="${products}" begin="1" end="24">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6 figure">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg">
                                   <a href="boardP.do?pid=${n.pid}"><img src="${n.pimg}"
