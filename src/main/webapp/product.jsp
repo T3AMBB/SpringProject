@@ -192,8 +192,8 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 figure">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg">
-                                  <a href="boardP.do?pid=${n.pid}"><img src="${n.pimg}"
-								alt="" width="280" height="280"></a>
+                                  <a href="boardP.do?pid=${n.pid}">
+                                  <img src="${n.pimg}"alt="" width="280" height="280"></a>
                                     <ul class="product__hover">
                             		    <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
                             		    <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
