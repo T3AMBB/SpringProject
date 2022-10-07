@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-
 <!DOCTYPE html>
 
 <html lang="zxx">
@@ -70,18 +69,11 @@
     </section>
     <!-- Hero Section End -->
 
-    
-    
-    
-    
-    
-    
+	<hr>
+	<br>
+	<br>
 
     <!-- Product Section Begin -->
-    <br>
-    <br>
-    <br>
-    <br>
     <section class="product spad">
         <div class="container">
             <div class="row">
@@ -96,18 +88,35 @@
             <c:forEach var="n" items="${products}" begin="1" end="20">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg">
+                    <div class="product__item__pic set-bg" >
                         <a href="boardP.do?pid=${n.pid}">
-                        <img alt="이미지" src="${n.pimg}" style="border: 1px solid black; padding:1%"></a>
-                            <ul class="product__hover">
-                         	    <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화"  onclick="favorite(${n.pid});"></li>
-                                <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
-                            </ul>
+                        <img src="${n.pimg}" alt="" width="280" height="280"></a>
+		                   <ul class="product__hover">
+		                            
+		                 <!-- 로그인 상태 -->
+						<c:if test="${user.mid!=null}">
+							<c:choose>
+								<c:when test="${fav!=null}">
+        		                        <li><img id="${n.pid}fav_btn" src="img/icon/heartOn.png" alt="좋아요활성화" onclick="favorite(${n.pid});"></li>
+								</c:when>
+								<c:otherwise>
+        		                        <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
+                		           </c:otherwise>
+							</c:choose>
+                        </c:if>
+                        
+                        <!-- 비로그인 상태 -->
+						<c:if test="${user.mid == null}">
+                                <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favoriteN(${n.pid});"></li>
+                        </c:if>
+                        
+                		           </ul>
                         </div>
                         <br>
                         <div class="productitem_">
                             <h6 style="font-weight: 600;">${n.pname}</h6>
-                            <h5 style="font-weight: 800;"><fmt:formatNumber pattern="###,###,###" value="${n.price}"/>원</h5>
+                            <h5 style="font-weight: 800;">
+                            <fmt:formatNumber pattern="###,###,###" value="${n.price}"/>원</h5>
                         </div>
                     </div>
                 </div>
@@ -134,8 +143,42 @@
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script type="text/javascript">
+      function favorite(pid) {
+         var mid = '${user.mid}';
+         console.log('로그: Favorite');
+         $.ajax({
+            type : 'POST',
+            url : 'favorite.do',
+            data : {
+               mid : mid,
+               pid : pid
+            },
+            success : function(result) {
+               console.log("로그1 [" + result + "]");
+               if (result == 1) {
+                  console.log("로그2 [좋아요+1]");
+                  $('#'+pid+'fav_btn').prop("src", "./img/icon/heartOn.png");
+               } else if(result == 0){
+                  console.log("로그3 [좋아요-1]");
+                  $('#'+pid+'fav_btn').prop("src", "./img/icon/heart.png");
+               }
+            },
+            error : function(request, status, error) { 
+               console.log("상태코드: " + request.status);
+               console.log("메세지: " + request.responseText);
+               console.log("에러설명: " + error);
+            }
+         });
+      }
+      
+      function favoriteN(pid) {
+    	  alert('로그인 후 이용해주세요.')
+      }
+   </script>
 <<<<<<< HEAD
-
+    
+    
      <script type="text/javascript">
 	$(document).ready(function(){
 		// 퀵메뉴 위치 제어
@@ -210,36 +253,7 @@
     enp('create', 'common', 'toyntech', { device: 'W' });    
     enp('send', 'common', 'toyntech');
 </script>
-
-     <script type="text/javascript">
-      function favorite(pid) {
-         var mid = '${data.mid}';
-         console.log('로그: Favorite');
-         $.ajax({
-            type : 'POST',
-            url : 'favorite.do',
-            data : {
-               mid : mid,
-               pid : pid
-            },
-            success : function(result) {
-               console.log("로그1 [" + result + "]");
-               if (result == 1) {
-                  console.log("로그2 [좋아요+1]");
-                  $("#favorite").prop("src", "./img/icon/heartOn.png");
-               } else if(result == 0){
-                  console.log("로그3 [좋아요-1]");
-                  $("#favorite").prop("src", "./img/icon/heart.png");
-               }
-            },
-            error : function(request, status, error) { 
-               console.log("상태코드: " + request.status);
-               console.log("메세지: " + request.responseText);
-               console.log("에러설명: " + error);
-            }
-         });
-      }
-   </script>
+    
 =======
 >>>>>>> dd32d5ef57ea3e3c68326baeeb93d5087baf60f3
 </body>
