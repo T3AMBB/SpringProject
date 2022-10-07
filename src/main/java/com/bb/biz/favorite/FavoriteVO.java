@@ -4,7 +4,9 @@ public class FavoriteVO {
 	private int fid;
 	private String mid;
 	private int pid;
-	private boolean flag;
+	private String pimg;
+	private String pname;
+	private int price;
 	public int getFid() {
 		return fid;
 	}
@@ -23,16 +25,27 @@ public class FavoriteVO {
 	public void setPid(int pid) {
 		this.pid = pid;
 	}
-	public boolean isFlag() {
-		return flag;
+	public String getPimg() {
+		return pimg;
 	}
-	public void setFlag(boolean flag) {
-		this.flag = flag;
+	public void setPimg(String pimg) {
+		this.pimg = pimg;
+	}
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	@Override
 	public String toString() {
-		return "FavoriteVO [fid=" + fid + ", mid=" + mid + ", pid=" + pid + ", flag=" + flag + "]";
+		return "FavoriteVO [fid=" + fid + ", mid=" + mid + ", pid=" + pid + ", pimg=" + pimg + ", pname=" + pname
+				+ ", price=" + price + "]";
 	}
-	
-	
 }
