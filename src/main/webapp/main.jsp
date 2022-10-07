@@ -92,17 +92,9 @@
                         <a href="boardP.do?pid=${n.pid}">
                         <img src="${n.pimg}" alt="" width="280" height="280"></a>
 		                   <ul class="product__hover">
-		                            
 		                 <!-- 로그인 상태 -->
 						<c:if test="${user.mid!=null}">
-							<c:choose>
-								<c:when test="${fav!=null}">
-        		                        <li><img id="${n.pid}fav_btn" src="img/icon/heartOn.png" alt="좋아요활성화" onclick="favorite(${n.pid});"></li>
-								</c:when>
-								<c:otherwise>
         		                        <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
-                		           </c:otherwise>
-							</c:choose>
                         </c:if>
                         
                         <!-- 비로그인 상태 -->
