@@ -144,7 +144,21 @@
                         <br>
                         <br>
                         <div class="product__details__btns__option">
-                          <img id="fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${product.pid});"> 찜하기
+                         <!-- 로그인 상태 -->
+						<c:if test="${user.mid!=null}">
+							<c:choose>
+								<c:when test="${product.fav==1}"><!-- 좋아요 되어있는 상품인지 확인 -->
+			                          <img id="${product.pid}fav_btn" src="img/icon/heartOn.png" alt="좋아요비활성화" onclick="favorite(${product.pid});"> 찜하기
+								</c:when>
+								<c:otherwise>
+			                          <img id="${product.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${product.pid});"> 찜하기
+                		           </c:otherwise>
+							</c:choose>
+                        </c:if>
+						<!-- 비로그인 상태 -->
+						<c:if test="${user.mid == null}">
+							 <img id="${product.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favoriteN(${product.pid});"> 찜하기
+                        </c:if>
                         </div>
                      </div>
                   </div>
@@ -206,7 +220,6 @@
                             <span class="label">New</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
@@ -262,9 +275,9 @@ function cart(pid){
          }
 </script>
 
-<script type="text/javascript">
+  <script type="text/javascript">
       function favorite(pid) {
-         var mid = '${data.mid}';
+         var mid = '${user.mid}';
          console.log('로그: Favorite');
          $.ajax({
             type : 'POST',
@@ -277,10 +290,10 @@ function cart(pid){
                console.log("로그1 [" + result + "]");
                if (result == 1) {
                   console.log("로그2 [좋아요+1]");
-                  $("#fav_btn").prop("src", "./img/icon/heartOn.png");
+                  $('#'+pid+'fav_btn').prop("src", "./img/icon/heartOn.png");
                } else if(result == 0){
                   console.log("로그3 [좋아요-1]");
-                  $("#fav_btn").prop("src", "./img/icon/heart.png");
+                  $('#'+pid+'fav_btn').prop("src", "./img/icon/heart.png");
                }
             },
             error : function(request, status, error) { 
@@ -290,8 +303,12 @@ function cart(pid){
             }
          });
       }
+      
+      function favoriteN(pid) {
+    	  alert('로그인 후 이용해주세요.')
+      }
    </script>
-
+   
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

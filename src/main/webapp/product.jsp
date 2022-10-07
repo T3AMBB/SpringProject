@@ -195,9 +195,24 @@
                                   <a href="boardP.do?pid=${n.pid}">
                                   <img src="${n.pimg}"alt="" width="280" height="280"></a>
                                     <ul class="product__hover">
-                            		    <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
-                            		    <li><a href="boardP.do?pid=${n.pid}"><img src="img/icon/search.png" alt=""></a></li>
-                                    </ul>
+                        <!-- 로그인 상태 -->
+						<c:if test="${user.mid!=null}">
+							<c:choose>
+								<c:when test="${n.fav==1}"><!-- 좋아요 되어있는 상품인지 확인 -->
+        		                        <li><img id="${n.pid}fav_btn" src="img/icon/heartOn.png" alt="좋아요활성화" onclick="favorite(${n.pid});"></li>
+								</c:when>
+								<c:otherwise>
+        		                        <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favorite(${n.pid});"></li>
+                		           </c:otherwise>
+							</c:choose>
+                        </c:if>
+                        
+                        <!-- 비로그인 상태 -->
+						<c:if test="${user.mid == null}">
+                                <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favoriteN(${n.pid});"></li>
+                        </c:if>
+                        
+                		           </ul>
                                 </div>
                                  <div class="product__item__text">
                                     <h6>${n.pname }</h6>
@@ -313,16 +328,9 @@
                     	}
                     </script>
     
-    
-    
-    
-    
-    
-    
-    
-        <script type="text/javascript">
+    <script type="text/javascript">
       function favorite(pid) {
-         var mid = '${data.mid}';
+         var mid = '${user.mid}';
          console.log('로그: Favorite');
          $.ajax({
             type : 'POST',
@@ -347,6 +355,10 @@
                console.log("에러설명: " + error);
             }
          });
+      }
+      
+      function favoriteN(pid) {
+    	  alert('로그인 후 이용해주세요.')
       }
    </script>
 
