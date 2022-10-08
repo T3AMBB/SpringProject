@@ -66,7 +66,7 @@
                   </div>
                   </div>
                   
-				<form class="col-lg-6" action="pay.do" method="post" style="display : inline; margin:0px;">
+				<form class="col-lg-6" action="cartP.do" method="post" style="display : inline; margin:0px;">
                   <div class="col-lg-12" style="border:1px solid black; padding:3%;padding-bottom: 1%;padding-top: 4%;">
                      <div class="product__details__text">
                      	<div class="producttext" style="text-align:initial;">
@@ -132,11 +132,17 @@
                         </table>
                         </div>
                         <div>
-							
+						<c:choose>
+							<c:when test="${product.status==1}">
+                        <button type="button" class="primary-btn" id="btn-cart" onclick="cart(${product.pid});"style="border-radius: 30px;border: 1px solid black;background:white;color: #333 !important;" disabled="disabled">장바구니 담기완료</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </c:when>
+                        <c:otherwise>
                         <button type="button" class="primary-btn" id="btn-cart" onclick="cart(${product.pid});"style="border-radius: 30px;border: 1px solid black;background:white;color: #333 !important;">장바구니 담기</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        
-                  
+                        </c:otherwise>
+                        </c:choose>	
+                  	<input type="hidden" name="pid" value="${product.pid}">
                         <input type="submit" class="primary-btn" style="border-radius: 30px;" value="바로 구매하기">
 							
                         </div>

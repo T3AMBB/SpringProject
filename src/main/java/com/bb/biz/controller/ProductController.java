@@ -35,7 +35,13 @@ public class ProductController {
 	
 	@RequestMapping(value="/boardP.do")
 	public String selectOneProduct(Model model,ProductVO pVO,FavoriteVO fVO,HttpSession session){
-
+		
+		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
+		if(cart==null){ 
+			   
+		    cart= new ArrayList<ProductVO>(); 
+		   session.setAttribute("cart", cart);
+		   }
 		pVO=productService.selectOneProduct(pVO);
 		
 		fVO.setMid((String)session.getAttribute("member"));
@@ -44,6 +50,13 @@ public class ProductController {
 		if(favoriteService.selectOneFavorite(fVO)!=null) {
 			pVO.setFav(1);
 		}
+		for(int i=0;i<cart.size();i++) {
+			if(cart.get(i).getPid()==pVO.getPid()) {
+				pVO.setStatus(1);
+			}
+		}
+		
+		
 		model.addAttribute("product", pVO);
 		return "productDetail.jsp";
 		
@@ -215,6 +228,28 @@ public class ProductController {
 		
 		return "payment.jsp";
 	}
+	@RequestMapping(value="/cartP.do")
+	public String cartPay(ProductVO pVO,HttpSession session,HttpServletRequest request) {
+		
+		List<ProductVO> cart =(List<ProductVO>) session.getAttribute("cart");
+		
+		pVO=productService.selectOneProduct(pVO);
+		for(int i=0; i<cart.size();i++) {
+			if(cart.get(i).getPid()==pVO.getPid()) {
+			int	cnt =(cart.get(i).getCnt()+Integer.parseInt(request.getParameter("cnt")));
+			cart.get(i).setCnt(cnt);
+			session.setAttribute("cart", cart);
+			return "cart.jsp";
+			}
+		}
+		pVO.setCnt(Integer.parseInt(request.getParameter("cnt")));
+		cart.add(pVO);
+		session.setAttribute("cart", cart);
+		
+		return "cart.jsp";
+	}
+	
+	
 
 	
 }

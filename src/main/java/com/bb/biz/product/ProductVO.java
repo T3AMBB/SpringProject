@@ -13,6 +13,7 @@ public class ProductVO {
 	private int cnt;
 	private String pimg;
 	private int fav;
+	private int status;
 	public int getFav() {
 		return fav;
 	}
@@ -20,11 +21,18 @@ public class ProductVO {
 		this.fav = fav;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", pcnt=" + pcnt + ", pcom=" + pcom
 				+ ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", pdetail=" + pdetail + ", cnt=" + cnt
-				+ ", pimg=" + pimg + ", fav=" + fav + "]";
+				+ ", pimg=" + pimg + ", fav=" + fav + ", status=" + status + "]";
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	public String getPimg() {
 		return pimg;
