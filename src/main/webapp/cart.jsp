@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>          
+
+
 <!DOCTYPE html>
 <html>
 
@@ -49,7 +52,7 @@
 		</div>
 	</section>
 	<!-- Breadcrumb Section End -->
-
+	
 	<!-- Shopping Cart Section Begin -->
 	<section class="shopping-cart spad">
 		<div class="container">
@@ -59,48 +62,58 @@
 						<table>
 							<thead>
 								<tr>
+									<th><input type="checkbox" class="individual_cart_checkbox" checked="checked" ></th>
 									<th>Product</th>
-									<th>NAME</th>
 									<th>Quantity</th>
 									<th>Total</th>
+									<th></th>
 								</tr>
 							</thead>
-							<tbody>
-								<!-- For each문 시작 -->
-								<c:forEach var="p" items="${cart}">
-								<tr id="${p.pid}">
-									<!-- 크롤링한 이미지 삽입 -->
+							<tbody>							
+								<!-- For each문 시작 지점 -->
+								<c:forEach var="c" items="${cart}">								
+								<tr>
+									<td>
+									<input type="checkbox">
+									<input type="hidden" id="pid" value="${c.pid}">
+								<!-- <input type="hidden" id="${c.pid}" value="${c.price}">  -->								
+<!-- 									<input type="hidden" id="cnt" value="${c.cnt}">
+ -->									</td>
 									<td class="product__cart__item">
 										<div class="product__cart__item__pic">
-											<img src="${p.pimg}" alt="이미지">
+											<img src="${c.pimg}" style="width:120px;"alt="img">
 										</div>
-									</td>
-									<td>
+
 										<div class="product__cart__item__text">
-											<h6>${p.pname}</h6>
-											<br>
-											<!-- value에 {p.price}  -->
-											<h6><input class="product_price" type="text" value="${p.price}원"
-												style="border: none; width: inherit;"></h6>
+											<h6>${c.pname}</h6>
+										<div class="price">
+									<h6><input type="hidden" class="product_price" value="${c.price}"><fmt:formatNumber value="${c.price}" pattern="#,###,### 원"/></span>
+												</h6>
+												</div>
 										</div>
 									</td>
 									<td class="quantity__item">
 										<div class="quantity">
 											<div class="pro-qty-2">
-												<input type="text" value="${p.cnt}">
+												<p id="${c.pid}">${c.price}</p>										
+												<input type="text" id="cnt" value="${c.cnt}">																								
 											</div>
+												
 										</div>
-									</td>
-									<td><input class="cart_price" type="text"
-										value="${p.price * p.cnt}"
+											<input class="individual_total_price" type="text"
+										value="${c.price}"
 										style="border: none; width: inherit; background: inherit;">
+										</td>
+									<td>
 									</td>
-									<td class="cart__close"><button onclick="cartD(${p.pid})"><i
-											class="fa fa-close"></i></button>></td>
+									<td class="cart__close"><a href="delete.do"><i
+											class="fa fa-close"></i>
+									<!-- <button type="button" class="primary-btn" id="btn-cart" onclick="cartD();" style="size:inherit;">삭제</button> -->
+											</a></td>
 								</tr>
 								</c:forEach>
 								<!-- For each문 끝 -->
-
+								
 							</tbody>
 						</table>
 					</div>
@@ -112,7 +125,7 @@
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="continue__btn update__btn">
-								<a href="cartM.do"><i class="fa fa-spinner"></i> 장바구니 비우기</a>
+								<a href="#"><i class="fa fa-spinner"></i> 장바구니 비우기</a>
 							</div>
 						</div>
 					</div>
@@ -123,8 +136,8 @@
 						<hr>
 						<div>
 							<input class="cart_total_price" type="text"
-								value="40000" style="border: none; width: 100%; color:red; font-size:22px; text-align:right; background:inherit;">
-						</div>
+								value="${c.price*c.cnt}" style="border: none; width: 100%; color:red; font-size:22px; text-align:right; background:inherit;">
+						</div>                   
 						<a href="payment.jsp" class="primary-btn">주문하기</a>
 					</div>
 				</div>
@@ -134,31 +147,12 @@
 	<!-- Shopping Cart Section End -->
 
 	<hearder:footer />
+
 <script type="text/javascript">
-function cartU(){
-      
-         var cnt = $('#cnt').val();
-         var pid = $('#pid').val();
-         $.ajax({   
-            type : 'POST',
-            url : 'cartU.do',
-            data :  {
-               'cnt': cnt,
-               'pid': pid
-            },
-            success : function(result) {
-               
-               if (result == 'success') {
-            	   $("#btn-cart").text("변경");
-                  }
-               } 
-            });
-         }
-</script>
-<script type="text/javascript">
-function cartD(pid){
+function cartD(){
       
         
+         var pid = $('#pid').val();
          $.ajax({   
             type : 'POST',
             url : 'cartD.do',
@@ -168,7 +162,7 @@ function cartD(pid){
             success : function(result) {
                
                if (result == 'success') {
-            	   $("#"+pid+"").remove();
+            	   $("#btn-cart").text("삭제");
                   }
                
                } 
