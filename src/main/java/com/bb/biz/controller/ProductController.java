@@ -63,7 +63,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/main.do")
-	public String main(ProductVO pVO, Model model,FavoriteVO fVO) {
+	public String main(ProductVO pVO, Model model,FavoriteVO fVO, HttpSession session) {
+		
+		fVO.setMid((String)session.getAttribute("member"));
 		
 		List<ProductVO> products=productService.selectAllProduct(pVO);
 		List<FavoriteVO> favorite = favoriteService.selectAllFavorite(fVO);
@@ -95,7 +97,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/selectAllP.do")
-	public String selectAllProduct(ProductVO pVO,Model model, FavoriteVO fVO) {
+	public String selectAllProduct(ProductVO pVO,Model model, FavoriteVO fVO, HttpSession session) {
+		
+		fVO.setMid((String)session.getAttribute("member"));
 		
 		List<ProductVO> products=productService.selectAllProduct(pVO);
 		List<FavoriteVO> favorite = favoriteService.selectAllFavorite(fVO);
