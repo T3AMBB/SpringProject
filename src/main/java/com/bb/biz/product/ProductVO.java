@@ -4,16 +4,33 @@ public class ProductVO {
 	private int pid;
 	private String pname;
 	private int price;
+	private int price2;
 	private int pcnt;
 	private String pcom;
 	private String pmade;
 	private String pmat;
 	private String psize;
+	private String psize2;
 	private String pdetail;
 	private int cnt;
 	private String pimg;
 	private int fav;
 	private int status;
+	
+	
+	
+	public int getPrice2() {
+		return price2;
+	}
+	public void setPrice2(int price2) {
+		this.price2 = price2;
+	}
+	public String getPsize2() {
+		return psize2;
+	}
+	public void setPsize2(String psize2) {
+		this.psize2 = psize2;
+	}
 	public int getFav() {
 		return fav;
 	}
@@ -21,13 +38,6 @@ public class ProductVO {
 		this.fav = fav;
 	}
 	
-	
-	@Override
-	public String toString() {
-		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", pcnt=" + pcnt + ", pcom=" + pcom
-				+ ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", pdetail=" + pdetail + ", cnt=" + cnt
-				+ ", pimg=" + pimg + ", fav=" + fav + ", status=" + status + "]";
-	}
 	public int getStatus() {
 		return status;
 	}
@@ -100,5 +110,13 @@ public class ProductVO {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	
+	@Override
+	public String toString() {
+		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", price2=" + price2 + ", pcnt="
+				+ pcnt + ", pcom=" + pcom + ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", psize2="
+				+ psize2 + ", pdetail=" + pdetail + ", cnt=" + cnt + ", pimg=" + pimg + ", fav=" + fav + ", status="
+				+ status + "]";
 	}
 }

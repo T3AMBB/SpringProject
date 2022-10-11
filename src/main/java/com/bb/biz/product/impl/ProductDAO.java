@@ -25,9 +25,18 @@ public class ProductDAO {
 	final String sql_selectOne="SELECT * FROM PRODUCT WHERE PID=?";
 	final String sql_selectAll="SELECT * FROM PRODUCT ORDER BY PID DESC";
 	
+	final String sql_selectSearch="SELECT * FROM PRODUCT WHERE PNAME LIKE '%'||?||'%' "
+								 + "AND PCOM LIKE '%'||?||'%' AND PMADE LIKE '%'||?||'%' AND PMAT LIKE '%'||?||'%' "
+								 + "AND PRICE BETWEEN ? AND ? AND PSIZE BETWEEN ? AND ? ORDER BY PID DESC";
 	
-	final String sql_selectAll_LPrice="SELECT * FROM PRODUCT ORDER BY PRICE ASC";
-	final String sql_selectAll_HPrice="SELECT * FROM PRODUCT ORDER BY PRICE DESC";
+	
+	final String sql_selectAll_LPrice="SELECT * FROM PRODUCT WHERE PNAME LIKE '%'||?||'%' "
+								 + "AND PCOM LIKE '%'||?||'%' AND PMADE LIKE '%'||?||'%' AND PMAT LIKE '%'||?||'%' "
+								 + "AND PRICE BETWEEN ? AND ? AND PSIZE BETWEEN ? AND ? ORDER BY PRICE ASC";
+	final String sql_selectAll_HPrice="SELECT * FROM PRODUCT WHERE PNAME LIKE '%'||?||'%' "
+								 + "AND PCOM LIKE '%'||?||'%' AND PMADE LIKE '%'||?||'%' AND PMAT LIKE '%'||?||'%' "
+								 + "AND PRICE BETWEEN ? AND ? AND PSIZE BETWEEN ? AND ? ORDER BY PRICE DESC";
+	
 	final String sql_selectAll_Pcnt="SELECT * FROM PRODUCT ORDER BY PCNT ASC";
 	final String sql_selectAll_Pname="SELECT PNAME FROM PRODUCT WHERE PNAME LIKE  '%'||?||'%' ORDER BY PID ASC";
 
@@ -37,26 +46,31 @@ public class ProductDAO {
 	ProductVO selectOneProduct(ProductVO vo) {
 		Object[] args= {vo.getPid()};
 		return jdbcTemplate.queryForObject(sql_selectOne,args,new ProductRowMapper());
-		
 	}
+	
 	List<ProductVO> selectAllProductCnt(ProductVO vo){
+		
 		return jdbcTemplate.query(sql_selectAll_Pcnt,new ProductRowMapper());	
 	}
 	
 	List<ProductVO> selectAllProduct(ProductVO vo){
-
+		Object[] args= {vo.getPname(),vo.getPcom(),vo.getPmade(),vo.getPmat(),vo.getPrice(),vo.getPrice2(),vo.getPsize(),vo.getPsize2()};
+		
 		if(vo.getPdetail()==null) {
 			vo.setPdetail("");
 		}
 		
 		if(vo.getPdetail().equals("low")) {
-			return jdbcTemplate.query(sql_selectAll_LPrice,new ProductRowMapper());
+			return jdbcTemplate.query(sql_selectAll_LPrice,new ProductRowMapper(),args);
 		}
 		else if(vo.getPdetail().equals("high")) {
-			return jdbcTemplate.query(sql_selectAll_HPrice,new ProductRowMapper());
+			return jdbcTemplate.query(sql_selectAll_HPrice,new ProductRowMapper(),args);
 		}
 		else if(vo.getPdetail().equals("pname")) {
 			return jdbcTemplate.query(sql_selectAll_Pname,new ProductRowMapper());
+		}
+		else if(vo.getPdetail().equals("search")) {
+			return jdbcTemplate.query(sql_selectSearch, new ProductRowMapper(), args);
 		}
 		return jdbcTemplate.query(sql_selectAll,new ProductRowMapper());
 		
