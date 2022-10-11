@@ -17,14 +17,14 @@ public class BuylistDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	final String sql_insert="INSERT INTO BUYLIST(BUYID,MID,PID,BUYDATE,BUYCNT,SHIPPING) "
-			+ "VALUES((SELECT NVL(MAX(BUYID),0)+1 FROM BUYLIST),?,?,?,?,?";
+	final String sql_insert="INSERT INTO BUYLIST(BUYID,MID,PID,BUYDATE,BUYCNT,SHIPPING,PRCADR) "
+			+ "VALUES((SELECT NVL(MAX(BUYID),0)+1 FROM BUYLIST),?,?,?,?,?,?";
 	final String sql_selectAll="SELECT * FROM BUYLIST ORDER BY BID DESC";
 
 
 	boolean insertBuylist(BuylistVO vo) {
 		if(vo.getMid()!=null) {
-		jdbcTemplate.update(sql_insert,vo.getMid(),vo.getPid(),vo.getBuydate(),vo.getBuycnt(),vo.getShipping());
+		jdbcTemplate.update(sql_insert,vo.getMid(),vo.getPid(),vo.getBuydate(),vo.getBuycnt(),vo.getShipping(),vo.getPrcadr());
 		return true;
 		}
 		else {
