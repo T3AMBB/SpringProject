@@ -42,7 +42,7 @@ public class ProductDAO {
 
 	final String sql_insert="INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PID),0)+1 FROM PRODUCT),?,?,?,?,?,?,?,?,?)";
 	
-	final String sql_update="UPDATE PRODUCT SET PCNT=PCNT-? WHERE=?";
+	final String sql_update="UPDATE PRODUCT SET PCNT=PCNT-? WHERE PID=?";
 	
 	
 	boolean updateProduct(ProductVO vo) {
