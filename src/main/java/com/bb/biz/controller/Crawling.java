@@ -97,8 +97,7 @@ public class Crawling  {
 				String detail_img = ".img_wrapper > img";
 				Elements eles8 = doc2.select(detail_img);
 				//			System.out.println("상세"+eles7);
-				String detail_imgnew = ".img_wrapper > b > img";
-				Elements eles9 = doc2.select(detail_imgnew);
+
 
 				Iterator<Element> itr2 = eles2.iterator(); // 제목 정보를 요소별로 분리
 				Iterator<Element> itr4 = eles4.iterator(); // 이미지 정보를 요소별로 분리
@@ -106,7 +105,6 @@ public class Crawling  {
 				Iterator<Element> itr6 = eles6.iterator(); // 가격 정보를 요소별로 분리
 				Iterator<Element> itr7 = eles7.iterator(); // 상세 정보를 요소별로 분리
 				Iterator<Element> itr8 = eles8.iterator(); // 상세 이미지를 요소별로 분리
-				Iterator<Element> itr9 = eles9.iterator();
 
 
 				while(itr5.hasNext()) {
@@ -131,15 +129,15 @@ public class Crawling  {
 						vo2.setPdetail(detail_img2);
 						}
 						catch(java.util.NoSuchElementException e) {
-						String detail_img2 = itr9.next().attr("src");
+						String detail_img2 = "";
 						System.out.println("상세이미지2: "+detail_img2);
 						vo2.setPdetail(detail_img2);
 						} 
 					
-						int price4 = Integer.parseInt(price3);
+					int price4 = Integer.parseInt(price3);
 					System.out.println("가격2: "+price4);
 
-					if(-1!=detail2.lastIndexOf("재질")) {
+					if(-1!=detail2.lastIndexOf("재질") && -1!=detail2.lastIndexOf("치수")) {
 						if(-1==b.lastIndexOf("정확한 발매이미지")) {
 							String com = detail2.substring(detail2.lastIndexOf("제조사")+4, detail2.lastIndexOf("원산지"));
 							System.out.println(com);
@@ -149,14 +147,20 @@ public class Crawling  {
 
 							String mat = detail2.substring(detail2.lastIndexOf("재질")+3, detail2.lastIndexOf("치수"));
 							System.out.println(mat);
-
-							String size = detail2.substring(detail2.lastIndexOf("치수")+3, detail2.lastIndexOf("cm"));
+							
+							String size = "0";
 							System.out.println(size);
+
+							if(-1==detail2.lastIndexOf("약 :") ) {
+								size = detail2.substring(detail2.lastIndexOf("치수")+5, detail2.lastIndexOf("cm"));
+								System.out.println(size);
+							}
+
 
 							try {
 								url = new URL(img2); // url 객체에 이미지 주소를 담음
 								in = url.openStream(); // in 객체에 url 정보 담음(받고싶은 데이터 연결), 열림 1
-								out = new FileOutputStream("C:\\oraclexe\\poster\\"+n+".png"); // out 객체에 저장경로(저장을 원하는 위치) 입력
+								out = new FileOutputStream("D:\\0607Park\\이미지\\"+n+".png"); // out 객체에 저장경로(저장을 원하는 위치) 입력
 								n++;
 								while(true) {
 									int data = in.read(); // in 객체로 해당 이미지를 읽어들임
