@@ -38,7 +38,7 @@ public class ProductDAO {
 								 + "AND PRICE BETWEEN ? AND ? AND PSIZE BETWEEN ? AND ? ORDER BY PRICE DESC";
 	
 	final String sql_selectAll_Pcnt="SELECT * FROM PRODUCT ORDER BY PCNT ASC";
-	final String sql_selectAll_Pname="SELECT PNAME FROM PRODUCT WHERE PNAME LIKE  '%'||?||'%' ORDER BY PID ASC";
+	final String sql_selectAll_Pname="SELECT * FROM PRODUCT WHERE PNAME LIKE '%'||?||'%' ORDER BY PID ASC";
 
 	final String sql_insert="INSERT INTO PRODUCT VALUES((SELECT NVL(MAX(PID),0)+1 FROM PRODUCT),?,?,?,?,?,?,?,?,?)";
 	
@@ -75,7 +75,7 @@ public class ProductDAO {
 			return jdbcTemplate.query(sql_selectAll_HPrice,new ProductRowMapper(),args);
 		}
 		else if(vo.getPdetail().equals("pname")) {
-			return jdbcTemplate.query(sql_selectAll_Pname,new ProductRowMapper());
+			return jdbcTemplate.query(sql_selectAll_Pname,new ProductRowMapper(),vo.getPname());
 		}
 		else if(vo.getPdetail().equals("search")) {
 			return jdbcTemplate.query(sql_selectSearch, new ProductRowMapper(), args);
