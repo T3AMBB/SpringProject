@@ -28,6 +28,50 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/modal.css" type="text/css">
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script type="text/javascript">
+               $( function() {
+                  
+                   $( "#slider-range" ).slider({
+                     range: true,
+                     min: 0,
+                     max: 100,
+                     step: 10,
+                     values: [ 30, 50 ],
+                     slide: function( event, ui ) {
+                       $( "#amount" ).val(   ui.values[ 0 ] + "만원 - " + ui.values[ 1 ]+"만원" );
+                       $("#price").val(ui.values[ 0 ]);
+                       $("#price2").val(ui.values[ 1 ]);
+                     }
+                   });
+                   
+                   $( "#amount" ).val(  $( "#slider-range" ).slider( "values", 0 ) +
+                     "만원 - " + $( "#slider-range" ).slider( "values", 1 )+"만원" );
+                 } );
+               
+               </script>
+<script type="text/javascript">
+               $( function() {
+                   $( "#slider-range1" ).slider({
+                     range: true,
+                     min: 0,
+                     max: 50,
+                     step: 5,
+                     values: [ 15, 30 ],
+                     slide: function( event, ui ) {
+                       $( "#amount1" ).val(   ui.values[ 0 ] + "cm - " + ui.values[ 1 ]+"cm" );
+                       $("#size").val(ui.values[ 0 ]);
+                       $("#size2").val(ui.values[ 1 ]);
+                     }
+                   });
+                   $( "#amount1" ).val(  $( "#slider-range1" ).slider( "values", 0 ) +
+                     "cm - " + $( "#slider-range1" ).slider( "values", 1 )+"cm" );
+                 } );
+               
+               </script>
 
     <!-- 폰트 어썸 -->
 <script src="https://kit.fontawesome.com/9bd2faeab5.js"
@@ -63,8 +107,8 @@
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
-                            <form action="search.do">
-                                <input type="text" placeholder="이름검색">
+                            <form action="searchName.do">
+                                <input type="text" name="pname" placeholder="이름 검색">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
@@ -150,14 +194,12 @@
                                     <div id="collapseThree" class="collapse show">
                                         <div class="card-body">
                                             <div class="shop__sidebar__price">
-                                                <ul>
-                                                    <li><a href="#">10,000 ~ 100,000</a></li>
-                                                    <li><a href="#">10,000 ~ 200,000</a></li>
-                                                    <li><a href="#">200,000 ~ 300,000</a></li>
-                                                    <li><a href="#">300,000 ~ 400,000</a></li>
-                                                    <li><a href="#">400,000 ~ 500,000</a></li>
-                                                    <li><a href="#">500,000원 이상~</a></li>
-                                                </ul>
+                                            <p>
+											  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+											</p>
+											<div id="slider-range"></div>
+                                                   <input type="hidden" name="price" id="price">
+                                             <input type="hidden" name="price2" id="price2">
                                             </div>
                                         </div>
                                     </div>
@@ -169,30 +211,12 @@
                                     <div id="collapseFour" class="collapse show">
                                         <div class="card-body">
                                             <div class="shop__sidebar__size">
-                                                <label for="xs">xs
-                                                    <input type="radio" id="xs">
-                                                </label>
-                                                <label for="sm">s
-                                                    <input type="radio" id="sm">
-                                                </label>
-                                                <label for="md">m
-                                                    <input type="radio" id="md">
-                                                </label>
-                                                <label for="xl">xl
-                                                    <input type="radio" id="xl">
-                                                </label>
-                                                <label for="2xl">2xl
-                                                    <input type="radio" id="2xl">
-                                                </label>
-                                                <label for="xxl">xxl
-                                                    <input type="radio" id="xxl">
-                                                </label>
-                                                <label for="3xl">3xl
-                                                    <input type="radio" id="3xl">
-                                                </label>
-                                                <label for="4xl">4xl
-                                                    <input type="radio" id="4xl">
-                                                </label>
+                                            <p>
+											  <input type="text" id="amount1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+											</p>
+											<div id="slider-range1"></div>
+                                               <input type="hidden" id="size" name="size">
+                                       <input type="hidden" id="size2" name="size2">
                                             </div>
                                         </div>
                                     </div>
@@ -278,7 +302,7 @@
 
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
