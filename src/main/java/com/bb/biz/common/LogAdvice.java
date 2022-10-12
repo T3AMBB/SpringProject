@@ -15,11 +15,10 @@ public class LogAdvice {
 		Object[] args=jp.getArgs(); // 현재 수행중인 포인트컷(핵심로직,CRUD)이 사용하는 인자들의 정보
 		
 		System.out.println("수행중인 핵심메서드명: "+methodName);
-		System.out.println("사용하는 인자");
-		System.out.println("=====");
+		System.out.println("========사용하는 인자========");
 		for(Object v:args) {
 			System.out.println(v);
 		}
-		System.out.println("=====");
+		System.out.println("=========================");
 	}
 }
