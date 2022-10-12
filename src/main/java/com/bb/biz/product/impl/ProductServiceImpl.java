@@ -27,5 +27,9 @@ public class ProductServiceImpl implements ProductService {
 	public boolean insertProduct(ProductVO vo) {
 		return productdao.insertProduct(vo);
 	}
+	@Override
+	public boolean updateProduct(ProductVO vo) {
+		return productdao.updateProduct(vo);
+	}
 
 }

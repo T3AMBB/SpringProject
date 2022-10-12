@@ -6,6 +6,7 @@ public interface ProductService {
 	boolean insertProduct(ProductVO vo);
 	ProductVO selectOneProduct(ProductVO vo);
 	List<ProductVO> selectAllProduct(ProductVO vo);
+	boolean updateProduct(ProductVO vo);
 	// List<ProductVO> selectAllProductPriceASC(ProductVO vo);
 	// List<ProductVO> selectAllProductPriceDESC(ProductVO vo);
 	// List<ProductVO> selectAllProductCnt(ProductVO vo);

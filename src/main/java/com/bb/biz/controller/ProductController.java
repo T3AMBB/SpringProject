@@ -63,7 +63,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/main.do")
-	public String main(ProductVO pVO, Model model,FavoriteVO fVO) {
+	public String main(ProductVO pVO, Model model,FavoriteVO fVO, HttpSession session) {
+		
+		fVO.setMid((String)session.getAttribute("member"));
 		
 		List<ProductVO> products=productService.selectAllProduct(pVO);
 		List<FavoriteVO> favorite = favoriteService.selectAllFavorite(fVO);
@@ -93,9 +95,22 @@ public class ProductController {
 		return products;
 		
 	}
+
+	@RequestMapping(value="/filter.do")
+	public String filter(ProductVO pVO, Model model) {
+		System.out.println("필터 : "+pVO);
+		pVO.setPdetail("search");
+		List<ProductVO> products=productService.selectAllProduct(pVO);
+		
+		model.addAttribute("products", products);
+		return "product.jsp";
+		
+	}
 	
 	@RequestMapping(value="/selectAllP.do")
-	public String selectAllProduct(ProductVO pVO,Model model, FavoriteVO fVO) {
+	public String selectAllProduct(ProductVO pVO,Model model, FavoriteVO fVO, HttpSession session) {
+		
+		fVO.setMid((String)session.getAttribute("member"));
 		
 		List<ProductVO> products=productService.selectAllProduct(pVO);
 		List<FavoriteVO> favorite = favoriteService.selectAllFavorite(fVO);

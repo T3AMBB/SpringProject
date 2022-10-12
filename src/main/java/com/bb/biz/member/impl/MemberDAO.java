@@ -92,6 +92,8 @@ class MemberRowMapper implements RowMapper<MemberVO> {
 		data.setMid(rs.getString("MID"));
 		data.setMpw(rs.getString("MPW"));
 		data.setMname(rs.getString("MNAME"));
+		data.setStreetaddress(rs.getString("STREETADDRESS"));
+		data.setZipcode(rs.getString("ZIPCODE"));
 		data.setAddress(rs.getString("ADDRESS"));
 		data.setMphone(rs.getString("MPHONE"));
 		data.setMileage(rs.getInt("MILEAGE"));

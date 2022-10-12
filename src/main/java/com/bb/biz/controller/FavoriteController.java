@@ -2,6 +2,7 @@ package com.bb.biz.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bb.biz.favorite.FavoriteService;
 import com.bb.biz.favorite.FavoriteVO;
+import com.bb.biz.product.ProductService;
+import com.bb.biz.product.ProductVO;
 
 @Controller
 public class FavoriteController {
 	@Autowired
 	private FavoriteService favoriteService;
+	@Autowired
+	private ProductService productService;
 	
 	@ResponseBody
 	@RequestMapping(value="/favorite.do")
@@ -40,6 +45,26 @@ public class FavoriteController {
 		model.addAttribute("favorite", favorite);
 		
 		return "favorite.jsp";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/favD.do") //좋아요 상품삭제
+	public String cartDelete(FavoriteVO fVO,HttpSession session,HttpServletRequest request) {
+
+		List<FavoriteVO> favorite=favoriteService.selectAllFavorite(fVO);
+		
+				
+				fVO.setMid(request.getParameter("mid"));
+				fVO.setPid(Integer.parseInt(request.getParameter("pid")));
+				
+				favoriteService.deleteFavorite(fVO);
+				
+				
+				
+		
+		
+		
+		return "success";
 	}
 	
 }

@@ -7,6 +7,8 @@ public class BuylistVO {
 	private String buydate;
 	private int buycnt;
 	private String shipping;
+	private String prcadr; // 배송지
+	
 	
 	public int getBuyid() {
 		return buyid;
@@ -44,11 +46,18 @@ public class BuylistVO {
 	public void setShipping(String shipping) {
 		this.shipping = shipping;
 	}
+	public String getPrcadr() {
+		return prcadr;
+	}
+	public void setPrcadr(String prcadr) {
+		this.prcadr = prcadr;
+	}
 	@Override
 	public String toString() {
 		return "BuylistVO [buyid=" + buyid + ", mid=" + mid + ", pid=" + pid + ", buydate=" + buydate + ", buycnt="
-				+ buycnt + ", shipping=" + shipping + "]";
+				+ buycnt + ", shipping=" + shipping + ", prcadr=" + prcadr + "]";
 	}
+	
 	
 	
 }

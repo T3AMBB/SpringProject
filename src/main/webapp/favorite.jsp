@@ -77,10 +77,11 @@
 									</tr>
 								    </c:when>
 								    <c:otherwise>					
-								<c:forEach var="f" items="${favorite}">								
-								<tr>
+							<c:forEach var="f" items="${favorite}">								
+								<tr id="${f.pid}">
 									<td>
 									<input type="checkbox">
+									
 									</td>
 									<!-- 크롤링한 이미지 삽입 -->
 									<td class="product__cart__item">
@@ -102,9 +103,8 @@
 												<button type="button" class="primary-btn" id="btn-cart" onclick="cartU();" style="size:inherit;">변경</button>
 										</div>
 									</td>									
-									<td class="cart__close"><a href="delete.do"><i
-											class="fa fa-close"></i>
-											</a></td>
+									<td class="cart__close"><button onclick="favD(${f.pid})"><i
+											class="fa fa-close"></i></button>></td>
 								</tr>
 								</c:forEach>
 								<!-- For each문 끝 -->
@@ -133,7 +133,25 @@
 	<!-- Shopping Cart Section End -->
 
 	<hearder:footer />
-
+<script type="text/javascript">
+function favD(pid){
+    	
+	var mid = '${user.mid}';
+         $.ajax({   
+            type : 'POST',
+            url : 'favD.do',
+            data :  {
+               'pid': pid,
+               'mid': mid
+            },
+            success : function(result) {               
+               if (result == 'success') {
+            	   $("#"+pid+"").remove();
+                  }           
+               } 
+            });
+         }
+</script>
 
 	<!-- Js Plugins -->
 	<script src="js/jquery-3.3.1.min.js"></script>
