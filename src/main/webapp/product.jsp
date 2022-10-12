@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/modal.css" type="text/css">
+
     <!-- 폰트 어썸 -->
 <script src="https://kit.fontawesome.com/9bd2faeab5.js"
 	crossorigin="anonymous"></script>
@@ -55,37 +56,68 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-    <!-- Shop Section Begin -->
+  <!-- Shop Section Begin -->
     <section class="shop spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
+                            <form action="search.do">
+                                <input type="text" placeholder="이름검색">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
+                        <form action="filter.do" method="post" name="filterForm">
                         <div class="shop__sidebar__accordion">
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
                                     <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseOne">원작명</a>
+                                        <a data-toggle="collapse" data-target="#collapseOne">주제</a>
                                     </div>
                                     <div id="collapseOne" class="collapse show">
                                         <div class="card-body">
-                                            <div class="shop__sidebar__categories">
-                                                <ul class="nice-scroll">
-                                                    <li><a href="#">Men (20)</a></li>
-                                                    <li><a href="#">Women (20)</a></li>
-                                                    <li><a href="#">Bags (20)</a></li>
-                                                    <li><a href="#">Clothing (20)</a></li>
-                                                    <li><a href="#">Shoes (20)</a></li>
-                                                    <li><a href="#">Accessories (20)</a></li>
-                                                    <li><a href="#">Kids (20)</a></li>
-                                                    <li><a href="#">Kids (20)</a></li>
-                                                    <li><a href="#">Kids (20)</a></li>
+                                        	<div class="shop__sidebar__brand">
+                                                <ul>
+                                                    <li><input type="checkbox" name="pname" value="원피스""><label>원피스</label> </li>
+                                                    <li><input type="checkbox" name="pname" value="나루토" ><label>나루토</label> </li>
+                                                    <li><input type="checkbox" name="pname" value="하이큐" ><label>하이큐</label> </li>
+                                                    <li><input type="checkbox" name="pname" value="이누야샤" ><label>이누야사</label> </li>
+                                                    <li><input type="checkbox" name="pname" value="귀멸의 칼날" ><label>귀멸의 칼날</label> </li>
+                                                    <li><input type="checkbox" name="pname" value="보컬로이드" ><label>보컬로이드</label> </li>
+                                                    <li><input type="checkbox" name="pname" value="방탄소년단" ><label>방탄소년단</label> </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">원산지</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__brand">
+                                                <ul>
+                                                   <li><input type="checkbox" name="pmade" value="일본" class="pixel-radio"><label>일본</label> </li>
+                                                   <li><input type="checkbox" name="pmade" value="중국" class="pixel-radio"><label>중국</label> </li>
+                                                   <li><input type="checkbox" name="pmade" value="미국" class="pixel-radio"><label>미국</label> </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">재질</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__brand">
+                                                <ul>
+                                                   <li><input type="checkbox" name="pmat" value="ABS" class="pixel-radio"><label>ABS</label> </li>
+                                                   <li><input type="checkbox" name="pmat" value="PVC" class="pixel-radio"><label>PVC</label> </li>
+                                                   <li><input type="checkbox" name="pmat" value="플라스틱" class="pixel-radio"><label>플라스틱</label> </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -99,10 +131,13 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__brand">
                                                 <ul>
-                                                    <li><a href="#">Louis Vuitton</a></li>
-                                                    <li><a href="#">Chanel</a></li>
-                                                    <li><a href="#">Hermes</a></li>
-                                                    <li><a href="#">Gucci</a></li>
+                                                   <li><input type="checkbox" name="pcom" value="메가하우스" class="pixel-radio"><label>메가하우스</label> </li>
+                                                   <li><input type="checkbox" name="pcom" value="굿스마일컴퍼니" class="pixel-radio"><label>굿스마일컴퍼니</label> </li>
+                                                   <li><input type="checkbox" name="pcom" value="반프레스토" class="pixel-radio"><label>반프레스토</label> </li>
+                                                   <li><input type="checkbox" name="pcom" value="에이펙스" class="pixel-radio"><label>에이펙스</label> </li>
+                                                   <li><input type="checkbox" name="pcom" value="파이넥스" class="pixel-radio"><label>파이넥스</label> </li>
+                                                   <li><input type="checkbox" name="pcom" value="후류" class="pixel-radio"><label>후류</label> </li>
+                                                   <li><input type="checkbox" name="pcom" value="타이토" class="pixel-radio"><label>타이토</label> </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -164,6 +199,8 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="submit" value="검색" class="primary-btn">
+                         </form>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -226,8 +263,8 @@
                     <!-- 더보기 버튼 자리 -->
 					<div>
 					<hr>
-					<a id="moreProduct" href="javascript:b();" style="background-color: white;color: black;margin-left: 48%;border: 1px solid black;border-radius: 30px;padding: 1%;">
-					더 보기( More )</a>
+					<a id="moreProduct" href="javascript:more();" style="background-color: white;color: black;margin-left: 48%;border: 1px solid black;border-radius: 30px;padding: 1%;">
+					더보기</a>
 					<input type="hidden" id="cnt" value="24">
 					</div>                    
                 </div>
@@ -253,9 +290,9 @@
     <script src="js/main.js"></script>
     
           <script type="text/javascript"> // 더보기 스크립트
-                    function b(){
+                    function more(){
                      var cnt = $('#cnt').val();
-                    	console.log("b()함수에 진입");
+                    	console.log("more()함수에 진입");
                     	$.ajax({
                     		url : "selectAllPajax.do",
                     		type : "POST",
