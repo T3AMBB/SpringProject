@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.bb.biz.coupon.CouponService;
@@ -125,6 +126,19 @@ public class MemberController {
 			return "main.do";
 		}	
 		
+	}
+	@ResponseBody
+	@RequestMapping("/check.do")
+	public String check(MemberVO mVO, HttpSession session, HttpServletRequest request) {
+		mVO.setMid(request.getParameter("mid"));
+		System.out.println("로그로그"+mVO);
+		MemberVO vo = memberService.selectOneMember_CHECK(mVO);
+		
+	
+		if(vo==null) {
+			return "success";
+		}
+		return "0";
 	}
 	
 }
