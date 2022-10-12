@@ -96,8 +96,8 @@
                 </div>
                 <div class="col-lg-4 col-md-3">
                     <div class="shop__sidebar__search" style="margin-top:8%;">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
+                            <form action="searchName.do">
+                                <input type="text" name="pname" placeholder="피규어 검색">
                                 <button type="submit"><span class="icon_search" style="margin-top:4%;"></span></button>
                             </form>
                     </div>
