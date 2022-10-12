@@ -38,7 +38,8 @@
     <!-- 폰트 어썸 -->
 <script src="https://kit.fontawesome.com/9bd2faeab5.js"
 	crossorigin="anonymous"></script>
-
+	<!-- 우편번호 찾기 -->
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
 	<style>
     .total_info_div {
@@ -79,7 +80,7 @@
 				<div class="orderGoods_div">
 					<!-- 상품 종류 -->
 					<div class="goods_kind_div">
-						주문상품 <span style="color:red" class="goods_kind_div_count">3</span>개
+						주문상품 <span style="color:red" class="goods_kind_div_count">${cart.size()}</span>개
 					</div>
 					<c:if test="${pay!=null}">
 					<!-- 상품 테이블 -->
@@ -114,9 +115,9 @@
 							</tr>
 							<c:forEach var="cart" items="${cart}">
 								<tr class="cart_price">
-								<td><img src="${cart.pimg }" 
-								alt="상품 사진" width="100" height="100"></td>
-								<td>${cart.pname}</td>
+								<td><a href="boardP.do?pid=${cart.pid}"><img src="${cart.pimg }" 
+								alt="상품 사진" width="100" height="100"></a></td>
+								<td><a href="boardP.do?pid=${cart.pid}">${cart.pname}</a></td>
 								<td>${cart.price}</td>
 								<td>${cart.cnt}</td>
 								<td>${cart.price*cart.cnt}</td>
@@ -135,9 +136,11 @@
 					<!-- 배송지 정보 -->
 				<div class="addressInfo_div">
 					<div class="addressInfo_button_div">
-						<button class="btn btn-dark" onclick="showAdress('1')" style="background-color: #343a40;">사용자 정보 주소록</button>
-						<button class="btn btn-dark" onclick="showAdress('2')">직접 입력</button>
+						<button class="btn btn-dark" onclick="showAdress('1'); show1();" style="background-color: #343a40;">사용자 정보 주소록</button>
+						<button class="btn btn-dark" onclick="showAdress('2'); show2();">직접 입력</button>
+						<span>※ 상품 배송지를 선택해주세요.</span>
 					</div>
+					<input type="hidden" id="add_value">
 					<div class="addressInfo_input_div_wrap">
 						<div style="height:200px;" class="addressInfo_input_div addressInfo_input_div_1" style="display: block">
 						<br>
@@ -148,11 +151,12 @@
 								</tr>
 								<tr>
 									<th><span>주소</span></th>
-									<td><input style="width:70% "type="text" id="" value="${user.streetaddress} ${user.address}"
+									<td><input style="width:70% "type="text" id="add" value="${user.streetaddress} ${user.address}"
 											readonly="readonly"></td>
 								</tr>
 								</tbody>
 							</table>
+
 						</div>
 						<div style="height:200px;" class="addressInfo_input_div addressInfo_input_div_2">
 						<br>
@@ -166,21 +170,22 @@
 										<th><span>주소</span></th>
 										<td><input style="width:70% "type="text" value="${user.zipcode}" id="add_zone"
 											placeholder="우편번호" readonly="readonly"><button style="width:30%; height:37px" type="button" id="searchAdd"
-												class="btn btn-dark">우편번호 검색</button></td>
+												class="btn btn-dark" onclick='execution_daum_address();'>우편번호 검색</button></td>
 									</tr>
 									<tr>
 										<th></th>
 										<td colspan="2"><input type="text"
-											id="add_load" value="${user.streetaddress}" placeholder="도로명 주소" readonly="readonly"></td>
+											id="add_load" value="${user.streetaddress}" class="address1_input" placeholder="도로명 주소" readonly="readonly"></td>
 									</tr>
 									<tr>
 										<th></th>
-										<td colspan="2"><input type="text" value="${user.address}"
+										<td colspan="2"><input type="text" class="address2_input" value="${user.address}"
 											name="address" placeholder="상세 주소"></td>
 									</tr>
 									</tbody>
 								</table>
-							</div>
+							</div>				
+
 					</div>
 				</div>
 				<hr>
@@ -206,15 +211,16 @@
 					<div class="row">
 					<div class="radio-wrap">
 						<div style="float:left; margin-left:10px; padding:0.75rem;" class="coupon-wrap">
-						<input type="radio" class="ds" name="ds" value="쿠폰"><span> 쿠폰 사용하기</span>
+						<input type="radio" class="ds" id="ds" name="ds" value="쿠폰"><span> 쿠폰 사용하기</span>
 						</div>
 						<div style="float:left; margin-left:10px; padding:0.75rem;" class="point-wrap">
 						<input type="radio" class="ds" name="ds" value="적립금"><span> 적립금 사용하기</span>
 						</div>
 					</div>
 					</div>
-					<p>쿠폰과 적립금 중 하나의 할인 방식을 선택해주세요.</p>
+					<p>※ 쿠폰과 적립금 중 하나의 할인 방식을 선택해주세요.</p>
 				</div>		
+				<hr>
 
 				<!-- 쿠폰 정보 -->
 				<div class="coupon_div" >
@@ -225,17 +231,29 @@
 							<col width="*">
 						</colgroup>
 						<tbody class="tb">
+							<c:if test="${coupon.size()>0}">
 							<tr>
 								<th>쿠폰 사용</th>
 								<td>
-									<select style="width:70%" class="coupon_select" id="select_coupon" onchange='coupon()' name="select_name">
-										<option>쿠폰 선택</option>
+									<select style="width:70%" class="coupon_select" id="select_coupon" onchange=' check();' name="select_name">
+										<option selected value="0">쿠폰 선택</option>
 										<c:forEach var="c" items="${coupon}">
-										<option>${c}</option>
+										<option value='${c.cid}'>${c.code}</option>
 										</c:forEach>
 									</select>
 								</td>
 							</tr>
+							</c:if>
+							<c:if test="${coupon.size()==0}">
+							<tr>
+								<th>쿠폰 사용</th>
+								<td>
+									<select style="width:70%" class="coupon_select" id="select_coupon" onchange=' check_blank();' name="select_name">
+										<option selected value="0">쿠폰이 존재하지 않습니다.</option>
+									</select>
+								</td>
+							</tr>
+							</c:if>
 						</tbody>
 					</table>
 				</div>
@@ -253,16 +271,13 @@
 								<th>포인트 사용</th>
 								<td>
 									<input style="width:70%" class="order_point_input" onkeyup='point()' disabled value="0">&nbsp;&nbsp;&nbsp;
-									<a style="color:#fff" class="order_point_input_btn order_point_input_btn_N" data-state="N">모두사용</a>
+									<a style=" display: none; color:#fff" class="order_point_input_btn order_point_input_btn_N" data-state="N">모두사용</a>
 									<a class="order_point_input_btn order_point_input_btn_Y" data-state="Y" style="display: none; color:#fff;">사용취소</a>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-
-			
-				
 				</div>
 				<div  style="height:800px" class="col-lg-4">
 				<div class="user_info_div">
@@ -334,7 +349,21 @@
 		</div>
 	</div>
 	<hearder:footer/>
-		
+	<script>
+	function check_blank(){
+		alert('쿠폰이 존재하지 않습니다.');
+	}
+	function check(){
+		if($('.ds').is(":checked") == false){
+		    alert('쿠폰과 적립금 중 할인 유형을 선택해주세요.')
+		   $("#ds").focus();	
+		    return;
+		}
+		else{
+			coupon();
+		}
+	}
+	</script>
 	<script type="text/javascript">
 		var finalTotalPrice=0;
 	function setInfo(){
@@ -408,6 +437,9 @@ var finalTotalPrice=0;
 		$(".delivery_price_span").text(delivery_price.toLocaleString());
 
 		var coupon = $("#select_coupon option:selected").val();
+		if(coupon == "0"){
+			return;
+		}
 		if (coupon == '고객감사쿠폰20%') {
 			usePoint = totalPrice * 0.2;
 		} else {
@@ -420,7 +452,7 @@ var finalTotalPrice=0;
 		$(".totalPrice_span").text(totalPrice.toLocaleString());
 		finalTotalPrice = totalPrice + delivery_price - usePoint;
 		console.log(finalTotalPrice);
-		totalPoint = totalPrice * 0.01;
+		totalPoint = 0;
 
 		// 최종 가격(총 가격 + 배송비)
 		$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
@@ -447,12 +479,17 @@ var finalTotalPrice=0;
 	    if ( valueCheck == '적립금' ) {
 	        $('.order_point_input').attr('disabled', false); 
 	        $('.coupon_select').prop("disabled", true);
+	        $('.order_point_input_btn_N').css('display', 'inline-block');
+	        $('.order_point_input_btn_Y').css('display', 'none');
+	        $('.coupon_select option:eq(0)').prop('selected', true); //첫번째 option 선택
 	        $('.order_point_input').focus();
 	    }
 	    else {
 	        $('.order_point_input').attr('disabled', true); 
 	        $('.coupon_select').prop("disabled", false);
 	        $('.order_point_input').val(0);
+	        $('.order_point_input_btn_N').css('display', 'none');
+	        $('.order_point_input_btn_Y').css('display', 'none');
 	        $('.coupon_select').focus();
 	    }
 		setInfo();
@@ -467,14 +504,14 @@ function showAdress(className){
 		$(".addressInfo_input_div").css('display', 'none');
 		/* 컨텐츠 보이기 */
 		$(".addressInfo_input_div_" + className).css('display', 'block');		
-	
-	/* selectAddress T/F */
-		/* 모든 selectAddress F만들기 */
-			$(".addressInfo_input_div").each(function(i, obj){
-				$(obj).find(".selectAddress").val("F");
-			});
-		/* 선택한 selectAdress T만들기 */
-			$(".addressInfo_input_div_" + className).find(".selectAddress").val("T");		
+}
+function show1(){
+	$('#add_value').val('a');
+	console.log($('#add_value').val());
+}
+function show2(){
+	$('#add_value').val('b');
+	console.log($('#add_value').val());
 }
 
 /* 다음 주소 연동 */
@@ -521,11 +558,11 @@ function execution_daum_address(){
  
              	// 제거해야할 코드
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                $(".address1_input").val(data.zonecode);
-                $(".address2_input").val(addr);				
+                $("#add_zone").val(data.zonecode);
+                $(".address1_input").val(addr);				
                 // 커서를 상세주소 필드로 이동한다.
-                $(".address3_input").attr("readonly", false);
-                $(".address3_input").focus();	 
+                $(".address2_input").attr("readonly", false);
+                $(".address2_input").focus();	 
 	        }
 	    }).open();  	
 }
@@ -599,7 +636,7 @@ $(document).ready(function () {
 		
         $(".total_info_div").stop().animate({
             "top": obj_position
-        }, 500);
+        }, 800);
 
     }).scroll();
 });
@@ -623,7 +660,24 @@ $(document).ready(function () {
 		src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 		
 	<script>
+	
+
    $("#check_module").click(function () {
+	   var prcadr="";
+		if($('#add_value').val()=='b'){
+			prcadr = $('#add_zone').val()+" "+$('.address1_input').val()+$('.address2_input').val();
+			console.log("직접 " + prcadr);
+		}
+		else{
+			prcadr = $('#add').val();
+			console.log(prcadr);
+		}
+		
+		if($('#from').val()==""){
+			alert('배송일을 입력해주세요.');
+            $("#from").focus();	
+			return;
+		}
 	      var IMP = window.IMP; // 생략가능
 	      IMP.init('imp17445447'); 
 	      // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
@@ -641,7 +695,7 @@ $(document).ready(function () {
 	         // 결제창에서 보여질 이름
 	         // name: '주문명 : ${auction.a_title}',
 	         // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
-	         amount: finalTotalPrice,
+	         amount: 100,
 	         // amount: ${bid.b_bid},
 	         // 가격 
 	         buyer_name: '${user.mname}',
@@ -657,16 +711,21 @@ $(document).ready(function () {
 	            // success.submit();
 	            // 결제 성공 시 정보를 넘겨줘야한다면 body에 form을 만든 뒤 위의 코드를 사용하는 방법이 있습니다.
 	            // 자세한 설명은 구글링으로 보시는게 좋습니다.
-	         } else {
+	            alert(msg);
+		         location.href='insertB.do?mid='+${user.mid}+'&pid='+${cart[0].pid}+'&buycnt='+${cart[0].cnt}
+		         +'&shipping='+$("#from").val()+'&prcadr='+prcadr+'&cid='+$("select[name='select_name']").val()+'&mileage='+$('.order_point_input').val();	         } else {
 	            var msg = '결제에 실패하였습니다.';
 	            msg += '에러내용 : ' + rsp.error_msg;
 	         }
 	         alert(msg);
-	         location.href='insertB.do?mid='+${user.mid}+'&pid='+${cart[0].pid}+'&buycnt='+${cart[0].cnt}+'&shipping'+shipping;
+	         location.href='insertB.do?mid='+${user.mid}+'&pid='+${cart[0].pid}+'&buycnt='+${cart[0].cnt}
+	         +'&shipping='+$("#from").val()+'&prcadr='+prcadr+'&cid='+$("select[name='select_name']").val()+'&mileage='+$('.order_point_input').val();
+	        
 	      });
 	   }); 
 	</script>
 	<!-- 데이트피커 -->
+	
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 		integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="

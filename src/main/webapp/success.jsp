@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -59,22 +60,51 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="checkout__order">
-								<h4 class="order__title">구매해주셔서 감사합니다</h4>
-								<a>주문하신 상품은 {p.delieveryDate}에 배송 될 예정입니다.</a>
+								<h4 class="order__title">${user.mname}님, 상품을 구매해주셔서 감사합니다</h4>
+								<c:forEach var="d" items='${buyProduct}' begin='0' end='0'>
+								<a>주문하신 상품은 ${d.shipping}에 배송 될 예정입니다.</a>
+								<p></p>
+								<p>연락처 : ${user.mphone}</p>
+								<p>배송 예정지 : ${d.prcadr}</p>
+								
+								</c:forEach>
+								
 								<hr>
-								<div class="checkout__order__products">
-									상품 <span>금액</span>
-								</div>
-								<ul class="checkout__total__products">
-									<!-- foreach문 시작 -->
-									<li>for each 상품 출력 1 {p.pname}<span>{p.pprice} </span></li>
-									<li>for each 상품 출력 2 <span>상품 가격 2</span></li>
-									<!-- foreach문 끝 -->
-								</ul>
+								<table class="table table-borderless">
+						<tbody>
+							<tr>
+								<th>상품사진</th>
+								<th>상품명</th>
+								<th>구매수량</th>
+								<th>가격</th>
+							</tr>
+							<c:forEach var="c" items="${buy}">
+							<tr>
+								<td><a href="boardP.do?pid=${cart.pid}"><img src="${c.pimg}"
+								alt="상품 사진" width="100" height="100"></a></td>
+								<td><a href="boardP.do?pid=${cart.pid}">${c.pname}</a></td>
+								<td>${c.cnt}</td>
+								<td>${c.price*c.cnt}</td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 								<ul class="checkout__total__all">
-									<li>합계 <span>$750.99</span></li>
-									<li>쿠폰적용 후 가격<span>가격</span></li>
-									<li>최종가격 <span>$750.99</span></li>
+									<li>합계 <span>${total}</span></li>
+									<c:if test="${coupon.code != null}">
+									<li>할인된 금액<span>${coupontotal}</span></li>
+									<li>사용한 쿠폰<span>${coupon.code}</span></li>
+									<li>최종가격 <span>${total-coupontotal}</span></li>
+									</c:if>
+									<c:if test="${mileage > 0}">
+									<li>적립금<span>${mileage}</span></li>
+									<li>최종가격 <span>${total}</span></li>
+									</c:if>
+									<c:if test="${mileage < 0}">
+									<li>사용한 적립금<span>${mileage*-1}</span></li>
+									<li>최종가격 <span>${total-(mileage*-1)}</span></li>
+									</c:if>
+									
 								</ul>
 								<div class="checkout__input__checkbox">
 									<label for="acc-or"> 예비용 체크박스1 <input type="checkbox"
@@ -93,7 +123,7 @@
 									</label>
 								</div>
 								<div class="site-btn" style="text-align:center; color:white; font-size:inherit;">
-									<a href="product.jsp" style="color:#f3f2ee;">더 보러가기</a>
+									<a href="selectAllP.do" style="color:#f3f2ee;">상품 더 보러가기</a>
 								</div>
 							</div>
 						</div>
