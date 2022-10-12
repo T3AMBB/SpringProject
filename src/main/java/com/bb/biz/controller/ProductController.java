@@ -95,6 +95,17 @@ public class ProductController {
 		return products;
 		
 	}
+
+	@RequestMapping(value="/filter.do")
+	public String filter(ProductVO pVO, Model model) {
+		System.out.println("필터 : "+pVO);
+		pVO.setPdetail("search");
+		List<ProductVO> products=productService.selectAllProduct(pVO);
+		
+		model.addAttribute("products", products);
+		return "product.jsp";
+		
+	}
 	
 	@RequestMapping(value="/selectAllP.do")
 	public String selectAllProduct(ProductVO pVO,Model model, FavoriteVO fVO, HttpSession session) {
