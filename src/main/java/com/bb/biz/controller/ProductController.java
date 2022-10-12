@@ -99,7 +99,25 @@ public class ProductController {
 	@RequestMapping(value="/filter.do")
 	public String filter(ProductVO pVO, Model model) {
 		System.out.println("필터 : "+pVO);
+		
+		model.addAttribute("pname",pVO.getPname());
+		model.addAttribute("pcom", pVO.getPcom());
+		model.addAttribute("pmat", pVO.getPmat());
+		model.addAttribute("price", pVO.getPrice());
+		model.addAttribute("price2", pVO.getPrice2());
+		model.addAttribute("psize", pVO.getPsize());
+		model.addAttribute("psize2", pVO.getPsize2());
+		
 		pVO.setPdetail("search");
+		List<ProductVO> products=productService.selectAllProduct(pVO);
+		
+		model.addAttribute("products", products);
+		return "product.jsp";
+		
+	}
+	@RequestMapping(value="/searchName.do")
+	public String searchName(ProductVO pVO, Model model) {
+		pVO.setPdetail("pname");
 		List<ProductVO> products=productService.selectAllProduct(pVO);
 		
 		model.addAttribute("products", products);
@@ -145,7 +163,7 @@ public class ProductController {
 				hm.put("more",1);
 			}
 		}
-			else {	
+		else {	
 			for(int i=cnt; i < products.size();i++) {
 				pro.add(products.get(i));
 				hm.put("more",0);
