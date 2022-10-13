@@ -141,11 +141,11 @@
                         <div>
 						<c:choose>
 						<c:when test="${product.status==1}">
-                        <button type="button" class="primary-btn" id="btn-cart" onclick="cart(${product.pid});"style="border-radius: 30px;border: 1px solid black;background:white;color: #333 !important;" disabled="disabled">장바구니 담기완료</button>
+                        <button type="button" class="primary-btn" id="btn-cart" onclick="cart(${product.pid});"style="border-radius: 30px;border: 2px solid black;background:white;color: #333 !important;" disabled="disabled">장바구니 담기완료</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </c:when>
                         <c:otherwise>
-                        <button type="button" class="primary-btn" id="btn-cart" onclick="cart(${product.pid});"style="border-radius: 30px;border: 1px solid black;background:white;color: #333 !important;">장바구니 담기</button>
+                        <button type="button" class="primary-btn" id="btn-cart" onclick="cart(${product.pid});"style="border-radius: 30px;border: 2px solid black;background:white;color: #333 !important;">장바구니 담기</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </c:otherwise>
                         </c:choose>	
@@ -212,7 +212,7 @@
                             <img src="img/productm.png" alt="" style="padding:7%">
                                 <div class="tab-pane active" id="tabs-5" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <img alt="" src="${product.pdetail }" style="padding:11%">
+                                        <img alt="" src="${product.pdetail }" style="padding: 15%;margin-left: 7%;">
                                     </div>
                                 </div>
                                     </div>
