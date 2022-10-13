@@ -72,7 +72,7 @@
 							<tbody>							
 								<!-- For each문 시작 지점 -->
 								<c:forEach var="c" items="${cart}">								
-								<tr>
+								<tr id="${p.pid}">
 									<td>
 									<input type="checkbox">
 									<input type="hidden" id="pid" value="${c.pid}">
@@ -106,10 +106,8 @@
 										</td>
 									<td>
 									</td>
-									<td class="cart__close"><a href="delete.do"><i
-											class="fa fa-close"></i>
-									<!-- <button type="button" class="primary-btn" id="btn-cart" onclick="cartD();" style="size:inherit;">삭제</button> -->
-											</a></td>
+									<td class="cart__close"><button onclick="cartD(${p.pid})"><i
+											class="fa fa-close"></i></button>></td>
 								</tr>
 								</c:forEach>
 								<!-- For each문 끝 -->
@@ -125,7 +123,7 @@
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6">
 							<div class="continue__btn update__btn">
-								<a href="#"><i class="fa fa-spinner"></i> 장바구니 비우기</a>
+								<a href="cartM.do"><i class="fa fa-spinner"></i> 장바구니 비우기</a>
 							</div>
 						</div>
 					</div>
@@ -149,10 +147,9 @@
 	<hearder:footer />
 
 <script type="text/javascript">
-function cartD(){
+function cartD(pid){
       
         
-         var pid = $('#pid').val();
          $.ajax({   
             type : 'POST',
             url : 'cartD.do',
@@ -162,7 +159,7 @@ function cartD(){
             success : function(result) {
                
                if (result == 'success') {
-            	   $("#btn-cart").text("삭제");
+            	   $("#"+pid+"").remove();
                   }
                
                } 
