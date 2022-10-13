@@ -73,14 +73,14 @@
 			<table class="table table-bordered" id="mypageHeader">
 				<tr>
 					<td class="text-center align-middle"
-						style="width: 20%; background-color: #212529; color: #ffffff; font-size: 1.4em; font-weight: 600;">${data.mname}님 안녕하세요!</td>
+						style="width: 20%; background-color: #212529; color: #ffffff; font-size: 1.4em; font-weight: 600;">${user.mname}님 안녕하세요!</td>
 					<td class="align-middle" style="width: 20%">
 						<div class="row" onclick="pointEffect()" id="point">
 							<div class="col-md-8 col-lg-3">
 								<i class="fab fa-product-hunt"></i><br />
 							</div>
 							<div class="col-md-4 col-lg-9">
-								<span>적립금</span><br> <span class="emphasis">${data.mileage }</span>
+								<span>적립금</span><br> <span class="emphasis">${user.mileage }</span>
 								<div class="square square-1"></div>
 								<div class="square square-2"></div>
 								<div class="circle circle-1"></div>
@@ -135,26 +135,26 @@
 					</div>
 					<div class="col-md-4 col-lg-9">
 							<br><br>
+						<form action="updateM.do" method="post" name='addressForm'>
 						<div class="text-left">
 						<h5>내 정보 수정 </h5>
 						<br>
-						<form name='addressForm'>
 						<table class="table table-borderless">
 							<tr>
 								<td style="width:200px">아이디</td>
-								<td><input style="border:none;" type="text" value='${data.mid }' name="mid" readonly="readonly"></td>
+								<td><input style="border:none;" type="text" value='${user.mid }' name="mid" readonly="readonly"></td>
 							</tr>
 							<tr>
 								<td>이름</td>
-								<td><input type="text" class="form-control" value='${data.mname }' name="mname"></td>
+								<td><input type="text" class="form-control" value='${user.mname }' name="mname"></td>
 							</tr>
 							<tr>
 								<td>비밀번호</td>
-								<td><input type="password" class="form-control" value='${data.mpw }' name="mpw"></td>
+								<td><input type="password" class="form-control" value='${user.mpw }' name="mpw"></td>
 							</tr>
 							<tr>
 								<td>휴대폰 번호</td>
-								<td><input type="text" class="form-control" value='${data.mphone }' name="mphone"></td>
+								<td><input type="text" class="form-control" value='${user.mphone }' name="mphone"></td>
 							</tr>
 							<tr>
 								<td colspan="2">
@@ -163,27 +163,29 @@
 												<div class="input-group-prepend">
 													<span style="background:#fff;" class="input-group-text">주소</span>
 												</div>
-												<input  style="background:#fff;" type="text" name="addrCode" id="add_zone"
-													placeholder="${data.zipcode}" class="form-control" readonly="readonly" required>
+												<input  style="background:#fff;" type="text" name="zipcode" id="zipcode"
+													placeholder="${user.zipcode}" class="form-control" readonly="readonly" required>
 												<input style="height:37px; line-height:6px;" id="searchAdd" type="button" value="우편번호찾기"
 													class="primary-btn"><br>
 											</div>
 											<div class="input-group">
-												<input style="background:#fff;" type="text" name="addr1" id="add_load" readonly="readonly"
-													class="form-control" placeholder="${data.streetaddress}" required>
+												<input style="background:#fff;" type="text" name="streetaddress" id="streetaddress" readonly="readonly"
+													class="form-control" placeholder="${user.streetaddress}" required>
 												<span id="guide" style="color: #999; display: none"></span>
-												<input type="text" name="address" value="${data.address }"
+												<input type="text" name="address" value="${user.address }"
 													class="form-control" placeholder="상세주소" required>
 											</div>
 										</div>
 								</td>
 							</tr>
 						</table>
-						</form>
+
 					</div>
 					<div class="text-center">
+					<input type="hidden" name="mileage" value="${user.mileage}">
 					<button type="submit" class="primary-btn">정보 수정</button>
 					</div>
+					</form>
 					<br><br>
 				</div>
 				</div>
@@ -212,17 +214,13 @@
 	            </div>
 	            <button type="submit" class="btn btn-dark btn-block btn-round">회원탈퇴</button>
 	          </form>
-	          
 	        </div>
 	        <br>
 	      </div>
 	    </div>
-
 	  </div>
 	</div>
 	</div>
-
-
 		<script>
 			function pointEffect() {
 				$(".square, .circle, .triangle, .close, .star, .message").css(
@@ -256,8 +254,8 @@
 		           //카카오 지도 발생
 		           new daum.Postcode({
 		               oncomplete: function(data) { //선택시 입력값 세팅
-		                   document.getElementById("add_load").value = data.address; // 주소 넣기
-		                   document.getElementById('add_zone').value = data.zonecode; // 우편 번호 넣기
+		                   document.getElementById("streetaddress").value = data.address; // 주소 넣기
+		                   document.getElementById('zipcode').value = data.zonecode; // 우편 번호 넣기
 		                   document.querySelector("input[name=address]").focus(); //상세입력 포커싱
 		               }
 		           }).open();

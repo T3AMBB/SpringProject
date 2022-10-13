@@ -438,21 +438,23 @@ var finalTotalPrice=0;
 		// 배송비
 		$(".delivery_price_span").text(delivery_price.toLocaleString());
 
-		var coupon = $("#select_coupon option:selected").val();
+		var coupon = $("#select_coupon option:selected").text();
+		alert(coupon);
+		finalTotalPrice = totalPrice + delivery_price;
 		if(coupon == "0"){
 			return;
 		}
 		if (coupon == '고객감사쿠폰20%') {
-			usePoint = totalPrice * 0.2;
+			usePoint = finalTotalPrice * 0.2;
 		} else {
-			usePoint = totalPrice * 0.1;
+			usePoint = finalTotalPrice * 0.1;
 		}
 		alert(usePoint);
 		$(".usePoint_span").text(usePoint.toLocaleString());
 		console.log(usePoint.toLocaleString());
 		// 물건 가격
 		$(".totalPrice_span").text(totalPrice.toLocaleString());
-		finalTotalPrice = totalPrice + delivery_price - usePoint;
+		finalTotalPrice -= usePoint;
 		console.log(finalTotalPrice);
 		totalPoint = 0;
 
