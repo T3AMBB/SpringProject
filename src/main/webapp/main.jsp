@@ -93,7 +93,7 @@
                         <img src="${n.pimg}" alt="" width="280" height="280"></a>
 		                   <ul class="product__hover">
 		                 <!-- 로그인 상태 -->
-						<c:if test="${user.mid!=null}">
+						<c:if test="${member != null}">
 							<c:choose>
 								<c:when test="${n.fav==1}"><!-- 좋아요 되어있는 상품인지 확인 -->
         		                        <li><img id="${n.pid}fav_btn" src="img/icon/heartOn.png" alt="좋아요활성화" onclick="favorite(${n.pid});"></li>
@@ -105,7 +105,7 @@
                         </c:if>
                         
                         <!-- 비로그인 상태 -->
-						<c:if test="${user.mid == null}">
+						<c:if test="${member == null}">
                                 <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favoriteN(${n.pid});"></li>
                         </c:if>
                         
