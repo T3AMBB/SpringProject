@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="header" tagdir="/WEB-INF/tags"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -73,7 +74,7 @@
 			<table class="table table-bordered" id="mypageHeader">
 				<tr>
 					<td class="text-center align-middle"
-						style="width: 20%; background-color: #212529; color: #ffffff; font-size: 1.4em; font-weight: 600;">${data.mname}님 안녕하세요!</td>
+						style="width: 20%; background-color: #212529; color: #ffffff; font-size: 1.4em; font-weight: 600;">${user.mname}님 안녕하세요!</td>
 					<td class="align-middle" style="width: 20%">
 						<div class="row" onclick="pointEffect()" id="point">
 							<div class="col-md-8 col-lg-3">
@@ -81,7 +82,7 @@
 							</div>
 							<div class="col-md-4 col-lg-9">
 								<span>적립금</span><br>
-								<span class="emphasis">${data.mileage }</span>
+								<span class="emphasis">${user.mileage }</span>
 								<div class="square square-1"></div>
 								<div class="square square-2"></div>
 								<div class="circle circle-1"></div>
@@ -146,12 +147,17 @@
 									</div>
 									<br>
 									<div class="d-flex justify-content-center" style="align-items: center;">
-										<img src="img/coupon.jpg" style="width:300px; height:300px;"alt="">
+										<img onclick='insertC();' src="img/coupon.jpg" style="cursor:pointer; margin-right:70px; width:300px; height:300px;"alt="">
+										<form action="insertC.do" method="post" name="coupon" id="frm">
+											<input type="hidden" value='고객감사쿠폰20%' name="code">
+											<input type="hidden" value='0.8' name="dcrate">
+											<input type="hidden" value='${user.mid}' name="mid">
+										</form>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<div style="text-align:center; color:red"><h4>내가 가진 쿠폰</h4>
 										<hr>
 										<span
-									class="emphasis" style="color:red"><strong>1장</strong></span>
+									class="emphasis" style="color:red"><strong>${coupon.size()}장</strong></span>
 										</div>
 									</div>
 									<br><br>
@@ -163,38 +169,34 @@
 										<tr>
 											<th>쿠폰명</th>
 											<th>할인율</th>
-											<th>적용기준</th>
+											<th>사용여부</th>
 											<th>유효기간</th>
 										</tr>
+										<c:forEach var="cp" items="${coupon}">
 										<tr>
-											<td>쿠폰명</td>
-											<td>할인율</td>
-											<td>적용기준</td>
+											<td>${cp.code}</td>
+											<td>
+											<c:if test="${cp.dcrate==0.8}">
+												20%
+											</c:if>
+											<c:if test="${cp.dcrate==0.9}">
+												10%
+											</c:if>
+											</td>
+											<td>
+											<c:if test="${cp.cstatus==0}">
+												미사용
+											</c:if>
+											<c:if test="${cp.cstatus==1}">
+												사용
+											</c:if>
+											</td>
 											<td>유효기간</td>
 										</tr>
+										</c:forEach>
 									</table>
 									</div>
 									<br><br>
-									<div class="wrap-table">
-									<div class="text-left">
-									<h5>쿠폰 사용 내역</h5>
-									</div>
-									<table class="table table-borderless">
-										<tr>
-											<th>쿠폰명</th>
-											<th>할인율</th>
-											<th>적용기준</th>
-											<th>사용일</th>
-										</tr>
-										<tr>
-											<td>쿠폰명</td>
-											<td>할인율</td>
-											<td>적용기준</td>
-											<td>사용일</td>
-										</tr>
-									</table>
-									<br><br>
-				</div>
 				</div>
 			</div>
 		</div>
@@ -232,6 +234,13 @@
 	</div>
 	</div>
 	<script>
+	function insertC(){
+		document.getElementById('frm').submit();
+		alert('고객 감사 20% 쿠폰이 발급되었습니다.');
+	}
+	</script>
+	<script>
+	
 		function pointEffect() {
 			$(".square, .circle, .triangle, .close, .star, .message").css(
 					"display", "block");
