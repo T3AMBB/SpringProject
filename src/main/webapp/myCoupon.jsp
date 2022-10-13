@@ -147,30 +147,24 @@
 									</div>
 									<br>
 									<div class="d-flex justify-content-center" style="align-items: center;">
-										<img onclick='insertC();' src="img/coupon.jpg" style="cursor:pointer; margin-right:70px; width:300px; height:300px;"alt="">
+										<img onclick='insertC();' src="img/coupon1.jpg" style="cursor:pointer; margin-right:70px; width:355px; height:155px;"alt="쿠폰이미지">
 										<form action="insertC.do" method="post" name="coupon" id="frm">
 											<input type="hidden" value='고객감사쿠폰20%' name="code">
 											<input type="hidden" value='0.8' name="dcrate">
 											<input type="hidden" value='${user.mid}' name="mid">
 										</form>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<div style="text-align:center; color:red"><h4>내가 가진 쿠폰</h4>
-										<hr>
-										<span
-									class="emphasis" style="color:red"><strong>${coupon.size()}장</strong></span>
-										</div>
 									</div>
 									<br><br>
 									<div class="wrap-table">
 									<div class="text-left">
-									<h5>쿠폰 목록</h5>
+									<h5>내가 가진 쿠폰 [ ${coupon.size()}장 ]</h5>
 									</div>
 									<table class="table table-borderless">
 										<tr>
 											<th>쿠폰명</th>
 											<th>할인율</th>
 											<th>사용여부</th>
-											<th>유효기간</th>
 										</tr>
 										<c:forEach var="cp" items="${coupon}">
 										<tr>
@@ -191,7 +185,6 @@
 												사용
 											</c:if>
 											</td>
-											<td>유효기간</td>
 										</tr>
 										</c:forEach>
 									</table>

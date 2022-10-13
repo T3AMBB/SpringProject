@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="header" tagdir="/WEB-INF/tags"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+  
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -81,7 +83,7 @@
 							</div>
 							<div class="col-md-4 col-lg-9">
 								<span>적립금</span><br>
-								<span class="emphasis">${data.mileage }</span>
+								<span class="emphasis">${user.mileage }</span>
 								<div class="square square-1"></div>
 								<div class="square square-2"></div>
 								<div class="circle circle-1"></div>
@@ -151,15 +153,19 @@
 							<th>가격</th>
 							<th>구매일</th>
 							<th>배송일</th>
+							<th>배송지</th>
 						</tr>
+							<c:forEach var="b" items="${buylist}">
 						<tr>
-							<td>상품사진</td>
-							<td>상품명</td>
-							<td>구매수량</td>
-							<td>가격</td>
-							<td>구매일</td>
-							<td>배송일</td>
+							<td><img src="${b.pimg}" style="width:80px;"alt="상품이미지"></td> 
+							<td>${b.pname}</td>
+							<td>${b.buycnt}</td>
+							<td>${b.price}</td>
+							<td>${b.shipping}</td>
+							<td>${b.buydate}</td>
+							<td>${b.prcadr}</td>
 						</tr>
+							</c:forEach>	
 					</table>
 					<br><br><br><br>
 				</div>

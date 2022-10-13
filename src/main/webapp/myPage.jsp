@@ -141,12 +141,12 @@
 						<br>
 						<table class="table table-borderless">
 							<tr>
-								<td style="width:200px">아이디</td>
-								<td><input style="border:none;" type="text" value='${user.mid }' name="mid" readonly="readonly"></td>
+								<td>아이디</td>
+								<td><input type="text" class="form-control" value='${user.mid }' name="mid" readonly="readonly"></td>
 							</tr>
 							<tr>
 								<td>이름</td>
-								<td><input type="text" class="form-control" value='${user.mname }' name="mname"></td>
+								<td><input type="text" class="form-control" value='${user.mname }' name="mname" readonly="readonly"></td>
 							</tr>
 							<tr>
 								<td>비밀번호</td>
@@ -154,7 +154,7 @@
 							</tr>
 							<tr>
 								<td>휴대폰 번호</td>
-								<td><input type="text" class="form-control" value='${user.mphone }' name="mphone"></td>
+								<td><input type="text" class="form-control" value='${user.mphone }' name="mphone" readonly="readonly"></td>
 							</tr>
 							<tr>
 								<td colspan="2">
