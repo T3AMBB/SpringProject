@@ -130,7 +130,11 @@ public class MemberController {
 	@RequestMapping("/check.do")
 	public String check(MemberVO mVO, HttpSession session, HttpServletRequest request) {
 	
-		if(memberService.selectOneMember_CHECK(mVO)==null) {
+		mVO.setMid(request.getParameter("mid"));
+		MemberVO vo = memberService.selectOneMember_CHECK(mVO);
+
+
+		if(vo==null) {
 			return "success";
 		}
 		return "0";
