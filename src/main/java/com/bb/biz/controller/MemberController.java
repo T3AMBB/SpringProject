@@ -80,9 +80,8 @@ public class MemberController {
 	
 	@RequestMapping(value="/signUp.do",method=RequestMethod.POST)
 	public String insertMember(MemberVO mVO,CouponVO cVO) {
-		
-		cVO.setMid(mVO.getMid());
-		cVO.setCode("회원가입 10% 쿠폰");
+
+		cVO.setCode("가입환영쿠폰10%");
 		cVO.setDcrate(0.9);
 		couponService.insetCoupon(cVO);	
 		memberService.insertMember(mVO);
@@ -97,7 +96,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/updateM.do",method=RequestMethod.POST)
-	public String updateMember(Model model,@ModelAttribute("data")MemberVO vo,HttpSession session){
+	public String updateMember(Model model,@ModelAttribute("user")MemberVO vo,HttpSession session){
 		if(vo != null) {
 			memberService.updateMember(vo);
 		}
@@ -105,7 +104,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/deleteM.do",method=RequestMethod.GET)
-	public String deleteMember(@ModelAttribute("data")MemberVO mVO,HttpSession session ) {
+	public String deleteMember(@ModelAttribute("user")MemberVO mVO,HttpSession session ) {
 
 		if(mVO != null) {
 			
@@ -130,12 +129,8 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("/check.do")
 	public String check(MemberVO mVO, HttpSession session, HttpServletRequest request) {
-		mVO.setMid(request.getParameter("mid"));
-		System.out.println("로그로그"+mVO);
-		MemberVO vo = memberService.selectOneMember_CHECK(mVO);
-		
 	
-		if(vo==null) {
+		if(memberService.selectOneMember_CHECK(mVO)==null) {
 			return "success";
 		}
 		return "0";
