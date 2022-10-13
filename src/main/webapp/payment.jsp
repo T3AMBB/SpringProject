@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 
 <html lang="zxx">
@@ -231,7 +233,7 @@
 							<col width="*">
 						</colgroup>
 						<tbody class="tb">
-							<c:if test="${coupon.size()>0}">
+							<c:if test="${fn:length(coupon)>0}">
 							<tr>
 								<th>쿠폰 사용</th>
 								<td>
@@ -244,7 +246,7 @@
 								</td>
 							</tr>
 							</c:if>
-							<c:if test="${coupon.size()==0}">
+							<c:if test="${fn:length(coupon)==0}">
 							<tr>
 								<th>쿠폰 사용</th>
 								<td>

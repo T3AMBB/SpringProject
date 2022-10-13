@@ -163,38 +163,6 @@
 	
 	// 상품 상세
 	
-	var default_price=$('.product_price').val();
-	var proQty = $('.pro-qty');
-	proQty.prepend('<span class="fa fa-angle-down inc qtybtn"></span>');
-	proQty.append('<span class="fa fa-angle-up dec qtybtn"></span>');
-	proQty.on('click', '.qtybtn', function() {
-		var $button = $(this);
-		var oldValue = $button.parent().find('input').val();
-		if ($button.hasClass('dec')) {
-			var newVal = parseFloat(oldValue) + 1;
-			if (oldValue < 10) {
-				var newVal = parseFloat(oldValue) + 1;
-			} else {
-				alert("한번에 최대 10개 까지 주문 가능합니다")
-				newVal = 10;
-			}
-		} else {
-			// Don't allow decrementing below zero
-			if (oldValue > 1) {
-				var newVal = parseFloat(oldValue) - 1;
-			} else {
-				alert("1개이상 부터 주문 가능합니다")
-				newVal = 1;
-			}
-		}
-		$button.parent().find('input').val(newVal);
-		
-		var show_total_amount = default_price * newVal;
-		$(".mbox").val(show_total_amount)
-		console.log(show_total_amount);
-		console.log(default_price);
-
-	});
 
 	var product_price = $('.product_price').val();
 	

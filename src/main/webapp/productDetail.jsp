@@ -31,6 +31,8 @@
     <!-- 폰트 어썸 -->
 <script src="https://kit.fontawesome.com/9bd2faeab5.js"
 	crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+	
 </head>
 
 <body>
@@ -103,20 +105,25 @@
          						<tr>
          							<th scope="row" style="text-align: left; margin-top: 20px;">수량</th>
          							
+         								<c:if test="${product.pcnt>0}">
          							<td>
 										<div class="product__details__cart__option" >
                       					     <div class="quantity" >
-                           					   <div class="pro-qty" scope="row"style="text-align: center; margin-top: 20px; margin-left: 100px;">
+                           					   <div class="pro-qty" scope="row" style="text-align:center; margin-top: 20px; margin-left: 100px;">
                               					   <input type="text" value="1" id="cnt" name="cnt" readonly>
-                              					   
                            					   </div>
                           				 </div>
                      					 </div>
 									</td>
+                     					 </c:if>
+                     					 <c:if test="${product.pcnt<=0}">
+                              					<td style="color: #ff6623; font-size: 26px; font-weight: 700; padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">재고가 없습니다.</td>
+                     					 </c:if>
          						</tr>
                       		  </tbody>
                         </table>
                         ${product.pid}
+                       재고 ${product.pcnt}
                         </div>
 						 
                         <hr>
@@ -133,7 +140,7 @@
                         </div>
                         <div>
 						<c:choose>
-							<c:when test="${product.status==1}">
+						<c:when test="${product.status==1}">
                         <button type="button" class="primary-btn" id="btn-cart" onclick="cart(${product.pid});"style="border-radius: 30px;border: 1px solid black;background:white;color: #333 !important;" disabled="disabled">장바구니 담기완료</button>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </c:when>
@@ -143,8 +150,18 @@
                         </c:otherwise>
                         </c:choose>	
                   	<input type="hidden" name="pid" value="${product.pid}">
-                        <input type="submit" class="primary-btn" style="border-radius: 30px;" value="바로 구매하기">
-							
+                  		<!-- 바로 구매하기 비로그인 & 재고부족 -->
+                  		<c:choose>
+                  		<c:when test="${member==null}">
+                        <input type="button" onclick='login_alert();' class="primary-btn" style="cursor:pointer; border-radius: 30px;" value="바로 구매하기">
+						</c:when>
+						<c:when test="${product.pcnt<=0}">
+                        <input type="button" onclick='stock_alert();' class="primary-btn" style="cursor:pointer; border-radius: 30px;" value="바로 구매하기">
+						</c:when>
+						<c:otherwise>
+						<input type="submit" class="primary-btn" style="cursor:pointer; border-radius: 30px;" value="바로 구매하기">
+						</c:otherwise>
+                        </c:choose>
                         </div>
                         <br>
                         <br>
@@ -239,12 +256,7 @@
             </div>
     </section>
     <!-- Related Section End -->
-	
-
-    
-    
-    
-    	<hearder:footer/>
+    <hearder:footer/>
 
     <!-- Search Begin -->
     <div class="search-model">
@@ -256,6 +268,52 @@
         </div>
     </div>
     <!-- Search End -->
+    <script>
+    	function login_alert(){
+			alert('로그인 후 이용해주세요.');
+    	}
+    	function stock_alert(){
+			alert('재고가 부족합니다.');
+    	}
+    </script>
+<script>
+
+	var default_price=$('.product_price').val();
+	var proQty = $('.pro-qty');
+	proQty.prepend('<span class="fa fa-angle-down inc qtybtn"></span>');
+	proQty.append('<span class="fa fa-angle-up dec qtybtn"></span>');
+	proQty.on('click', '.qtybtn', function() {
+		var $button = $(this);
+		var oldValue = $button.parent().find('input').val();
+		if ($button.hasClass('dec')) {
+			if( oldValue >= ${product.pcnt}){
+				alert("재고가 부족합니다.");
+				var newVal = oldValue;
+			}
+			else if(oldValue < 10){
+				newVal = parseFloat(oldValue)+1;
+			}else {
+				alert("한번에 최대 10개 까지 주문 가능합니다")
+				newVal = 10;
+			}
+		} else {
+			// Don't allow decrementing below zero
+			if (oldValue > 1) {
+				var newVal = parseFloat(oldValue) - 1;
+			} else {
+				alert("1개 이상 부터 주문 가능합니다");
+				newVal = 1;
+			}
+		}
+		$button.parent().find('input').val(newVal);
+		
+		var show_total_amount = default_price * newVal;
+		$(".mbox").val(show_total_amount)
+		console.log(show_total_amount);
+		console.log(default_price);
+	
+	});
+</script>
 <script type="text/javascript">
 function cart(pid){
       
