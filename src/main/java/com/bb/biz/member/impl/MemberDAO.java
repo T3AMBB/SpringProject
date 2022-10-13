@@ -76,7 +76,7 @@ public class MemberDAO {
 	MemberVO selectOneMember_CHECK(MemberVO vo) {
 		Object[] args= {vo.getMid()};
 		try {
-			return jdbcTemplate.queryForObject(sql_selectOne,args,new MemberRowMapper());
+			return jdbcTemplate.queryForObject(sql_selectOne_CHECK,args,new MemberRowMapper());
 		}
 		catch(EmptyResultDataAccessException e) {
 			return null;
