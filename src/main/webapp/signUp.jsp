@@ -60,14 +60,14 @@
               <tbody>
                 <tr>
                   <th><span>아이디</span></th>
-                  <td class="row"><input type="text" placeholder="ID 를 입력하세요." id="mid_form" onchange="check();" required>
+                  <td class="row"><input type="text" placeholder="ID 를 입력하세요." name="mid" id="mid_form" onchange="check();" required>
                   <span class="result"></span>
                   </td>
                   
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td class="row"><input type="text" placeholder="비밀번호를 입력해주세요." id="mpw_check"  onchange="checkPw()" required>
+                  <td class="row"><input type="text" placeholder="비밀번호를 입력해주세요." name="mpw" id="mpw_check"  onchange="checkPw()" required>
                   	<span class="result1"></span>
                   </td>
                 </tr>
@@ -79,11 +79,11 @@
                 </tr>
                 <tr>
                   <th><span>이름</span></th>
-                  <td class="row"><input type="text" placeholder="이름을 입력해주세요." id="mname_check" required></td>
+                  <td class="row"><input type="text" placeholder="이름을 입력해주세요." name="mname" id="mname_check" required></td>
                 </tr>
                 <tr>
                   <th><span>휴대폰 번호</span></th>
-                  <td class="row"><input type="text" placeholder="휴대폰 번호를 입력하세요." id="mphone_check"  required></td>
+                  <td class="row"><input type="text" placeholder="휴대폰 번호를 입력하세요." name="mphone" id="mphone_check"  required></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr><td></td></tr>
@@ -150,13 +150,13 @@
               <tbody>
                 <tr>
                   <th><span>아이디</span></th>
-                  <td class="row"><input type="text" placeholder="ID 를 입력하세요." id="mid_check" value="${mid }"  onchange="check2();" required readonly="readonly">
+                  <td class="row"><input type="text" placeholder="ID 를 입력하세요." id="mid_check" value="${mid }" name="mid" onchange="check2();" required readonly="readonly">
                   <span class="result"></span>
                   </td>
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td class="row"><input type="text" placeholder="비밀번호를 입력해주세요." id="mpw"  onchange="checkPw3()" required>
+                  <td class="row"><input type="text" placeholder="비밀번호를 입력해주세요." id="mpw" name="mpw" onchange="checkPw3()" required>
                   <span class="result1"></span>
                   </td>
                 </tr>
@@ -168,11 +168,11 @@
                 </tr>
                 <tr>
                   <th><span>이름</span></th>
-                  <td class="row"><input type="text" placeholder="이름을 입력해주세요." id="mname"  value="${mname}" required readonly="readonly"></td>
+                  <td class="row"><input type="text" placeholder="이름을 입력해주세요." id="mname" name="mname" value="${mname}" required readonly="readonly"></td>
                 </tr>
                 <tr>
                   <th><span>휴대폰 번호</span></th>
-                  <td class="row"><input type="text" placeholder="휴대폰 번호를 입력하세요." id="mphone"  required></td>
+                  <td class="row"><input type="text" placeholder="휴대폰 번호를 입력하세요." id="mphone" name="mphone" required></td>
                 </tr>
                 <tr><td></td></tr>
                 <tr><td></td></tr>
