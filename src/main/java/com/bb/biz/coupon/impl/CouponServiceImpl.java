@@ -29,4 +29,10 @@ public class CouponServiceImpl implements CouponService{
 		return couponDAO.selectAllCoupon(vo);
 	}
 
+	@Override
+	public CouponVO selectOneCoupon(CouponVO vo) {
+		// TODO Auto-generated method stub
+		return couponDAO.selectOneCoupon(vo);
+	}
+
 }

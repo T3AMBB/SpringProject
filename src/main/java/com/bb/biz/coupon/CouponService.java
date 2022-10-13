@@ -6,4 +6,5 @@ public interface CouponService {
 	boolean insetCoupon(CouponVO vo);
 	boolean updateCoupon(CouponVO vo);
 	List<CouponVO> selectAllCoupon(CouponVO vo);
+	CouponVO selectOneCoupon(CouponVO vo);
 }
