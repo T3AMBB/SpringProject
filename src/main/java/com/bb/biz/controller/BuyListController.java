@@ -116,10 +116,12 @@ public class BuyListController {
    }
    
    @RequestMapping(value="/selectAllB.do")
-   public String SelectAllBuylist(BuylistVO bVO, Model model) {
-      List<BuylistVO> buylist =buylistService.selectAllBuylist(bVO);
-      
-      model.addAttribute("buylist", buylist);
+   public String SelectAllBuylist(BuylistVO bVO, Model model, HttpSession session) {
+   
+	   bVO.setMid((String)session.getAttribute("member"));
+	   List<BuylistVO> buylist =buylistService.selectAllBuylist(bVO);
+
+	   model.addAttribute("buylist", buylist);
       return "myBuylist.jsp";
 
    }

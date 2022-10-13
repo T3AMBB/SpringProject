@@ -19,7 +19,7 @@ public class BuylistDAO {
 	
 	final String sql_insert="INSERT INTO BUYLIST(BUYID,MID,PID,BUYCNT,SHIPPING,PRCADR)"
 			+ "VALUES((SELECT NVL(MAX(BUYID),0)+1 FROM BUYLIST),?,?,?,?,?)";
-	final String sql_selectAll="SELECT * FROM BUYLIST WHERE MID=? ORDER BY BUYID DESC";
+	final String sql_selectAll="SELECT * FROM BUYLIST LEFT OUTER JOIN PRODUCT ON BUYLIST.PID=PRODUCT.PID WHERE MID=? ORDER BY BUYID DESC";
 
 
 	boolean insertBuylist(BuylistVO vo) {
@@ -32,7 +32,7 @@ public class BuylistDAO {
 		}
 	}
 	List<BuylistVO> selectAllBuylist(BuylistVO vo){
-		return jdbcTemplate.query(sql_selectAll,new BuylistRowMapper());
+		return jdbcTemplate.query(sql_selectAll,new BuylistRowMapper2(),vo.getMid());
 	
 		}
 	}
@@ -48,6 +48,25 @@ class BuylistRowMapper implements RowMapper<BuylistVO>{
 		data.setBuycnt(rs.getInt("BUYCNT"));
 		data.setShipping(rs.getString("SHIPPING"));
 		data.setPrcadr(rs.getString("PRCADR"));
+		return data;
+	}
+	
+}
+class BuylistRowMapper2 implements RowMapper<BuylistVO>{
+	
+	@Override
+	public BuylistVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		BuylistVO data=new BuylistVO();
+		data.setBuyid(rs.getInt("BUYID"));
+		data.setMid(rs.getString("MID"));
+		data.setPid(rs.getInt("PID"));
+		data.setBuydate(rs.getString("BUYDATE"));
+		data.setBuycnt(rs.getInt("BUYCNT"));
+		data.setShipping(rs.getString("SHIPPING"));
+		data.setPrcadr(rs.getString("PRCADR"));
+		data.setPimg(rs.getString("PIMG"));
+		data.setPname(rs.getString("PNAME"));
+		data.setPrice(rs.getInt("PRICE"));
 		return data;
 	}
 	
