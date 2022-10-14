@@ -24,7 +24,7 @@ public class BuylistDAO {
 
 	boolean insertBuylist(BuylistVO vo) {
 		if(vo.getMid()!=null) {
-		jdbcTemplate.update(sql_insert,vo.getMid(),vo.getPid(),vo.getBuydate(),vo.getBuycnt(),vo.getShipping(),vo.getPrcadr());
+		jdbcTemplate.update(sql_insert,vo.getMid(),vo.getPid(),vo.getBuycnt(),vo.getShipping(),vo.getPrcadr());
 		return true;
 		}
 		else {
