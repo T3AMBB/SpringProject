@@ -7,6 +7,8 @@
 <html lang="zxx">
 
 <head>
+	<link rel="shorycut icon" href="img/pavi.png" type="image/png">
+	<link rel="apple-touch-icon" href="img/pavi.png">
     <meta charset="UTF-8">
     <meta name="description" content="Male_Fashion Template">
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
@@ -44,39 +46,27 @@
     <section class="shop-details">
       <div class="product__details__pic" style="padding-bottom: 1px;">
          <div class="container">
-            <div class="product__details__breadcrumb">
-          	  <div class="col-lg-12" style="padding-bottom: 5%;">
-                    <div class="breadcrumb__text">
-                        <h4>Home</h4>
-                        <div class="breadcrumb__links">
-                            <a href="/selectAllP.do">Shop</a>
-                            <span>상품상세</span>
-                        </div>
-                    </div>
-              </div>
-            </div>
-            
-            
             <div class="tab-content">
                <div class="tab-pane active" id="tabs-1" role="tabpanel">
                <div class="row">
                   <div class="col-lg-6" >
                   <div class="product__details__pic__item">
-                     <img src="${product.pimg}" alt="상품이미지" style="margin-top: 25%; margin-block: auto; border: 1px solid black; padding: 1%">
+                     <img src="${product.pimg}" alt="상품이미지" style="margin-top: 25%; margin-block: auto; padding: 1%; height:730px;">
                   </div>
                   <div>
                   </div>
                   </div>
                   
 				<form class="col-lg-6" action="cartP.do" method="post" style="display : inline; margin:0px;">
-                  <div class="col-lg-12" style="border:1px solid black; padding:3%;padding-bottom: 1%;padding-top: 4%;">
+                  <div class="col-lg-12" >
                      <div class="product__details__text">
                      	<div class="producttext" style="text-align:initial;">
+                     	<br>
                         <h4>${product.pname}</h4>
                         <br>
                      	</div>
                         <h4 style=" margin-right: 45%;">
-                           <input type="text" class="product_price"value="${product.price }" style="border: none;width: 60%; margin-left:20%; -webkit-text-stroke-width: medium;" readonly>원
+                           <input type="text" class="product_price" value="${product.price }" style="text-align:right; border: none;width: 60%; margin-left:20%; -webkit-text-stroke-width: medium;" readonly>원
                         </h4>
                         <br>
                         <br>
@@ -84,6 +74,7 @@
                       					     
                         <table>
                     	    <tbody>
+                    	    
          						<tr>
          							<th scope="row" style="text-align: left; margin-top: 15px; padding-bottom: 15px;">제조사</th>
          							<td style="padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">${product.pcom }</td>
@@ -100,8 +91,6 @@
          							<th scope="row" style="text-align: left; padding-bottom: 15px;">치수</th>
          							<td style="padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">${product.psize }cm</td>
          						</tr>
-         						
-         						
          						<tr>
          							<th scope="row" style="text-align: left; margin-top: 20px;">수량</th>
          							
@@ -117,7 +106,7 @@
 									</td>
                      					 </c:if>
                      					 <c:if test="${product.pcnt<=0}">
-                              					<td style="color: #ff6623; font-size: 26px; font-weight: 700; padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">재고가 없습니다.</td>
+                              					<td style="color: #ff6623; font-size: 20px; font-weight: 700; padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">재고 부족</td>
                      					 </c:if>
          						</tr>
                       		  </tbody>
@@ -133,7 +122,7 @@
                         		<tr>
                                  	<th scope="row" style="width: 35%; text-align: left; padding-bottom: 25px;">총 구매금액</th>
          							<td style="padding-left: 0px; margin-top: 20px; text-align: left; padding-bottom: 25px;">
-         							<strong><input type="text" class="mbox" value="${product.price}" style="border:none;  width: 55%;color: #ff6623; font-size: 26px; font-weight: 700;">원</strong></td>
+         							<strong><input type="text" class="mbox" value="${product.price}" style="text-align:left; border:none;  width: 42%;color: #ff6623; font-size: 26px; font-weight: 700;">원</strong></td>
                         		</tr>
                         	</tbody>
                         </table>
@@ -233,25 +222,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="related-title">다른 상품들</h3>
+                    <h3 class="related-title">연관 상품</h3>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
+                 <c:forEach var="r" items="${recom}" begin="0" end="3">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
-                            <span class="label">New</span>
+                        <div class="product__item__pic set-bg">
+                            <a href="boardP.do?pid=${r.pid}">
+                        	<img src="${r.pimg}" alt="" width="240" height="240">
+                        	</a>
+                            <span class="label">추천</span>
                             <ul class="product__hover">
                                 <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
                             </ul>
                         </div>
                         <div class="product__item__text">
-                            <h6>상품이름</h6>
-                            <a href="#" class="add-cart">+ Add To Cart</a>
-                            <h5>상품금액</h5>
+                            <h6>${r.pname}</h6>
+                            <h5>${r.price}</h5>
                         </div>
                     </div>
                 </div>
+                    </c:forEach>
                 </div>
             </div>
     </section>
