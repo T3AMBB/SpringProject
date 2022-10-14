@@ -1,5 +1,8 @@
 package com.bb.biz.product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductVO {
 	private int pid;
 	private String pname;
@@ -16,9 +19,45 @@ public class ProductVO {
 	private String pimg;
 	private int fav;
 	private int status;
+
+	private ArrayList<String> pname1;
+	private ArrayList<String> pmat1;
+	private ArrayList<String> pmade1;
+	private ArrayList<String> pcom1;
 	
 	
 	
+	@Override
+	public String toString() {
+		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", price2=" + price2 + ", pcnt="
+				+ pcnt + ", pcom=" + pcom + ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", psize2="
+				+ psize2 + ", pdetail=" + pdetail + ", cnt=" + cnt + ", pimg=" + pimg + ", fav=" + fav + ", status="
+				+ status + ", pname1=" + pname1 + ", pmat1=" + pmat1 + ", pmade1=" + pmade1 + ", pcom1=" + pcom1 + "]";
+	}
+	public ArrayList<String> getPname1() {
+		return pname1;
+	}
+	public void setPname1(ArrayList<String> pname1) {
+		this.pname1 = pname1;
+	}
+	public ArrayList<String> getPmat1() {
+		return pmat1;
+	}
+	public void setPmat1(ArrayList<String> pmat1) {
+		this.pmat1 = pmat1;
+	}
+	public ArrayList<String> getPmade1() {
+		return pmade1;
+	}
+	public void setPmade1(ArrayList<String> pmade1) {
+		this.pmade1 = pmade1;
+	}
+	public ArrayList<String> getPcom1() {
+		return pcom1;
+	}
+	public void setPcom1(ArrayList<String> pcom1) {
+		this.pcom1 = pcom1;
+	}
 	public int getPrice2() {
 		return price2;
 	}
@@ -112,11 +151,6 @@ public class ProductVO {
 		this.cnt = cnt;
 	}
 	
-	@Override
-	public String toString() {
-		return "ProductVO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", price2=" + price2 + ", pcnt="
-				+ pcnt + ", pcom=" + pcom + ", pmade=" + pmade + ", pmat=" + pmat + ", psize=" + psize + ", psize2="
-				+ psize2 + ", pdetail=" + pdetail + ", cnt=" + cnt + ", pimg=" + pimg + ", fav=" + fav + ", status="
-				+ status + "]";
-	}
+	
+	
 }
