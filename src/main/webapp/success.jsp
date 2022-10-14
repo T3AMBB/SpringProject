@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="hearder" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -20,6 +21,8 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
+<link rel="shorycut icon" href="img/pavi.png" type="image/png">
+<link rel="apple-touch-icon" href="img/pavi.png">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -54,80 +57,84 @@
 
 	<!-- Checkout Section Begin -->
 	<section class="checkout spad">
+	<div style="margin-left: 300px;margin-right: 18%;padding: 1%;">
+	<hr>
+	<h3 class="order__title">${user.mname}님, 상품을 구매해주셔서 감사합니다</h3>
+	<br>
+	<h4>주문하신 상품</h4>
+	<br>
+	<hr>
+	<table class="table table-borderless">
+		<tbody>
+			<tr>
+				<th>상품사진</th>
+				<th>상품명</th>
+				<th>구매수량</th>
+				<th>가격</th>
+			</tr>
+		<c:forEach var="c" items="${buy}">
+			<tr>
+			 <td><img src="${c.pimg}"alt="상품 사진" width="100" height="100"></td>
+				<td><br>${c.pname}</td>
+				<td>${c.cnt}</td>
+				<td>${c.price*c.cnt}</td>
+			</tr>
+			<br>
+		</c:forEach>
+		</tbody>
+	</table>
+	</div>
 		<div class="container">
 			<div class="checkout__form">
 				<form action="#">
-					<div class="row">
-						<div class="col-lg-12">
+					<div class="row" style="margin-left: 10%;margin-right: -8%;">
+						<div class="col-lg-7">
 							<div class="checkout__order">
-								<h4 class="order__title">${user.mname}님, 상품을 구매해주셔서 감사합니다</h4>
 								<c:forEach var="d" items='${buyProduct}' begin='0' end='0'>
-								<a>주문하신 상품은 ${d.shipping}에 배송 될 예정입니다.</a>
+								<h4>주문자 정보</h4>
+								<br>
+								<p>주문자 성함 : ${user.mid}</p>
 								<p></p>
-								<p>연락처 : ${user.mphone}</p>
-								<p>배송 예정지 : ${d.prcadr}</p>
+								<p>전화번호 : ${user.mphone}</p>
+								<p>휴대전화번호 : ${user.mphone}</p>
+								<p>주문일자 : ${d.buydate}</p>
+								<hr>
+								<h4>배송지 정보</h4>
+								<br>
+								<p>받으시는 분 : ${user.mid}</p>
+								<p>전화번호 : ${user.mphone}</p>
+								<p>휴대전화번호 : <fmt:formatNumber pattern="###-####-####" value="${user.mphone}"/></p>
+								<a>배송 예정일 : ${d.shipping}</a>
+								<p></p>
+								<p>배송지 주소 : ${d.prcadr}</p>
 								
 								</c:forEach>
 								
 								<hr>
-								<table class="table table-borderless">
-						<tbody>
-							<tr>
-								<th>상품사진</th>
-								<th>상품명</th>
-								<th>구매수량</th>
-								<th>가격</th>
-							</tr>
-							<c:forEach var="c" items="${buy}">
-							<tr>
-								<td><a href="boardP.do?pid=${cart.pid}"><img src="${c.pimg}"
-								alt="상품 사진" width="100" height="100"></a></td>
-								<td><a href="boardP.do?pid=${cart.pid}">${c.pname}</a></td>
-								<td>${c.cnt}</td>
-								<td>${c.price*c.cnt}</td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-								<ul class="checkout__total__all">
-									<li>합계 <span>${total}</span></li>
-									<c:if test="${coupon.code != null}">
-									<li>할인된 금액<span>${coupontotal}</span></li>
-									<li>사용한 쿠폰<span>${coupon.code}</span></li>
-									<li>최종가격 <span>${total-coupontotal}</span></li>
-									</c:if>
-									<c:if test="${mileage > 0}">
-									<li>적립금<span>${mileage}</span></li>
-									<li>최종가격 <span>${total}</span></li>
-									</c:if>
-									<c:if test="${mileage < 0}">
-									<li>사용한 적립금<span>${mileage*-1}</span></li>
-									<li>최종가격 <span>${total-(mileage*-1)}</span></li>
-									</c:if>
-									
-								</ul>
-								<div class="checkout__input__checkbox">
-									<label for="acc-or"> 예비용 체크박스1 <input type="checkbox"
-										id="acc-or"> <span class="checkmark"></span>
-									</label>
-								</div>
-								<p>예비용 문구 추가 예시입니다</p>
-								<div class="checkout__input__checkbox">
-									<label for="payment"> 예비용 체크박스2 <input type="checkbox"
-										id="payment"> <span class="checkmark"></span>
-									</label>
-								</div>
-								<div class="checkout__input__checkbox">
-									<label for="paypal"> 예비용 체크박스3 <input type="checkbox"
-										id="paypal"> <span class="checkmark"></span>
-									</label>
-								</div>
-								<div class="site-btn" style="text-align:center; color:white; font-size:inherit;">
-									<a href="selectAllP.do" style="color:#f3f2ee;">상품 더 보러가기</a>
-								</div>
 							</div>
 						</div>
+						<div class="col-lg-3">
+								<ul class="checkout__total__all" style="font-size: 26px; font-weight: 400;">
+									<li>합계 <span><fmt:formatNumber pattern="###,###,###" value="${total}"/>원</span></li>
+									<c:if test="${coupon.code != null}">
+									<li>할인된 금액<span><fmt:formatNumber pattern="###,###,###" value="${coupontotal}"/>원</span></li>
+									<li>사용한 쿠폰<span><fmt:formatNumber pattern="###,###,###" value="${coupon.code}"/>원</span></li>
+									<li>최종가격 <span><fmt:formatNumber pattern="###,###,###" value="${total-coupontotal}"/>원</span></li>
+									</c:if>
+									<c:if test="${mileage > 0}">
+									<li>적립금<span><fmt:formatNumber pattern="###,###,###" value="${mileage}"/>원</span></li>
+									<li>최종가격 <span><fmt:formatNumber pattern="###,###,###" value="${total}"/>원</span></li>
+									</c:if>
+									<c:if test="${mileage < 0}">
+									<li>사용한 적립금<span><fmt:formatNumber pattern="###,###,###" value="${mileage*-1}"/>원</span></li>
+									<li>최종가격 <span><fmt:formatNumber pattern="###,###,###" value="${total-(mileage*-1)}"/>원</span></li>
+									</c:if>
+								</ul>
+						</div>
 					</div>
+					<br>
+					<br>
+					<a href="main.do" class="primary-btn" style="cursor:pointer; border-radius: 30px; margin-left:43%;">메인으로 가기</a>
 				</form>
 			</div>
 		</div>
