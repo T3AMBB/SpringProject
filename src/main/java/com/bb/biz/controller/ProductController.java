@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bb.biz.coupon.CouponService;
@@ -109,8 +108,6 @@ public class ProductController {
 		System.out.println(pVO.getPrice());
 		System.out.println(pVO.getPrice2());
 
-
-
 		model.addAttribute("pname",pVO.getPname());
 		model.addAttribute("pcom", pVO.getPcom1());
 		model.addAttribute("pmat", pVO.getPmat1());
@@ -134,10 +131,22 @@ public class ProductController {
 	}
 	@RequestMapping(value="/searchName.do")
 	public String searchName(ProductVO pVO, Model model) {
-		pVO.setPdetail("pname");
+		
+		pVO.setPdetail("search");
+		pVO.setPrice(0);
+		pVO.setPrice2(1000000);
+		pVO.setPsize("0");
+		pVO.setPsize2("50");
+		System.out.println("이름검색 로그: "+ pVO.getPname());
+		
 		List<ProductVO> products=productService.selectAllProduct(pVO);
 
 		model.addAttribute("pname",pVO.getPname());
+		model.addAttribute("pdetail",pVO.getPdetail());
+		model.addAttribute("price", pVO.getPrice());
+		model.addAttribute("price2", pVO.getPrice2());
+		model.addAttribute("psize", 0);
+		model.addAttribute("psize2", 50);
 		model.addAttribute("products", products);
 		return "product.jsp";
 
@@ -177,11 +186,10 @@ public class ProductController {
 		System.out.println("더보기"+pVO);
 		request.getParameter("cnt");
 		int cnt = pVO.getCnt();
-
-
+		System.out.println("pVO detail "+pVO.getPdetail());
 		List<ProductVO> products=productService.selectAllProduct(pVO);
 		System.out.println("더보기 데이터:"+ products);
-
+		
 		HashMap<String,Object> hm = new HashMap<String,Object>();
 		List<ProductVO> pro = new ArrayList<ProductVO>();
 
@@ -245,7 +253,6 @@ public class ProductController {
 
 		session.setAttribute("cart", cart);
 		return "success";
-
 
 	}
 
