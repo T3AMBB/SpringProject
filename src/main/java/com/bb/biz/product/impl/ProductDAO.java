@@ -43,7 +43,7 @@ public class ProductDAO {
 	final String sql_update="UPDATE PRODUCT SET PCNT=PCNT-? WHERE PID=?";
 
 
-	boolean updateProduct(ProductVO vo) {
+	boolean updateProduct(ProductVO vo) { // 재고 차감
 
 		Object[] args= {vo.getPcnt(),vo.getPid()};
 		jdbcTemplate.update(sql_update,args);
@@ -87,15 +87,11 @@ public class ProductDAO {
 			pcom = vo.getPcom1();
 		}
 
-
-
-
-
-		if(vo.getPdetail()==null) {
+		if(vo.getPdetail()==null) { // 아래 equals 비교시 pdetail이 null이면 오류 발생하므로, null이라면 공백으로 설정해둠
 			vo.setPdetail("");
 		}
 
-		if(vo.getPdetail().equals("low")) {
+		if(vo.getPdetail().equals("low")) { // 낮은가격순
 			String sql_selectAll_LPrice="SELECT * FROM PRODUCT WHERE PNAME LIKE '%'||?||'%' "
 					+ "AND PRICE BETWEEN ? AND ? AND PSIZE BETWEEN ? AND ? ";
 			//			+ "AND PCOM LIKE '%'||?||'%' AND PMADE LIKE '%'||?||'%' AND PMAT LIKE '%'||?||'%' "
@@ -119,16 +115,16 @@ public class ProductDAO {
 			//				}
 			//
 			//			}
-			if(!pmat.isEmpty()) {
+			if(!pmat.isEmpty()) { // 재질 배열에 값이 존재한다면(재질 필터를 검색했다면)
 				System.out.println("pmat: "+ pmat);
 				for(int i=0; i < pmat.size();i++) {
 
-					if(i==0) {
+					if(i==0) { // 배열의 첫번째 요소는 sql문을 AND로 시작
 						sql_selectAll_LPrice += "AND (PMAT LIKE '%'||"+"'"+pmat.get(i)+"'"+"||'%' ";
-						continue;
+						continue; // 첫번째 요소만 AND로 시작해야하므로 아래 명령을 무시하고 다음 반복을 실행하도록함
 					}
 
-					if(pmat.get(i)!=null) {
+					if(pmat.get(i)!=null) { // 두개 이상 검색했을때
 						sql_selectAll_LPrice += "OR PMAT LIKE '%'||"+"'"+pmat.get(i)+"'"+"||'%' ";
 					}
 				}
@@ -136,7 +132,7 @@ public class ProductDAO {
 				System.out.println("재질 로그: "+sql_selectAll_LPrice);
 			}
 			
-			if(!pcom.isEmpty()) {
+			if(!pcom.isEmpty()) { // 제조사 배열에 값이 존재한다면(제조사 필터를 검색했다면)
 				System.out.println("pcom: "+ pcom);
 				for(int i=0; i < pcom.size();i++) {
 
@@ -152,7 +148,7 @@ public class ProductDAO {
 				System.out.println("제조사 로그: "+sql_selectAll_LPrice);
 			}
 
-			if(!pmade.isEmpty()) {
+			if(!pmade.isEmpty()) { // 원산지 배열에 값이 존재한다면(원산지 필터를 검색했다면)
 				System.out.println("pmade: "+ pmade);
 				for(int i=0; i < pmade.size();i++) {
 
@@ -169,12 +165,11 @@ public class ProductDAO {
 
 			}
 
-			System.out.println("1213142");
 			sql_selectAll_LPrice += "ORDER BY PRICE ASC";
 			System.out.println("최종 로그: "+sql_selectAll_LPrice);
 			return jdbcTemplate.query(sql_selectAll_LPrice,new ProductRowMapper(),args);
 		}
-		else if(vo.getPdetail().equals("high")) {
+		else if(vo.getPdetail().equals("high")) { // 높은가격순
 			String sql_selectAll_HPrice="SELECT * FROM PRODUCT WHERE PNAME LIKE '%'||?||'%' "
 					+ "AND PRICE BETWEEN ? AND ? AND PSIZE BETWEEN ? AND ? ";
 			//			+ "AND PCOM LIKE '%'||?||'%' AND PMADE LIKE '%'||?||'%' AND PMAT LIKE '%'||?||'%' "
@@ -248,7 +243,6 @@ public class ProductDAO {
 
 			}
 
-			System.out.println("1213142");
 			sql_selectAll_HPrice += "ORDER BY PRICE DESC";
 			System.out.println("최종 로그: "+sql_selectAll_HPrice);
 			return jdbcTemplate.query(sql_selectAll_HPrice,new ProductRowMapper(),args);
@@ -256,8 +250,7 @@ public class ProductDAO {
 		else if(vo.getPdetail().equals("pname")) {
 			return jdbcTemplate.query(sql_selectAll_Pname,new ProductRowMapper(),vo.getPname());
 		}
-		else if(vo.getPdetail().equals("search")) {
-			System.out.println("들어옴?");
+		else if(vo.getPdetail().equals("search")) { // 필터검색
 			System.out.println(pcom);
 			System.out.println(pmade);
 			System.out.println(pmat);

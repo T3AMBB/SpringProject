@@ -82,23 +82,6 @@
    
     <hearder:header/>
 	<hr>
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__text">
-                        <h4>Shop</h4>
-                        <div class="breadcrumb__links">
-                            <a href="/main.do">Home</a>
-                            <span>Shop</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
 
   <!-- Shop Section Begin -->
     <section class="shop spad">
@@ -108,33 +91,10 @@
                     <div class="shop__sidebar">
                         <form action="filter.do" method="post" name="filterForm">
                         <div class="shop__sidebar__search">
-                            
                                 <input type="text" name="pname" placeholder="이름 검색">
-                               
-                            
                         </div>
                         <div class="shop__sidebar__accordion">
                             <div class="accordion" id="accordionExample">
-                                <!-- <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseOne">주제</a>
-                                    </div>
-                                    <div id="collapseOne" class="collapse show">
-                                        <div class="card-body">
-                                        	<div class="shop__sidebar__brand">
-                                                <ul>
-                                                    <li><input type="checkbox" name="pname1" value="원피스"><label>원피스</label> </li>
-                                                    <li><input type="checkbox" name="pname1" value="나루토" ><label>나루토</label> </li>
-                                                    <li><input type="checkbox" name="pname1" value="하이큐" ><label>하이큐</label> </li>
-                                                    <li><input type="checkbox" name="pname1" value="이누야샤" ><label>이누야사</label> </li>
-                                                    <li><input type="checkbox" name="pname1" value="귀멸의 칼날" ><label>귀멸의 칼날</label> </li>
-                                                    <li><input type="checkbox" name="pname1" value="보컬로이드" ><label>보컬로이드</label> </li>
-                                                    <li><input type="checkbox" name="pname1" value="방탄소년단" ><label>방탄소년단</label> </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div class="card">
                                     <div class="card-heading">
                                         <a data-toggle="collapse" data-target="#collapseTwo">원산지</a>
@@ -189,7 +149,7 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseThree">가격(원)</a>
+                                        <a data-toggle="collapse" data-target="#collapseThree">가격</a>
                                     </div>
                                     <div id="collapseThree" class="collapse show">
                                         <div class="card-body">
@@ -206,7 +166,7 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFour">치수</a>
+                                        <a data-toggle="collapse" data-target="#collapseFour">사이즈</a>
                                     </div>
                                     <div id="collapseFour" class="collapse show">
                                         <div class="card-body">
@@ -216,7 +176,7 @@
 											</p>
 											<div id="slider-range1"></div>
                                               <input type="hidden" id="psize" name="psize" value="0">
- <input type="hidden" id="psize2" name="psize2" value="50">
+ 												<input type="hidden" id="psize2" name="psize2" value="50">
                                             </div>
                                         </div>
                                     </div>
@@ -232,16 +192,15 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__left">
-                                    <p>전체상품 : </p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__right">
-                                    <p>가격순으로 보기:</p>
+                                    <p>가격순으로 보기 : </p>
                                     <select name="pdetail" onchange="sortPrice()" id="sortPrice">
 	                                   <option>----</option>
-	                                   <option value="low" >낮은 금액부터</option>
-	                                   <option value="high" >높은 금액부터</option>
+	                                   <option value="low" >낮은가격순</option>
+	                                   <option value="high" >높은가격순</option>
 	                         </select>
                                 </div>
                             </div>
@@ -259,7 +218,7 @@
                                   <img src="${n.pimg}"alt="" width="280" height="280"></a>
                                     <ul class="product__hover">
                         <!-- 로그인 상태 -->
-						<c:if test="${user.mid!=null}">
+						<c:if test="${member!=null}">
 							<c:choose>
 								<c:when test="${n.fav==1}"><!-- 좋아요 되어있는 상품인지 확인 -->
         		                        <li><img id="${n.pid}fav_btn" src="img/icon/heartOn.png" alt="좋아요활성화" onclick="favorite(${n.pid});"></li>
@@ -271,7 +230,7 @@
                         </c:if>
                         
                         <!-- 비로그인 상태 -->
-						<c:if test="${user.mid == null}">
+						<c:if test="${member == null}">
                                 <li><img id="${n.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favoriteN(${n.pid});"></li>
                         </c:if>
                         
@@ -293,43 +252,44 @@
                     	<img alt="검색제품없음" src="img/empty.png">
                         <h2>검색하신 조건의 상품이 존재하지 않습니다.....</h2>
                         </c:if>
-                    <!-- 더보기 버튼 자리 -->
 					<div>
 					<hr>
+                    <!-- 더보기 버튼 자리 -->
 					<c:if test="${products.size() > 24}">
 					<a id="moreProduct" href="javascript:more();" style="background-color: white;color: black;margin-left: 48%;border: 1px solid black;border-radius: 30px;padding: 1%;">
 					더보기</a>
 					</c:if>
-					<input type="hidden" id="cnt" value="24">
+					<input type="hidden" id="cnt" value="24"> <!-- cnt 기본값 24로 세팅 -->
 					</div>                    
                 </div>
             </div>
         </div>
     </section>
-    ${pcom}
+ 	${pcom}
     ${pmade}
-    ${pmat}
-    <!-- Shop Section End -->
- <input type="hidden" name="price" id="price3" value="${price}">
- <input type="hidden" name="price2" id="price4" value="${price2}">
- <input type="hidden" id="psize3" name="psize" value="${psize}">
- <input type="hidden" id="psize4" name="psize2" value="${psize2}">
-<input type="hidden" name="pdetail"  id="pdetail1" value="${pdetail}">
-<input type="hidden" name="pname" value="${pname}" id="pname">
+    ${pmat} 
+<!-- Shop Section End -->
 
+<!-- hidden으로 세팅 -->
+<input type="hidden" name="price" id="price3" value="${price}">
+<input type="hidden" name="price2" id="price4" value="${price2}">
+<input type="hidden" name="psize" id="psize3" value="${psize}">
+<input type="hidden" name="psize2" id="psize4" value="${psize2}">
+<input type="hidden" name="pdetail" id="pdetail1" value="${pdetail}">
+<input type="hidden" name="pname" id="pname" value="${pname}">
 	
 <%-- <c:forEach var="m" items="${pmat}"  step="1"> --%>
-<input type="hidden" name="pmat" value="${pmat}" id="pmat">
+<input type="hidden" name="pmat" id="pmat" value="${pmat}">
 <%-- </c:forEach> --%>
 
 <%-- <c:forEach var="d" items="${pmade}"  step="1"> --%>
-<input type="hidden" name="pmade" value="${pmade}" id="pmade">
+<input type="hidden" name="pmade" id="pmade" value="${pmade}">
 <%-- </c:forEach> --%>
 
  <%-- <c:forEach var="c" items="${pcom}"  step="1">  --%>
-<input type="hidden" name="pcom" value="${pcom}" id="pcom">
+<input type="hidden" name="pcom" id="pcom" value="${pcom}">
  <%-- </c:forEach>  --%>
-<input type="hidden" value="${user.mid}" id="user">
+<input type="hidden" id="user" value="${member}" >
 
 
 
@@ -365,7 +325,7 @@
 			            console.log('/'+user+'/');
 			            
 			            let pmat = $("#pmat").val();
-			            let pmat1 = pmat.replace('[','');
+			            let pmat1 = pmat.replace('[',''); // 배열을 가져올때 '['가 포함되므로 replace를 통해 '['를 공백으로 변경 
 			            let pmat2 = pmat1.replace(']','');
 
 			            let pcom = $("#pcom").val();
@@ -376,10 +336,6 @@
 			            let pmade1 = pmade.replace('[','');
 			            let pmade2 = pmade1.replace(']','');
 			            
-			
-			           
-			         
-			        	
 			            console.log('/'+price+'/');
 			            console.log('/'+price2+'/');
 			            console.log('/'+psize+'/');
@@ -391,11 +347,12 @@
 			            console.log('/'+pdetail+'/');
 			            console.log('/'+cnt+'/');
                     	console.log("more()함수에 진입");
+                    	
                     	$.ajax({
                     		url : "selectAllPajax.do",
                     		type : "POST",
                     		data : { 
-                    			"pdetail":pdetail,
+                    			"pdetail":pdetail, // 가격정렬을 유지하기 위해 같이 보냄, pdetail은 low 또는 high를 가지고 있음
                     			"cnt" :cnt, // 위 벨류에서 가져온 cnt를 controller 로 보냈다.
                     			"pcom1":pcom2,
 				            	"pmade1":pmade2,
@@ -406,13 +363,13 @@
 				            	"psize":psize,
 				            	"psize2":psize2
                     		},
-                    		success : function(result){  // controller 에서 받은 hm 이 result 로 들어가고 pro/more 사용 가능
-                    			console.log("b함수 실행 중");
+                    		success : function(result){  // controller 에서 받은 hm(map)이 result로 들어가고 pro/more 사용 가능
+                    			console.log("more함수 실행 중");
                     			console.log(result);
                     			console.log(cnt);
-                    			if(result.more==1){
-                    			for(var n of result.pro){
-                    				var product = "<div class='col-lg-4 col-md-6 col-sm-6 figure'>";
+                    			if(result.more==1){ // hm의 more이 1이라면
+                    			for(var n of result.pro){ // forEach문 : hm의 pro(List)를 n이라는 변수로 반복
+                    				var product = "<div class='col-lg-4 col-md-6 col-sm-6 figure'>"; // product : 추가할 태그를 담을 변수
                     				
                     				product += "<div class='product__item'>";
                     				product += "<div class='product__item__pic set-bg'>";
@@ -440,15 +397,15 @@
                     				product += "</div>";
                     				product += "</div>";
                     				
-                    				$('#figures').append(product);
+                    				$('#figures').append(product); // id가 figures인 태그에 product를 추가
                     				
                     			}	
-                    				cnt = Number(cnt);
+                    				cnt = Number(cnt); // cnt를 숫자로 타입변환
                     				var cnt2 = 24;
-                    				console.log(cnt+cnt2);
-                    				$('#cnt').val(cnt+cnt2);
+                    				console.log(cnt+cnt2); 
+                    				$('#cnt').val(cnt+cnt2); // 기존 cnt에서 +24된 값을 id가 cnt인 value로 설정
                     			}
-                    			else {
+                    			else { // hm의 more이 1이 아니라면
                     				for(var n of result.pro){
                         				var product = "<div class='col-lg-4 col-md-6 col-sm-6 figure'>";
                         				
@@ -482,8 +439,8 @@
                         				
                         			}
                     				
-                    				$("#moreProduct").remove();
-                    				cnt = Number(cnt);
+                    				$("#moreProduct").remove(); // 더 보여줄 데이터가 없으므로, id가 moreProduct인 더보기 버튼 삭제
+                    				cnt = Number(cnt); 
                     				var cnt2 = 24;
                     				console.log(cnt+cnt2);
                     				$('#cnt').val(cnt+cnt2);
@@ -533,7 +490,7 @@
    </script>
 
                     <script type="text/javascript">
-						function sortPrice(){
+						function sortPrice(){ // 가격정렬 
 							var cnt = $('#cnt').val();
 						        var sortPrice = $("#sortPrice").val();
  						       /*   var pcom= $("#pcom").val(); 
@@ -581,7 +538,7 @@
 						            success : function(result) {
 						                console.log(result);
 										$('.figure').remove();
-										  var sortPrice1 = $("#sortPrice").val();
+										  var sortPrice1 = $("#sortPrice").val(); 
 										for(var n of result){
 											
 											var product = "<div class='col-lg-4 col-md-6 col-sm-6 figure'>";
