@@ -12,7 +12,7 @@
 <meta name="keywords" content="Male_Fashion, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Male-Fashion | Template</title>
+<title>PinaGunGong</title>
 
 <!-- Google Font -->
 <link
@@ -20,6 +20,8 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
+    <link rel="shorycut icon" href="img/pavi.png" type="image/png">
+	<link rel="apple-touch-icon" href="img/pavi.png">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -50,24 +52,7 @@
 <body>
 	<header:header />
 	
-	    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__text">
-                        <h4>마이페이지</h4>
-                        <div class="breadcrumb__links">
-                            <a href="./main.jsp">Home</a>
-                            <span>myPage</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
-    
+	
 	<div class="section">
 		<div class="container">
 		<br><br>

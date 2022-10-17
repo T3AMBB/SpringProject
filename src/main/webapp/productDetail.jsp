@@ -14,13 +14,15 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
+    <title>PinaGunGong</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
     rel="stylesheet">
 
     <!-- Css Styles -->
+    <link rel="shorycut icon" href="img/pavi.png" type="image/png">
+	<link rel="apple-touch-icon" href="img/pavi.png">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -157,7 +159,7 @@
                         <br>
                         <div class="product__details__btns__option">
                          <!-- 로그인 상태 -->
-						<c:if test="${user.mid!=null}">
+						<c:if test="${member!=null}">
 							<c:choose>
 								<c:when test="${product.fav==1}"><!-- 좋아요 되어있는 상품인지 확인 -->
 			                          <img id="${product.pid}fav_btn" src="img/icon/heartOn.png" alt="좋아요비활성화" onclick="favorite(${product.pid});"> 찜하기
@@ -168,7 +170,7 @@
 							</c:choose>
                         </c:if>
 						<!-- 비로그인 상태 -->
-						<c:if test="${user.mid == null}">
+						<c:if test="${member == null}">
 							 <img id="${product.pid}fav_btn" src="img/icon/heart.png" alt="좋아요비활성화" onclick="favoriteN(${product.pid});"> 찜하기
                         </c:if>
                         </div>

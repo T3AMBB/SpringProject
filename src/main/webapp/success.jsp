@@ -13,7 +13,7 @@
 <meta name="keywords" content="Male_Fashion, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>결제완료 페이지</title>
+<title>PinaGunGong -receipt</title>
 
 <!-- Google Font -->
 <link

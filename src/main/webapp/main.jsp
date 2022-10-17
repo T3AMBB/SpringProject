@@ -14,13 +14,15 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
+    <title>PinaGunGong</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
     rel="stylesheet">
 
-    <!-- Css Styles -->
+    <!-- Css Styles -->     
+    <link rel="shorycut icon" href="img/pavi.png" type="image/png">
+	<link rel="apple-touch-icon" href="img/pavi.png">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -175,9 +177,6 @@
     	  alert('로그인 후 이용해주세요.')
       }
    </script>
-<<<<<<< HEAD
-    
-    
      <script type="text/javascript">
 	$(document).ready(function(){
 		// 퀵메뉴 위치 제어
@@ -252,9 +251,6 @@
     enp('create', 'common', 'toyntech', { device: 'W' });    
     enp('send', 'common', 'toyntech');
 </script>
-    
-=======
->>>>>>> dd32d5ef57ea3e3c68326baeeb93d5087baf60f3
 </body>
 
 </html>

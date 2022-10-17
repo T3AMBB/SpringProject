@@ -13,7 +13,7 @@
 <meta name="keywords" content="Male_Fashion, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>찜목록</title>
+<title>PinaGunGong</title>
 
 <!-- Google Font -->
 <link
@@ -21,6 +21,8 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
+    <link rel="shorycut icon" href="img/pavi.png" type="image/png">
+	<link rel="apple-touch-icon" href="img/pavi.png">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
 <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
