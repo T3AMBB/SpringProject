@@ -103,7 +103,7 @@
 								<br>
 								<p>받으시는 분 : ${user.mid}</p>
 								<p>전화번호 : ${user.mphone}</p>
-								<p>휴대전화번호 : <fmt:formatNumber pattern="###-####-####" value="${user.mphone}"/></p>
+								<p>휴대전화번호 : ${user.mphone}</p>
 								<a>배송 예정일 : ${d.shipping}</a>
 								<p></p>
 								<p>배송지 주소 : ${d.prcadr}</p>
@@ -115,10 +115,16 @@
 						</div>
 						<div class="col-lg-3">
 								<ul class="checkout__total__all" style="font-size: 26px; font-weight: 400;">
-									<li>합계 <span><fmt:formatNumber pattern="###,###,###" value="${total}"/>원</span></li>
+									<c:if test="${total<30000}">
+										<li>합계 <span><fmt:formatNumber pattern="###,###,###" value="${total-3000}"/>원</span></li>
+										<li>배송비 <span><fmt:formatNumber pattern="###,###,###" value="3000"/>원</span></li>
+									</c:if>
+									<c:if test="${total>30000}">
+										<li>합계 <span><fmt:formatNumber pattern="###,###,###" value="${total}"/>원</span></li>
+									</c:if>
 									<c:if test="${coupon.code != null}">
 									<li>할인된 금액<span><fmt:formatNumber pattern="###,###,###" value="${coupontotal}"/>원</span></li>
-									<li>사용한 쿠폰<span><fmt:formatNumber pattern="###,###,###" value="${coupon.code}"/>원</span></li>
+									<li>사용한 쿠폰<span>${coupon.code}</span></li>
 									<li>최종가격 <span><fmt:formatNumber pattern="###,###,###" value="${total-coupontotal}"/>원</span></li>
 									</c:if>
 									<c:if test="${mileage > 0}">

@@ -15,6 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PinaGunGong</title>
+    <link rel="shorycut icon" href="img/pavi.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/pavi.png">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -57,24 +59,6 @@
 <body>
 
     <hearder:header/>
-    			<!-- Breadcrumb Section Begin -->
-			   <section class="breadcrumb-option">
-			      <div class="container">
-			         <div class="row">
-			            <div class="col-lg-12">
-			               <div class="breadcrumb__text">
-			                  <h4>주문</h4>
-			                  <div class="breadcrumb__links">
-			                     <a href="./index.html">Home</a> <a href="./shop.html">Shop</a> <span>주문 / 결제
-			                        </span>
-			                  </div>
-			               </div>
-			            </div>
-			         </div>
-			      </div>
-			   </section>
-			   <!-- Breadcrumb Section End -->		
-	<br><br>
 <div class="section">
 <div class="container">
 			<div class="content_main">
@@ -702,6 +686,7 @@ $(document).ready(function () {
 	         // name: '주문명 : ${auction.a_title}',
 	         // 위와같이 model에 담은 정보를 넣어 쓸수도 있습니다.
 	         amount: 100,
+	         // amount: finalTotalPrice,
 	         // amount: ${bid.b_bid},
 	         // 가격 
 	         buyer_name: '${user.mname}',
@@ -719,14 +704,11 @@ $(document).ready(function () {
 	            // 자세한 설명은 구글링으로 보시는게 좋습니다.
 	            alert(msg);
 		         location.href='insertB.do?mid='+${user.mid}+'&pid='+${cart[0].pid}+'&buycnt='+${cart[0].cnt}
-		         +'&shipping='+$("#from").val()+'&prcadr='+prcadr+'&cid='+$("select[name='select_name']").val()+'&mileage='+$('.order_point_input').val();	         } else {
+		         +'&shipping='+$("#from").val()+'&prcadr='+prcadr+'&cid='+$("select[name='select_name']").val()+'&mileage='+$('.order_point_input').val();
+		         } else {
 	            var msg = '결제에 실패하였습니다.';
 	            msg += '에러내용 : ' + rsp.error_msg;
 	         }
-	         alert(msg);
-	         location.href='insertB.do?mid='+${user.mid}+'&pid='+${cart[0].pid}+'&buycnt='+${cart[0].cnt}
-	         +'&shipping='+$("#from").val()+'&prcadr='+prcadr+'&cid='+$("select[name='select_name']").val()+'&mileage='+$('.order_point_input').val();
-	        
 	      });
 	   }); 
 	</script>
