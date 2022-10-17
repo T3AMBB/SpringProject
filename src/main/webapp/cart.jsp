@@ -40,24 +40,6 @@
 <body>
 	<hearder:header />
 
-	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-option">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="breadcrumb__text">
-						<h4>Shopping Cart</h4>
-						<div class="breadcrumb__links">
-							<a href="./index.html">Home</a> <a href="./shop.html">Shop</a> <span>Shopping
-								Cart</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Breadcrumb Section End -->
-
 	<!-- Shopping Cart Section Begin -->
 	<section class="shopping-cart spad">
 		<div class="container">
@@ -65,7 +47,6 @@
 				<div class="col-lg-8">
 					<div class="shopping__cart__table">
 						<div class="table_head">
-							<span>Product</span> <span>Quantity</span> <span>Total</span> <span>비우기</span>
 							<hr>
 						</div>
 						<c:forEach var="c" items="${cart}">
@@ -118,7 +99,7 @@
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<div class="continue__btn">
-							<a href="product.jsp">더 보러가기</a>
+							<a href="selectAllP.do">더 보러가기</a>
 						</div>
 					</div>
 					<!-- 쇼핑카트 테이블 -->
@@ -132,7 +113,7 @@
 							<input class="final_total" type="text" value="20000"
 								style="border: none; width: 100%; color: red; font-size: 22px; text-align: right; background: inherit;">
 						</div>
-						<a href="payment.jsp" class="primary-btn">주문하기</a>
+						<a href="pay.do" class="primary-btn">주문하기</a>
 					</div>
 				</div>
 

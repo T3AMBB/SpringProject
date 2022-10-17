@@ -223,10 +223,12 @@
 							<tr>
 								<th>쿠폰 사용</th>
 								<td>
-									<select style="width:70%" class="coupon_select" id="select_coupon" onchange=' check();' name="select_name">
+									<select style="width:70%" class="coupon_select" id="select_coupon" onchange='check();' name="select_name">
 										<option selected value="0">쿠폰 선택</option>
 										<c:forEach var="c" items="${coupon}">
+										<c:if test="${c.cstatus==1}">
 										<option value='${c.cid}'>${c.code}</option>
+										</c:if>
 										</c:forEach>
 									</select>
 								</td>

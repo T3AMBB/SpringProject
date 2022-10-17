@@ -35,24 +35,6 @@
 <body>
 	<hearder:header />
 
-
-	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-option">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="breadcrumb__text">
-						<h4>찜목록</h4>
-						<div class="breadcrumb__links">
-							<a href="main.do">Home</a> <a href="./shop.html">Shop</a> <span>찜목록</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Breadcrumb Section End -->
-
 	<!-- Shopping Cart Section Begin -->
 	<section class="shopping-cart spad">
 		<div class="container">

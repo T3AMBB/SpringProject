@@ -76,7 +76,6 @@
                       					     
                         <table>
                     	    <tbody>
-                    	    
          						<tr>
          							<th scope="row" style="text-align: left; margin-top: 15px; padding-bottom: 15px;">제조사</th>
          							<td style="padding-left: 100px; margin-top: 15px; text-align: left; padding-bottom: 15px;">${product.pcom }</td>
@@ -113,8 +112,6 @@
          						</tr>
                       		  </tbody>
                         </table>
-                        ${product.pid}
-                       재고 ${product.pcnt}
                         </div>
 						 
                         <hr>

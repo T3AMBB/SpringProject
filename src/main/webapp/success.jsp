@@ -37,24 +37,6 @@
 
 	<hearder:header />
 
-
-	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-option">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="breadcrumb__text">
-						<h4>Check Out</h4>
-						<div class="breadcrumb__links">
-							<a href="./index.html">Home</a> <a href="./shop.html">Shop</a> <span>결제완료</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Breadcrumb Section End -->
-
 	<!-- Checkout Section Begin -->
 	<section class="checkout spad">
 	<div style="margin-left: 300px;margin-right: 18%;padding: 1%;">

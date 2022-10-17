@@ -287,6 +287,7 @@ public class ProductController {
 		cVO.setMid((String)session.getAttribute("member"));
 		List<CouponVO> coupon = couponService.selectAllCoupon(cVO);
 
+		System.out.println("coupon : "+ coupon.size());
 		model.addAttribute("coupon", coupon);
 		return "payment.jsp";
 	}
