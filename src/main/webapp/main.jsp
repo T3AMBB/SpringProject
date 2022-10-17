@@ -88,11 +88,13 @@
             <div class="row product__filter">
             <!-- 상품 뽑아낼 반복문 위치 -->
             <c:forEach var="n" items="${products}" begin="1" end="20">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals figure">
                     <div class="product__item">
                     <div class="product__item__pic set-bg" >
+                        <div  class="img" style="overflow:hidden;">
                         <a href="boardP.do?pid=${n.pid}">
                         <img src="${n.pimg}" alt="" width="280" height="280"></a>
+                        </div>
 		                   <ul class="product__hover">
 		                 <!-- 로그인 상태 -->
 						<c:if test="${member != null}">

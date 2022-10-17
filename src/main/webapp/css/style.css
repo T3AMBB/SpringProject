@@ -955,6 +955,7 @@ ol {
 .product__item:hover .product__item__pic .product__hover {
 	right: 20px;
 	opacity: 1;
+
 }
 
 .product__item:hover .product__item__text a {
@@ -968,6 +969,7 @@ ol {
 }
 
 .product__item:hover .product__item__text .product__color__select {
+
 	opacity: 1;
 }
 
@@ -998,6 +1000,7 @@ ol {
 	-webkit-transition: all, 0.8s;
 	-o-transition: all, 0.8s;
 	transition: all, 0.8s;
+
 }
 
 .product__item__pic .product__hover li {
@@ -1046,6 +1049,7 @@ ol {
 	background: #ffffff;
 	padding: 10px;
 	display: inline-block;
+
 }
 
 .product__item__text {
@@ -1074,7 +1078,7 @@ ol {
 	margin-bottom: 5px;
 	-webkit-transition: all, 0.3s;
 	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
+	transition: all, 100000s;
 }
 
 .product__item__text .rating {
@@ -1143,6 +1147,13 @@ ol {
 	visibility: hidden;
 }
 
+.figure .product__item .set-bg img:hover {
+	transform:scale(1.4);
+	overflow:hidden;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
 /*---------------------
   Shop
 -----------------------*/

@@ -12,15 +12,16 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PinaGunGong</title>
+	<title>PinaGunGong</title>
+
+   <link rel="shorycut icon" href="img/pavi.png" type="image/png">
+   <link rel="apple-touch-icon" href="img/pavi.png">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
     rel="stylesheet">
 
     <!-- Css Styles -->
-        <link rel="shorycut icon" href="img/pavi.png" type="image/png">
-	<link rel="apple-touch-icon" href="img/pavi.png">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -216,8 +217,10 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 figure">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg">
+                                  <div class="img" style="overflow:hidden;">
                                   <a href="boardP.do?pid=${n.pid}">
-                                  <img src="${n.pimg}"alt="" width="280" height="280"></a>
+                                  <img src="${n.pimg}"alt="" width="280" height="280">
+                                  </a></div>
                                     <ul class="product__hover">
                         <!-- 로그인 상태 -->
 						<c:if test="${member!=null}">
