@@ -12,15 +12,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>PinaGunGong</title>
- 
+<link rel="shorycut icon" href="img/pavi.png" type="image/png">
+<link rel="apple-touch-icon" href="img/pavi.png">
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
 	rel="stylesheet">
 
 <!-- Css Styles -->
-    <link rel="shorycut icon" href="img/pavi.png" type="image/png">
-	<link rel="apple-touch-icon" href="img/pavi.png">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -51,23 +50,6 @@
 <body>
 	<header:header />
 	
-	    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__text">
-                        <h4>마이페이지</h4>
-                        <div class="breadcrumb__links">
-                            <a href="./main.jsp">Home</a>
-                            <span>myPage</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
     
 	<div class="section">
 		<div class="container">
@@ -84,7 +66,7 @@
 							</div>
 							<div class="col-md-4 col-lg-9">
 								<span>적립금</span><br>
-								<span class="emphasis">${user.mileage }</span>
+								<span class="emphasis">${mileageU}</span>
 								<div class="square square-1"></div>
 								<div class="square square-2"></div>
 								<div class="circle circle-1"></div>
@@ -101,8 +83,7 @@
 								<i class="fas fa-shopping-basket"></i><br />
 							</div>
 							<div class="col-md-4 col-lg-9">
-								<a href="selectAllB.do"> <span>구매내역</span><br> <span
-									class="emphasis">구매건수</span>
+								<a href="selectAllB.do"> <span>구매내역 확인</span>
 								</a>
 							</div>
 						</div>
@@ -148,7 +129,10 @@
 									<span style="text-indent: 0;font-size:13px; color:black;">고객님께서 보유하고 있는 할인쿠폰을 확인하세요! 상품구매 시 더욱 저렴하게 구매할 수 있습니다.</span>
 									</div>
 									<br>
+									
 									<div class="d-flex justify-content-center" style="align-items: center;">
+									
+									<c:if test="${flag!='1'}">
 										<img onclick='insertC();' src="img/coupon1.jpg" style="cursor:pointer; margin-right:70px; width:355px; height:155px;"alt="쿠폰이미지">
 										<form action="insertC.do" method="post" name="coupon" id="frm">
 											<input type="hidden" value='고객감사쿠폰20%' name="code">
@@ -156,6 +140,12 @@
 											<input type="hidden" value='${user.mid}' name="mid">
 										</form>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</c:if>
+									<c:if test="${flag=='1'}">
+										<br><br>
+										<h3>발급 가능한 쿠폰이 존재하지 않습니다.</h3>
+									</c:if>
+									
 									</div>
 									<br><br>
 									<div class="wrap-table">
@@ -180,10 +170,10 @@
 											</c:if>
 											</td>
 											<td>
-											<c:if test="${cp.cstatus==0}">
+											<c:if test="${cp.cstatus==1}">
 												미사용
 											</c:if>
-											<c:if test="${cp.cstatus==1}">
+											<c:if test="${cp.cstatus==0}">
 												사용
 											</c:if>
 											</td>
@@ -205,7 +195,7 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <div class="text-center"><p style="font-size:13px; color:black" class="top-txt">회원탈퇴</p>
+	      <div class="text-center"><h5>회원탈퇴</h5>
 	      </div>
 	      <hr>
 	      <div class="modal-body">
@@ -219,12 +209,10 @@
 	            </div>
 	            <button type="submit" class="btn btn-dark btn-block btn-round">회원탈퇴</button>
 	          </form>
-	          
 	        </div>
 	        <br>
 	      </div>
 	    </div>
-
 	  </div>
 	</div>
 	</div>

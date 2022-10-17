@@ -11,15 +11,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>PinaGunGong</title>
- 
+<link rel="shorycut icon" href="img/pavi.png" type="image/png">
+<link rel="apple-touch-icon" href="img/pavi.png">
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
 	rel="stylesheet">
 
 <!-- Css Styles -->
-    <link rel="shorycut icon" href="img/pavi.png" type="image/png">
-	<link rel="apple-touch-icon" href="img/pavi.png">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -50,22 +49,6 @@
 <body>
 	<header:header />
 
-	<!-- Breadcrumb Section Begin -->
-	<section class="breadcrumb-option">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="breadcrumb__text">
-						<h4>마이페이지</h4>
-						<div class="breadcrumb__links">
-							<a href="./main.jsp">Home</a> <span>myPage</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Breadcrumb Section End -->
 
 	<div class="section">
 		<div class="container">
@@ -82,7 +65,7 @@
 								<i class="fab fa-product-hunt"></i><br />
 							</div>
 							<div class="col-md-4 col-lg-9">
-								<span>적립금</span><br> <span class="emphasis">${user.mileage }</span>
+								<span>적립금</span><br> <span class="emphasis">${mileageU}</span>
 								<div class="square square-1"></div>
 								<div class="square square-2"></div>
 								<div class="circle circle-1"></div>
@@ -99,8 +82,7 @@
 								<i class="fas fa-shopping-basket"></i><br />
 							</div>
 							<div class="col-md-4 col-lg-9">
-								<a href="selectAllB.do"> <span>구매내역</span><br> <span
-									class="emphasis">구매건수</span>
+								<a href="selectAllB.do"> <span>구매내역 확인</span>
 								</a>
 							</div>
 						</div>
@@ -193,6 +175,7 @@
 				</div>
 			</div>
 		</div>
+		</div>
 		<div class="row">
 	<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
@@ -202,7 +185,7 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <div class="text-center"><p style="font-size:13px; color:black" class="top-txt">회원탈퇴</p>
+	      <div class="text-center"><h5>회원탈퇴</h5>
 	      </div>
 	      <hr>
 	      <div class="modal-body">

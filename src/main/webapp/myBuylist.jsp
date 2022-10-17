@@ -13,6 +13,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>PinaGunGong</title>
+<link rel="shorycut icon" href="img/pavi.png" type="image/png">
+<link rel="apple-touch-icon" href="img/pavi.png">
 
 <!-- Google Font -->
 <link
@@ -20,8 +22,6 @@
 	rel="stylesheet">
 
 <!-- Css Styles -->
-    <link rel="shorycut icon" href="img/pavi.png" type="image/png">
-	<link rel="apple-touch-icon" href="img/pavi.png">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -52,7 +52,8 @@
 <body>
 	<header:header />
 	
-	
+
+    
 	<div class="section">
 		<div class="container">
 		<br><br>
@@ -60,7 +61,7 @@
 			<table class="table table-bordered" id="mypageHeader">
 				<tr>
 					<td class="text-center align-middle"
-						style="width: 20%; background-color: #212529; color: #ffffff; font-size: 1.4em; font-weight: 600;">${data.mname}님 안녕하세요!</td>
+						style="width: 20%; background-color: #212529; color: #ffffff; font-size: 1.4em; font-weight: 600;">${user.mname}님 안녕하세요!</td>
 					<td class="align-middle" style="width: 20%">
 						<div class="row" onclick="pointEffect()" id="point">
 							<div class="col-md-8 col-lg-3">
@@ -68,7 +69,7 @@
 							</div>
 							<div class="col-md-4 col-lg-9">
 								<span>적립금</span><br>
-								<span class="emphasis">${user.mileage }</span>
+								<span class="emphasis">${mileageU}</span>
 								<div class="square square-1"></div>
 								<div class="square square-2"></div>
 								<div class="circle circle-1"></div>
@@ -85,8 +86,8 @@
 								<i class="fas fa-shopping-basket"></i><br />
 							</div>
 							<div class="col-md-4 col-lg-9">
-								<a href="selectAllB.do"> <span>구매내역</span><br> <span
-									class="emphasis">구매건수</span>
+								<a href="selectAllB.do"> <span>구매내역</span><br><span
+									class="emphasis">${buylist.size()}</span>
 								</a>
 							</div>
 						</div>
@@ -124,18 +125,25 @@
 					    </ul>
 					</div>
 				</div>
-				<div class="col-md-4 col-lg-8">
+				<div class="col-md-4 col-lg-9">
 					<br><br>
 					<div class="text-left">
 					<h5>구매 내역</h5>
 					<br>
 					</div>
 					<table class="table table-borderless">
+					<colgroup>
+						<col style="width:15%">
+						<col style="width:25%">
+						<col style="width:10%">
+						<col style="width:13%">
+						<col style="width:15%">
+						<col style="width:*">
+					</colgroup>
 						<tr>
 							<th>상품사진</th>
 							<th>상품명</th>
-							<th>구매수량</th>
-							<th>가격</th>
+							<th>가격(수량)</th>
 							<th>구매일</th>
 							<th>배송일</th>
 							<th>배송지</th>
@@ -144,10 +152,9 @@
 						<tr>
 							<td><img src="${b.pimg}" style="width:80px;"alt="상품이미지"></td> 
 							<td>${b.pname}</td>
-							<td>${b.buycnt}</td>
-							<td>${b.price}</td>
-							<td>${b.shipping}</td>
+							<td>${b.price*b.buycnt}&nbsp;&nbsp;(${b.buycnt})</td>
 							<td>${b.buydate}</td>
+							<td>${b.shipping}</td>
 							<td>${b.prcadr}</td>
 						</tr>
 							</c:forEach>	
@@ -167,7 +174,7 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-	      <div class="text-center"><p style="font-size:13px; color:black" class="top-txt">회원탈퇴</p>
+	      <div class="text-center"><h5>회원탈퇴</h5>
 	      </div>
 	      <hr>
 	      <div class="modal-body">
