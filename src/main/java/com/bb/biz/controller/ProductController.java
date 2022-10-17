@@ -282,8 +282,9 @@ public class ProductController {
 		return "cart.jsp";
 	}
 	@RequestMapping(value="/pay.do")
-	public String pay(CouponVO cVO, Model model) {
+	public String pay(CouponVO cVO, Model model, HttpSession session) {
 
+		cVO.setMid((String)session.getAttribute("member"));
 		List<CouponVO> coupon = couponService.selectAllCoupon(cVO);
 
 		model.addAttribute("coupon", coupon);

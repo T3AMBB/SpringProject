@@ -32,6 +32,12 @@ public class CouponController {
 		cVO.setMid((String)session.getAttribute("member"));
 		List<CouponVO> coupon = couponService.selectAllCoupon(cVO);
 		
+		for(CouponVO v: coupon) {
+			if(v.getCode().equals("고객감사쿠폰20%")) {
+				model.addAttribute("flag", 1);
+			}
+		}
+		
 		model.addAttribute("coupon", coupon);
 		
 		return "myCoupon.jsp";
