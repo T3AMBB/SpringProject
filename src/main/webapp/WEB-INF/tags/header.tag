@@ -13,33 +13,21 @@
             <div class="offcanvas__links">
               <c:choose>
               	<c:when test="${member!=null }">                  
-              	  <a href="favorite.jsp"><i class="fa fa-heart" style="color:white;">찜목록</i></a>
-                  <a href="cart.jsp"><i class="fa fa-shopping-cart" style="color:white;">장바구니</i></a>
+              	  <a href="favorite.jsp"><i class="fa fa-heart" style="color:black;">찜목록</i></a>
+                  <a href="cart.jsp"><i class="fa fa-shopping-cart" style="color:black;">장바구니</i></a>
                   <a href="mypage.do">마이페이지</a>
                   <a href="logout.do">로그아웃</a>
                   </c:when>
                   <c:otherwise>
                   <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
                   <a href="signUp.jsp">회원가입</a>
-                  <a href="cart.jsp"><i class="fa fa-shopping-cart" style="color:white;">장바구니</i></a>
+                  <a href="cart.jsp"><i class="fa fa-shopping-cart" style="color:black;">장바구니</i></a>
                   </c:otherwise>
               </c:choose>
             </div>
-            <div class="offcanvas__top__hover">
-                <span>Usd <i class="arrow_carrot-down"></i></span>
-                <ul>
-                    <li>USD</li>
-                    <li>EUR</li>
-                    <li>USD</li>
-                </ul>
-            </div>
+           
         </div>
-        <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                  <a href="favorite.jsp"><i class="fa fa-heart" style="color:white;">찜목록</i></a>
-                  <a href="cart.jsp"><i class="fa-shopping-cart" style="color:white;">장바구니</i></a>
-            <div class="price">$0.00</div>
-        </div>
+      
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
             <p>피규어나라🤖 건담공주👑</p>
