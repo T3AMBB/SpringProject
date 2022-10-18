@@ -198,12 +198,15 @@
                <div class="point_div_subject">쿠폰 & 적립금</div>
                <div class="row">
                <div class="radio-wrap">
-                  <div style="float:left; margin-left:10px; padding:0.75rem;" class="coupon-wrap">
-                  <input type="radio" class="ds" id="ds" name="ds" value="쿠폰"><span> 쿠폰 사용하기</span>
-                  </div>
-                  <div style="float:left; margin-left:10px; padding:0.75rem;" class="point-wrap">
-                  <input type="radio" class="ds" name="ds" value="적립금"><span> 적립금 사용하기</span>
-                  </div>
+						<div style="float:left; margin-left:10px; padding:0.75rem;" class="coupon-wrap">
+						<input type="radio" class="ds" id="cou" name="ds" value="쿠폰"><span> 쿠폰 사용하기</span>
+						</div>
+						<div style="float:left; margin-left:10px; padding:0.75rem;" class="point-wrap">
+						<input type="radio" class="ds" name="ds" value="적립금"><span> 적립금 사용하기</span>
+						</div>
+						<div style="float:left; margin-left:10px; padding:0.75rem;" class="not-wrap">
+						<input type="radio" class="ds" name="ds" id="not" value="사용안함"><span> 할인 적용 안함</span>
+						</div>
                </div>
                </div>
                <p>※ 쿠폰과 적립금 중 하나의 할인 방식을 선택해주세요.</p>
@@ -406,7 +409,6 @@ var finalTotalPrice=0;
       var totalCount = 0;
       var delivery_price = 0;
       var totalPoint = 0;
-
       $(".goods_table_price_td").each(
             function(index, element) {
                // 총 가격
@@ -425,7 +427,6 @@ var finalTotalPrice=0;
       }
       // 배송비
       $(".delivery_price_span").text(delivery_price.toLocaleString());
-
       var coupon = $("#select_coupon option:selected").text();
       alert(coupon);
       finalTotalPrice = totalPrice + delivery_price;
@@ -445,7 +446,6 @@ var finalTotalPrice=0;
       finalTotalPrice -= usePoint;
       console.log(finalTotalPrice);
       totalPoint = 0;
-
       // 최종 가격(총 가격 + 배송비)
       $(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
       // 총 마일리지
@@ -458,37 +458,47 @@ var finalTotalPrice=0;
       if (window.event.keyCode == 13) {
          usePoint = $(".order_point_input").val();
          console.log(usePoint);
+          // 적립금 0 
+ 		  totalPoint = 0;
+    	  $(".totalPoint_span").text(totalPoint.toLocaleString());
           // 할인 금액
           $(".usePoint_span").text(usePoint.toLocaleString());
           console.log(typeof(usePoint));
       }
    }
    </script>
-   <script>
-   $('.ds').on('click', function() {
+	<script>
+	$('.ds').on('click', function() {
+	    var valueCheck = $('.ds:checked').val(); // 체크된 Radio 버튼의 값을 가져온다.
+	    if(valueCheck == '사용안함') {
+	        $('.coupon_select').prop("disabled", true);
+	        $('.order_point_input').attr('disabled', true);
+	        $('.order_point_input').val(0);
+	        $('.coupon_select option:eq(0)').prop('selected', true); //첫번째 option 선택
+	        $('.order_point_input_btn_N').css('display', 'none');
+	        $('.order_point_input_btn_Y').css('display', 'none');
+	    }
+	    else if ( valueCheck == '적립금' ) {
+	        $('.order_point_input').attr('disabled', false); 
+	        $('.coupon_select').prop("disabled", true);
+	        $('.order_point_input_btn_N').css('display', 'inline-block');
+	        $('.order_point_input_btn_Y').css('display', 'none');
+	        $('.coupon_select option:eq(0)').prop('selected', true); //첫번째 option 선택
+	        $('.order_point_input').focus();
+	    }
+	    else if(valueCheck == '쿠폰') {
+	        $('.order_point_input').attr('disabled', true); 
+	        $('.coupon_select').prop("disabled", false);
+	        $('.order_point_input').val(0);
+	        $('.order_point_input_btn_N').css('display', 'none');
+	        $('.order_point_input_btn_Y').css('display', 'none');
+	        $('.coupon_select').focus();
+	    }
+		setInfo();
 
-       var valueCheck = $('.ds:checked').val(); // 체크된 Radio 버튼의 값을 가져온다.
-       if ( valueCheck == '적립금' ) {
-           $('.order_point_input').attr('disabled', false); 
-           $('.coupon_select').prop("disabled", true);
-           $('.order_point_input_btn_N').css('display', 'inline-block');
-           $('.order_point_input_btn_Y').css('display', 'none');
-           $('.coupon_select option:eq(0)').prop('selected', true); //첫번째 option 선택
-           $('.order_point_input').focus();
-       }
-       else {
-           $('.order_point_input').attr('disabled', true); 
-           $('.coupon_select').prop("disabled", false);
-           $('.order_point_input').val(0);
-           $('.order_point_input_btn_N').css('display', 'none');
-           $('.order_point_input_btn_Y').css('display', 'none');
-           $('.coupon_select').focus();
-       }
-      setInfo();
-   });
-   </script>
+	});
+	</script>
 <script>
-
 /* 주소입력란 버튼 동작(숨김, 등장) */
 function showAdress(className){
    /* 컨텐츠 동작 */
@@ -505,7 +515,6 @@ function show2(){
    $('#add_value').val('b');
    console.log($('#add_value').val());
 }
-
 /* 다음 주소 연동 */
 function execution_daum_address(){
        console.log("동작");
@@ -561,52 +570,53 @@ function execution_daum_address(){
 /* 포인트 입력 */
 //0 이상 & 최대 포인트 수 이하
 $(".order_point_input").on("propertychange change keyup paste input", function(){
-
-   const maxPoint = parseInt('${mileageU}');   
-   
-   let inputValue = parseInt($(this).val());   
-   
-   if(inputValue < 0){
-      $(this).val(0);
-   } else if(inputValue > maxPoint){
-      $(this).val(maxPoint);
-   }   
-   
-   /* 주문 조합정보란 최신화 */
-   setInfo();   
+	const maxPoint = parseInt('${mileageU}');   
+	
+	let inputValue = parseInt($(this).val());   
+	
+	if(inputValue < 0){
+	   $(this).val(0);
+	} else if(inputValue > maxPoint){
+	   $(this).val(maxPoint);
+	}   
+	
+	/* 주문 조합정보란 최신화 */
+	setInfo(); 
+	totalPoint = 0;
+	$(".totalPoint_span").text(totalPoint.toLocaleString());
    
 });
 /* 포인트 모두사용 취소 버튼 
  * Y: 모두사용 상태 / N : 모두 취소 상태
  */
 $(".order_point_input_btn").on("click", function(){
-
-   const maxPoint = parseInt('${mileageU}');   
-   
-   let state = $(this).data("state");   
-   
-   if(state == 'N'){
-      console.log("n동작");
-      /* 모두사용 */
-      //값 변경
-      $(".order_point_input").val(maxPoint);
-      //글 변경
-      $(".order_point_input_btn_Y").css("display", "inline-block");
-      $(".order_point_input_btn_N").css("display", "none");
-   } else if(state == 'Y'){
-      console.log("y동작");
-      /* 취소 */
-      //값 변경
-      $(".order_point_input").val(0);
-      //글 변경
-      $(".order_point_input_btn_Y").css("display", "none");
-      $(".order_point_input_btn_N").css("display", "inline-block");      
-   }   
-   
-   /* 주문 조합정보란 최신화 */
-   setInfo();   
+	const maxPoint = parseInt('${mileageU}');   
+	
+	let state = $(this).data("state");   
+	
+	if(state == 'N'){
+	   console.log("n동작");
+	   /* 모두사용 */
+	   //값 변경
+	   $(".order_point_input").val(maxPoint);
+	   //글 변경
+	   $(".order_point_input_btn_Y").css("display", "inline-block");
+	   $(".order_point_input_btn_N").css("display", "none");
+	} else if(state == 'Y'){
+	   console.log("y동작");
+	   /* 취소 */
+	   //값 변경
+	   $(".order_point_input").val(0);
+	   //글 변경
+	   $(".order_point_input_btn_Y").css("display", "none");
+	   $(".order_point_input_btn_N").css("display", "inline-block");      
+	}   
+	
+	/* 주문 조합정보란 최신화 */
+	setInfo();
+	totalPoint = 0;
+	$(".totalPoint_span").text(totalPoint.toLocaleString());
 });
-
 /* 주문 요청 */
 $(".order_btn").on("click", function(){
    
@@ -617,11 +627,8 @@ $(".order_btn").on("click", function(){
    $(".order_form").submit();   
    
 });   
-
-
 $(document).ready(function () {
     var tmp = parseInt($(".total_info_div").css('top'));
-
     $(window).scroll(function () {
         var scrollTop = $(window).scrollTop();
         var obj_position = scrollTop + tmp + "px";
@@ -629,7 +636,6 @@ $(document).ready(function () {
         $(".total_info_div").stop().animate({
             "top": obj_position
         }, 800);
-
     }).scroll();
 });
 </script>
@@ -653,7 +659,6 @@ $(document).ready(function () {
       
    <script>
    
-
    $("#check_module").click(function () {
          var prcadr="";
          var mid = "${user.mid}";
