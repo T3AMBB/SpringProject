@@ -75,7 +75,7 @@
 								<c:forEach var="d" items='${buyProduct}' begin='0' end='0'>
 								<h4>주문자 정보</h4>
 								<br>
-								<p>주문자 성함 : ${user.mid}</p>
+								<p>주문자 성함 : ${user.mname}</p>
 								<p></p>
 								<p>전화번호 : ${user.mphone}</p>
 								<p>휴대전화번호 : ${user.mphone}</p>
@@ -83,7 +83,7 @@
 								<hr>
 								<h4>배송지 정보</h4>
 								<br>
-								<p>받으시는 분 : ${user.mid}</p>
+								<p>받으시는 분 : ${user.mname}</p>
 								<p>전화번호 : ${user.mphone}</p>
 								<p>휴대전화번호 : ${user.mphone}</p>
 								<a>배송 예정일 : ${d.shipping}</a>

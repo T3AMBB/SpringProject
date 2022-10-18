@@ -58,9 +58,9 @@ public class BuyListController {
          System.out.println("5 : " + bVO.getPrcadr());
          System.out.println("6 : " + cVO.getCid());
          System.out.println("7 : " + mVO.getMileage());
-      }
 
       buylistService.insertBuylist(bVO);
+      }
       
       double total_point = totalsum * 0.01; // 적립금 계산 (구매금액의 1%)
       System.out.println("total_point :" + total_point);
@@ -81,6 +81,7 @@ public class BuyListController {
     	  mVO.setMileage((int)Math.round(total_point)); // 계산된 마일리지를 저장
     	  model.addAttribute("mileage", mVO.getMileage()); // 저장된 마일리지를 view에게 전달
     	  System.out.println("적립금 실행 " + mVO.getMileage()); 
+    	  
     	  memberService.updateMileage(mVO); // 마일리지를 회원DB에 업데이트(마일리지 증가)
     	  
     	  // 마일리지 최신화(마이페이지 세션)
@@ -92,14 +93,17 @@ public class BuyListController {
     	  mVO.setMileage(mVO.getMileage()*-1); // 음수 변환
     	  model.addAttribute("mileage", mVO.getMileage()); 
     	  System.out.println("적립금 사용 실행 " + mVO.getMileage());
+    	  
     	  memberService.updateMileage(mVO); // 사용한 마일리지를 회원DB에 업데이트(마일리지 차감)
     	  // 마일리지 적립
-    	  mVO.setMileage((int)Math.round(total_point));
-    	  memberService.updateMileage(mVO);
+    	  mVO.setMid(mid);
+//    	  mVO.setMileage((int)Math.round(total_point));
+//    	  memberService.updateMileage(mVO);
     	  
     	  // 마일리지 최신화(마이페이지 세션)
-    	  mVO.setMid(mid);
+    	
     	  mVO=memberService.selectOneMember_CHECK(mVO);
+    	  
     	  session.setAttribute("mileageU", mVO.getMileage());
       }
       
