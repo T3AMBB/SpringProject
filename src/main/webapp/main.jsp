@@ -50,12 +50,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text" style="font-color:white">
-                                <div class="hero__social">
-                                    <a href="https://www.facebook.com/figurefarm.net/"target=”_blank”><i class="fa fa-facebook"></i></a>
-                                    <a href="https://twitter.com/figurefam_net"target=”_blank”><i class="fa fa-twitter"></i></a>
-                                    <a href="https://www.instagram.com/figurefarm/"target=”_blank”><i class="fa fa-instagram"></i></a>
-                                </div>
+                            <div class="hero__text" style="font-color:white">  
                             </div>
                         </div>
                     </div>
