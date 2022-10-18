@@ -46,15 +46,11 @@
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="img/hero/onepice-1.jpg">
+            <div class="hero__items set-bg" data-setbg="https://toyntech.wisacdn.com/_data/banner/d281aa1437f2b9b6f1a1b04d64766f09.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 col-md-8">
                             <div class="hero__text" style="font-color:white">
-                                <h6>피규어 역사상 최고의 Collection</h6>
-                                <h2>최고의 걸작!</h2>
-                                <p> 살아 숨쉬는듯한 생동감 넘치는 피규어!</p>
-                                <a href="#" class="primary-btn">구매하러 가기 <span class="arrow_right"></span></a>
                                 <div class="hero__social">
                                     <a href="https://www.facebook.com/figurefarm.net/"target=”_blank”><i class="fa fa-facebook"></i></a>
                                     <a href="https://twitter.com/figurefam_net"target=”_blank”><i class="fa fa-twitter"></i></a>
@@ -65,7 +61,13 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="img/hero/onepice-2.jpg">
+            <div class="hero__items set-bg" data-setbg="https://toyntech.wisacdn.com/_data/banner/1dc0957838b8a6e745986045fc192eeb.jpg">
+            </div>
+            <div class="hero__items set-bg" data-setbg="https://toyntech.wisacdn.com/_data/banner/ff14b1cac40f102be8927cd0ac18cf7c.jpg">
+            </div>
+            <div class="hero__items set-bg" data-setbg="https://toyntech.wisacdn.com/_data/banner/c2a611bcd46dc20c0c9f3284cbcf70d8.jpg">
+            </div>
+            <div class="hero__items set-bg" data-setbg="https://toyntech.wisacdn.com/_data/banner/1660ffc6a0bc2f5c874cb6d79ff03229.jpg">
             </div>
         </div>
     </section>

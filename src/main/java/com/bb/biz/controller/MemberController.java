@@ -64,7 +64,7 @@ public class MemberController {
 
 		mVO=memberService.selectOneMember(mVO);
 		if(mVO==null) {
-			return "login.jsp";
+			return "main.do";
 		}
 		else {
 			session.setAttribute("member", mVO.getMid());
