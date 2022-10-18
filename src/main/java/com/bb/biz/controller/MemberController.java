@@ -1,6 +1,10 @@
 package com.bb.biz.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,21 +63,25 @@ public class MemberController {
 		      return "main.do";
 		   }
 	
-	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public String selectOneMember(Model model,MemberVO mVO,HttpSession session){
+	   @RequestMapping(value="/login.do", method=RequestMethod.POST)
+	   public String selectOneMember(Model model,MemberVO mVO,HttpSession session, HttpServletResponse response) throws IOException{
 
-		mVO=memberService.selectOneMember(mVO);
-		if(mVO==null) {
-			return "main.do";
-		}
-		else {
-			session.setAttribute("member", mVO.getMid());
-		    session.setAttribute("mileageU", mVO.getMileage());
-			model.addAttribute("user", mVO);
-			return "main.do";
-		}
+	      mVO=memberService.selectOneMember(mVO);
+	      if(mVO==null) {
+	         response.setContentType("text/html; charset=euc-kr");
+	         PrintWriter out = response.getWriter();
+	         out.println("<script>alert('아이디 및 비밀번호가 틀립니다.');history.go(-1);</script>");
+	         out.flush();
+	         return "main.do";
+	      }
+	      else {
+	         session.setAttribute("member", mVO.getMid());
+	          session.setAttribute("mileageU", mVO.getMileage());
+	         model.addAttribute("user", mVO);
+	         return "main.do";
+	      }
 
-	}
+	   }
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session,Model model) {
 		session.invalidate();
