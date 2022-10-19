@@ -10,38 +10,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Shopping</h6>
+                <div>
+                   <h4 style="color:#fff; margin-left: 13%;">비전있는 비전공자 팀원들의 노션 및 블로그 주소</h4>
+                   <br>
+                    <div  style="color:#fff; margin-left: 15%; width: 100%;">
+                           
                         <ul>
-                            <li><a href="#">Clothing Store</a></li>
-                            <li><a href="#">Trending Shoes</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Sale</a></li>
+                            <li>박민우 ▶ <a href="https://fan-cell-c64.notion.site/0fce131dfae54bef96b7285b09c19bfb" target="_blank" style="color:#dc3545">https://fan-cell-c64.notion.site/0fce131dfae54bef96b7285b09c19bfb</a></li>
+                            <li>박민호 ▶ <a href="https://flame-grouse-2cb.notion.site/94547591aadf4abea2b5289ed53f23e8 " target="_blank"  style="color:#fd7e14">https://flame-grouse-2cb.notion.site/94547591aadf4abea2b5289ed53f23e8</a></li>
+                            <li>박선재 ▶ <a href="https://immediate-quail-868.notion.site/7b66624cc598486eac026058e2c058aa" target="_blank" style="color:#ffc107">https://immediate-quail-868.notion.site/7b66624cc598486eac026058e2c058aa</a></li>
+                            <li>김성곤 ▶ <a href="https://voracious-trade-3ac.notion.site/Eden-Notion-2def82eae928432b898700d9d4cc8db0" target="_blank" style="color:#28a745">https://voracious-trade-3ac.notion.site/Eden-Notion-2def82eae928432b898700d9d4cc8db0</a></li>
+                            <li>정아림 ▶ <a href="https://platinum-tracker-3ed.notion.site/Jung-A-Rim-6777dd249e6c498392218cbf32db5452 " target="_blank" style="color:#007bff">https://platinum-tracker-3ed.notion.site/Jung-A-Rim-6777dd249e6c498392218cbf32db5452 </a></li>
+                            <li>임명환 ▶ <a href="https://lunar-fan-de1.notion.site/393f44a262b041f48d44a6ab47af137c" target="_blank" style="color:#6610f2">https://lunar-fan-de1.notion.site/393f44a262b041f48d44a6ab47af137c</a></li>
+                            <li>성규화 ▶ <a href="https://reon-q.tistory.com/ " target="_blank" style="color:#6f42c1">https://reon-q.tistory.com/ </a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Shopping</h6>
-                        <ul>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Delivary</a></li>
-                            <li><a href="#">Return & Exchanges</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>NewLetter</h6>
-                        <div class="footer__newslatter">
-                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-                            <form action="#">
-                                <input type="text" placeholder="Your email">
-                                <button type="submit"><span class="icon_mail_alt"></span></button>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
