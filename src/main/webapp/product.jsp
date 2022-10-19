@@ -378,8 +378,9 @@
                     				
                     				product += "<div class='product__item'>";
                     				product += "<div class='product__item__pic set-bg'>";
+                    				product += "<div class='img' style='overflow:hidden;'>";
                     				product += " <a href='boardP.do?pid="+n.pid+"'>";
-                    				product += "<img alt='이미지' src='"+n.pimg+"'width='280' height='280'></a>";
+                    				product += "<img alt='이미지' src='"+n.pimg+"'width='280' height='280'></a></div>";
                     				product += "<ul class='product__hover'>";
                     				
                     				if (user!=""){
@@ -416,8 +417,9 @@
                         				
                         				product += "<div class='product__item'>";
                         				product += "<div class='product__item__pic set-bg'>";
+                        				product += "<div class='img' style='overflow:hidden;'>";
                         				product += " <a href='boardP.do?pid="+n.pid+"'>";
-                        				product += "<img alt='이미지' src='"+n.pimg+"'width='280' height='280'></a>";
+                        				product += "<img alt='이미지' src='"+n.pimg+"'width='280' height='280'></a></div>";
                         				product += "<ul class='product__hover'>";
                         				
                         				if (user!=""){
@@ -550,8 +552,9 @@
 
 											product += "<div class='product__item'>";
 		                    				product += "<div class='product__item__pic set-bg'>";
+		                    				product += "<div class='img' style='overflow:hidden;'>";
 		                    				product += " <a href='boardP.do?pid="+n.pid+"'>";
-		                    				product += "<img alt='이미지' src='"+n.pimg+"'width='280' height='280'></a>";
+		                    				product += "<img alt='이미지' src='"+n.pimg+"'width='280' height='280'></a></div>";
 		                    				product += "<ul class='product__hover'>";
 		                    				
 		                    				if (user!=""){
