@@ -44,6 +44,11 @@
                         <div class="header__top__left">
                             <p>피규어나라🤖 건담공주👑</p>
                         </div>
+                         <div class="header__top__left">
+                         <a href="https://github.com/T3AMBB/SpringProject" >
+                         <img src="./img/icon/gitlogo.png"/>
+                         </a>
+                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
@@ -62,7 +67,7 @@
                                 </c:otherwise>
                             </c:choose>
                             </div>
-                        </div>
+                        </div>           
                     </div>
                 </div>
             </div>
