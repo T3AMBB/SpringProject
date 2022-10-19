@@ -227,7 +227,7 @@
                         <th>쿠폰 사용</th>
                         <td>
                            <select style="width:70%" class="coupon_select" id="select_coupon" onchange='check();' name="select_name">
-                              <option selected value="0">쿠폰 선택</option>
+                              <option selected value="0" disabled>쿠폰 선택</option>
                               <c:forEach var="c" items="${coupon}">
                               <c:if test="${c.cstatus==1}">
                               <option value='${c.cid}'>${c.code}</option>
@@ -241,7 +241,7 @@
                      <tr>
                         <th>쿠폰 사용</th>
                         <td>
-                           <select style="width:70%" class="coupon_select" id="select_coupon" onchange=' check_blank();' name="select_name">
+                           <select style="width:70%" class="coupon_select" id="select_coupon" onchange='check();' disabled name="select_name">
                               <option selected value="0">쿠폰이 존재하지 않습니다.</option>
                            </select>
                         </td>
@@ -342,18 +342,19 @@
       </div>
    </div>
    <hearder:footer/>
-   <script>
+   <script> 
    function check_blank(){
       alert('쿠폰이 존재하지 않습니다.');
    }
    function check(){
+	  var valueCheck = $('.ds:checked').val()
       if($('.ds').is(":checked") == false){
-          alert('쿠폰과 적립금 중 할인 유형을 선택해주세요.')
+         alert('쿠폰과 적립금 중 할인 유형을 선택해주세요.')
          $("#ds").focus();   
           return;
       }
-      else{
-         coupon();
+      else {
+    	  coupon();
       }
    }
    </script>
