@@ -428,7 +428,6 @@ var finalTotalPrice=0;
       // 배송비
       $(".delivery_price_span").text(delivery_price.toLocaleString());
       var coupon = $("#select_coupon option:selected").text();
-      alert(coupon);
       finalTotalPrice = totalPrice + delivery_price;
       if(coupon == "0"){
          return;
@@ -438,7 +437,6 @@ var finalTotalPrice=0;
       } else {
          usePoint = finalTotalPrice * 0.1;
       }
-      alert(usePoint);
       $(".usePoint_span").text(usePoint.toLocaleString());
       console.log(usePoint.toLocaleString());
       // 물건 가격

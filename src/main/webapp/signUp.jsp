@@ -15,8 +15,8 @@
     <title>PinaGunGong</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Font+Name">
 
     <!-- Css Styles -->
         <link rel="shorycut icon" href="img/pavi.png" type="image/png">
@@ -52,7 +52,7 @@
         <div class="form_txtInput">
  		<form action="signUp.do" method="post" name="regForm">
           <h2 class="sub_tit_txt">회원가입</h2>
-          <p class="exTxt">회원가입시 이메일 인증을 반드시 진행하셔야 합니다.</p>
+          <p class="exTxt">회원가입시 10% 할인 쿠폰을 지급합니다.</p>
           <div class="join_form">
             <table>
               <colgroup>

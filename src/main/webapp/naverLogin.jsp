@@ -11,10 +11,9 @@
 </head>
 <body>
 	<script type="text/javascript">
-		var naver_id_login = new naver_id_login("dSuSr97hQ_8Q6nsvdKk_",
-				"http://localhost:8088/app1/naverLogin.jsp");
+		var naver_id_login = new naver_id_login("_yxif3j955WIoRMM5ZX6",
+				"http://pnggbb.duckdns.org/naverLogin.jsp");
 		// 접근 토큰 값 출력
-		alert(naver_id_login.oauthParams.access_token);
 		// 네이버 사용자 프로필 조회
 		naver_id_login.get_naver_userprofile("naverSignInCallback()");
 		// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
@@ -24,10 +23,6 @@
 			var mname = naver_id_login.getProfileData('name');
 			var mphone = naver_id_login.getProfileData('mobile');
 			var birthday = naver_id_login.getProfileData('birthday');
-			alert(naver_id_login.getProfileData('email'));
-			alert(birthday);
-			alert(naver_id_login.getProfileData('name'));
-			alert(mphone);
 			location.href ='naverLogin.do?mid='+ mid+'&mname='+mname+'&birthday='+birthday;
 		}
 	</script>

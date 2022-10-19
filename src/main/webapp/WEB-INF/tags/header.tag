@@ -149,8 +149,8 @@
 	charset="utf-8"></script>
 <script>
 	var naverLogin = new naver.LoginWithNaverId({
-		clientId : "dSuSr97hQ_8Q6nsvdKk_", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-		callbackUrl : "http://localhost:8088/app1/naverLogin.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+		clientId : "_yxif3j955WIoRMM5ZX6", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+		callbackUrl : "http://pnggbb.duckdns.org/naverLogin.jsp", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
 		isPopup : false,
 		callbackHandle : true
 	});
@@ -194,9 +194,6 @@
                                console.log('이메일:'+response.kakao_account.email);
                                console.log('닉네임:'+response.kakao_account.profile.nickname);
 //                                location.href="login.do?amid="+email;
-								alert(response.id);
-							   alert(email);
-							   alert(name);
 							   location.href ='kakaoLogin.do?mid='+ email+'&mname='+name+'&mpw='+mpw;
                            },
                            fail : function(error) {
