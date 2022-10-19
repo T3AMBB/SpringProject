@@ -28,6 +28,11 @@ public class CouponServiceImpl implements CouponService{
 	public List<CouponVO> selectAllCoupon(CouponVO vo) {
 		return couponDAO.selectAllCoupon(vo);
 	}
+	
+	@Override
+	public List<CouponVO> selectAllCoupon_STA(CouponVO vo) {
+		return couponDAO.selectAllCoupon_STA(vo);
+	}
 
 	@Override
 	public CouponVO selectOneCoupon(CouponVO vo) {

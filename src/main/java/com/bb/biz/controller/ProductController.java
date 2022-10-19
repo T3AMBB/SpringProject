@@ -285,7 +285,7 @@ public class ProductController {
 	public String pay(CouponVO cVO, Model model, HttpSession session) {
 
 		cVO.setMid((String)session.getAttribute("member"));
-		List<CouponVO> coupon = couponService.selectAllCoupon(cVO);
+		List<CouponVO> coupon = couponService.selectAllCoupon_STA(cVO);
 
 		System.out.println("coupon : "+ coupon.size());
 		model.addAttribute("coupon", coupon);

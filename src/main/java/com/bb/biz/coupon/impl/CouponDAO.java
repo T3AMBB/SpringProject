@@ -27,6 +27,7 @@ public class CouponDAO {
 	
 	
 	final String sql_selectAll="SELECT * FROM COUPON WHERE MID=? ORDER BY CID ASC";
+	final String sql_selectAll_STA="SELECT * FROM COUPON WHERE MID=? AND CSTATUS=1 ORDER BY CID ASC";
 
 
 	boolean insertCoupon(CouponVO vo) {
@@ -45,9 +46,7 @@ public class CouponDAO {
 			jdbcTemplate.update(sql_updateCD,vo.getCid());
 			return true;
 		}
-		
 		return false;
-		
 	}
 	CouponVO selectOneCoupon(CouponVO vo) {
 		Object[] args= {vo.getCid()};
@@ -55,6 +54,10 @@ public class CouponDAO {
 	}
 	List<CouponVO> selectAllCoupon(CouponVO vo){
 		return jdbcTemplate.query(sql_selectAll, new CouponRowMapper(), vo.getMid());
+		
+	}
+	List<CouponVO> selectAllCoupon_STA(CouponVO vo){
+		return jdbcTemplate.query(sql_selectAll_STA, new CouponRowMapper(), vo.getMid());
 		
 	}
 	
