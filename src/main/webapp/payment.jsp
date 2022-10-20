@@ -156,18 +156,18 @@
                            </tr>
                            <tr>
                               <th><span>주소</span></th>
-                              <td><input style="width:70% "type="text" value="${user.zipcode}" id="add_zone"
+                              <td><input style="width:70% "type="text" value="" id="zipcode"
                                  placeholder="우편번호" readonly="readonly"><button style="width:30%; height:37px" type="button" id="searchAdd"
-                                    class="btn btn-dark" onclick='execution_daum_address();'>우편번호 검색</button></td>
+                                    class="btn btn-dark">우편번호 검색</button></td>
                            </tr>
                            <tr>
                               <th></th>
                               <td colspan="2"><input type="text"
-                                 id="add_load" value="${user.streetaddress}" class="address1_input" placeholder="도로명 주소" readonly="readonly"></td>
+                                 id="streetaddress" value="" class="address1_input" placeholder="도로명 주소" readonly="readonly"></td>
                            </tr>
                            <tr>
                               <th></th>
-                              <td colspan="2"><input type="text" class="address2_input" value="${user.address}"
+                              <td colspan="2"><input type="text" class="address2_input" value=""
                                  name="address" placeholder="상세 주소"></td>
                            </tr>
                            </tbody>
@@ -227,7 +227,7 @@
                         <th>쿠폰 사용</th>
                         <td>
                            <select style="width:70%" class="coupon_select" id="select_coupon" onchange='check();' name="select_name">
-                              <option selected value="0" disabled>쿠폰 선택</option>
+                              <option selected value="0">쿠폰 선택</option>
                               <c:forEach var="c" items="${coupon}">
                               <c:if test="${c.cstatus==1}">
                               <option value='${c.cid}'>${c.code}</option>
@@ -346,6 +346,10 @@
    function check_blank(){
       alert('쿠폰이 존재하지 않습니다.');
    }
+   function check_coupon(){
+	      alert('쿠폰을 선택해주세요.');
+	      setInfo();
+	   }
    function check(){
 	  var valueCheck = $('.ds:checked').val()
       if($('.ds').is(":checked") == false){
@@ -435,8 +439,12 @@ var finalTotalPrice=0;
       }
       if (coupon == '고객감사쿠폰20%') {
          usePoint = finalTotalPrice * 0.2;
-      } else {
+      } else if(coupon =='가입환영쿠폰10%') {
          usePoint = finalTotalPrice * 0.1;
+      }
+      else {
+    	  check_coupon();
+    	  return;
       }
       $(".usePoint_span").text(usePoint.toLocaleString());
       console.log(usePoint.toLocaleString());
@@ -515,56 +523,17 @@ function show2(){
    console.log($('#add_value').val());
 }
 /* 다음 주소 연동 */
-function execution_daum_address(){
-       console.log("동작");
-      new daum.Postcode({
-           oncomplete: function(data) {
-               // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-               
-              // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
- 
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
- 
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 추가해야할 코드
-                    // 주소변수 문자열과 참고항목 문자열 합치기
-                      addr += extraAddr;
-                
-                } else {
-                   addr += ' ';
-                }
- 
-                // 제거해야할 코드
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                $("#add_zone").val(data.zonecode);
-                $(".address1_input").val(addr);            
-                // 커서를 상세주소 필드로 이동한다.
-                $(".address2_input").attr("readonly", false);
-                $(".address2_input").focus();    
-           }
-       }).open();     
+window.onload = function(){
+    document.getElementById("searchAdd").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+            oncomplete: function(data) { //선택시 입력값 세팅
+                document.getElementById("streetaddress").value = data.address; // 주소 넣기
+                document.getElementById('zipcode').value = data.zonecode; // 우편 번호 넣기
+                document.querySelector("input[name=address]").focus(); //상세입력 포커싱
+            }
+        }).open();
+    });
 }
 /* 포인트 입력 */
 //0 이상 & 최대 포인트 수 이하
@@ -663,7 +632,7 @@ $(document).ready(function () {
          var mid = "${user.mid}";
          console.log(mid);
       if($('#add_value').val()=='b'){
-         prcadr = $('#add_zone').val()+" "+$('.address1_input').val()+$('.address2_input').val();
+         prcadr = $('#zipcode').val()+" "+$('.address1_input').val()+$('.address2_input').val();
          console.log("직접 " + prcadr);
       }
       else{
